@@ -1,0 +1,234 @@
+.contenido {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+  
+  .contenido .heading {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: bolder;
+  }
+
+  .titulos{
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    border: 1px #696969 solid;
+}
+  
+  .form {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .form-section{
+    padding: 20px;
+    width: 100%;
+  }
+
+  .form .btn-contenido {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .form .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    border-radius: 10px;
+    border: solid 1px #001660;
+    border-bottom: solid 1px #33537a;
+    background: linear-gradient(135deg, #001660, #013375);
+    color: #fff;
+    font-weight: bolder;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #014a9c,
+      inset 0px -4px 5px #001660;
+  }
+  
+  .form .btn:active {
+    box-shadow: inset 0px 4px 5px #0070f0, inset 0px -4px 5px #002cbb;
+    transform: scale(0.995);
+  }
+
+  h2{
+    width: 100%;
+  }
+  
+  .input-field {
+    position: relative;
+    margin-top: 8px;
+    width: 100%;
+  }
+  
+  .input-field label {
+    position: absolute;
+    color: #8d8d8d;
+    pointer-events: none;
+    background-color: transparent;
+    left: 15px;
+    transform: translateY(0.6rem);
+    transition: all 0.3s ease;
+  }
+  
+  .input-field input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: solid 1px #8d8d8d;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+  
+  .input-field input:focus,
+  .input-field input:valid {
+    outline: none;
+    border: solid 1px #001660;
+  }
+  
+  .input-field input:focus ~ label,
+  .input-field input:valid ~ label {
+    transform: translateY(-51%) translateX(-10px) scale(0.8);
+    background-color: #fff;
+    padding: 0px 5px;
+    color: #0034de;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 100px;
+  }
+  
+  .form .passicon {
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 6px;
+    right: 8px;
+  }
+  
+  .form .close {
+    display: none;
+  }
+  
+  /*botones*/
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn-left {
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.btn-right {
+    margin-left: auto;
+    margin-top: 25px;
+}
+
+.enviar{
+  margin-left: auto;
+    margin-top: 25px;
+}
+
+  /*Checkboxes*/
+  .checkbox-wrapper-46 input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+  
+  .checkbox-wrapper-46 .cbx {
+    margin: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+  .checkbox-wrapper-46 .cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-46 .cbx span:first-child {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #9098a9;
+    transition: all 0.2s ease;
+  }
+  .checkbox-wrapper-46 .cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-46 .cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #506eec;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+  }
+  .checkbox-wrapper-46 .cbx span:last-child {
+    padding-left: 8px;
+  }
+  .checkbox-wrapper-46 .cbx:hover span:first-child {
+    border-color: #506eec;
+  }
+  
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+    background: #506eec;
+    border-color: #506eec;
+    animation: wave-46 0.4s ease;
+  }
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+  }
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(3.5);
+    opacity: 0;
+    transition: all 0.6s ease;
+  }
+  
+  @keyframes wave-46 {
+    50% {
+      transform: scale(0.9);
+    }
+  }
+
+  .word-count { color: red; }
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+  
