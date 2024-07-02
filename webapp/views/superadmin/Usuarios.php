@@ -185,10 +185,12 @@ $users = $userController->handleRequest();
             <p>Departamento de Formación Docente</p>
             <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
         </footer>
+       
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="../../webapp/assets/js/usuarios.js"></script>
 
         <script>
         fetch("../../templates/header.html")
@@ -196,7 +198,6 @@ $users = $userController->handleRequest();
             .then(data => {
                 document.getElementById("headerContainer").innerHTML = data;
             });
-
         </script>
     </div>
 </body>

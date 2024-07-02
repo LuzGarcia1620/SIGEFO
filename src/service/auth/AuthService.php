@@ -7,7 +7,7 @@ class AuthService
             $postgres = new PostgreSQL;
             $conn = $postgres->connect();
 
-            $stmt = $conn->prepare("SELECT * FROM develop.usuario WHERE usuario = :user AND password = :pass");
+            $stmt = $conn->prepare("SELECT * FROM usuario WHERE usuario = :user AND password = :pass");
             $stmt->bindParam(':user', $usuario);
             $stmt->bindParam(':pass', $password);
             $stmt->execute();
