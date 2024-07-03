@@ -210,55 +210,49 @@ input:hover {
   height: 50px;
 }
 
-/*inputs*/
+/* Estilo flotante para los labels */
 .campo {
   position: relative;
-  margin-top: 8px;
+  margin-top: 15px;
   width: 100%;
 }
 
-.campo label {
-  position: absolute;
-  color: #8d8d8d;
-  pointer-events: none;
-  background-color: transparent;
-  left: 15px;
-  transform: translateY(0.6rem);
-  transition: all 0.3s ease;
-}
-
-.campo input {
+.campo input,
+.campo select {
   padding: 10px 15px;
   font-size: 1rem;
   border-radius: 8px;
   border: solid 1px #8d8d8d;
-  letter-spacing: 1px;
   width: 100%;
+  outline: none;
 }
 
 .campo input:focus,
-.campo input:valid {
-  outline: none;
+.campo input:valid,
+.campo select:focus,
+.campo select:valid {
   border: solid 1px #001660;
 }
 
+.campo label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #8d8d8d;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: #fff;
+  padding: 0 5px;
+}
+
 .campo input:focus ~ label,
-.campo input:valid ~ label {
-  transform: translateY(-51%) translateX(-10px) scale(0.8);
-  background-color: #fff;
-  padding: 0px 5px;
-  color: #0034de;
+.campo input:valid ~ label,
+.campo select:focus ~ label,
+.campo select:valid ~ label {
+  top: -10px;
+  left: 10px;
+  color: #0031d3;
+  font-size: 0.75rem;
   font-weight: bold;
-  letter-spacing: 1px;
-  border: none;
-  border-radius: 100px;
-}
-
-/*Botones de eliminar y desactivar*/
-.swal2-confirm {
-  margin-right: 10px !important; /* Ajusta el margen derecho entre los botones */
-}
-
-.swal2-cancel {
-  margin-left: 10px !important; /* Ajusta el margen izquierdo entre los botones */
 }

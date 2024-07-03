@@ -17,7 +17,7 @@ class AuthService
             if (!$rs) {
                 echo "Usuario o Contraseña Incorrecta";
             } else {
-                echo "Sesion Exiotosa, Eres Perro wey";
+                echo "Sesion Exitosa, Eres Perro wey";
                 return $rs;
                 /*echo "ID: " . $rs['idusuario'] . "<br>";
                 echo "Usuario: " . $rs['usuario'] . "<br>";

@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="Assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="Assets/css/ActividadFormativa.css" />
-    <link rel="stylesheet" href="Assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/css/ActividadFormativa.css" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
 </head>
 
 <body>
 
-    <?php
-   $modalidades = obtenerModalidades();
-    ?>
+<?php
+require __DIR__."/../../../src/controller/user/UserController.php";
+$userController = new UserController();
+$users = $userController->handleRequest();
+?>
 
     <div id="headerContainer"></div>
     <div class="container-fluid d-flex flex-column min-vh-100">
@@ -27,14 +29,14 @@
             <div class="col-md-2">
                 <div class="conte">
                     <ul class="list-unstyled vertical-nav">
-                        <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                        <li><a href="actividadformativa.php" class="btn btn-primary btn-block my-1 menu">Actividad
-                                Formativa</a></li>
-                        <li><a href="usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                        <li><a href="consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                        <li><a href="asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                        <li><a href="salir.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                    </ul>
+                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad
+                            Formativa</a></li>
+                    <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                </ul>
                 </div>
             </div>
             <!-- Contenido Principal -->
@@ -43,7 +45,7 @@
                 <div class="titulo">Actividades</div>
                 <div>
                     <button class="actividad" onclick="openModal('modal3')">
-                        <img src="Assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
+                        <img src="../../assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
                     </button>
                 </div>
                 <div class="divider-line"></div>
@@ -63,9 +65,9 @@
                                 <td>Completado</td>
                                 <td>
                                     <div class="img-container">
-                                        <img src="Assets/img/lupa.png" alt="ver" onclick="openModal('modal1')" />
-                                        <img src="Assets/img/editar.png" alt="editar" onclick="openModal('modal2')" />
-                                        <img src="Assets/img/borrar.png" alt="borrar" id="deleteActivityImage" />
+                                        <img src="../../assets/img/lupa.png" alt="ver" onclick="openModal('modal1')" />
+                                        <img src="../../assets/img/editar.png" alt="editar" onclick="openModal('modal2')" />
+                                        <img src="../../assets/img/borrar.png" alt="borrar" id="deleteActivityImage" />
                                     </div>
                                 </td>
                             </tr>
@@ -240,20 +242,10 @@
         modal.style.display = "none";
     }
 
-    fetch("./templates/header.html")
+    fetch("../../templates/header.html")
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("headerContainer").innerHTML = data;
-        });
-    fetch("./templates/menu.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("menuContainer").innerHTML = data;
-        });
-    fetch("./templates/footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("footer").innerHTML = data;
         });
 
     // Función para cerrar el modal

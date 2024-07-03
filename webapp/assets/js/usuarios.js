@@ -50,20 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`?idUsuario=${idUsuario}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('idUsuarioEditar').value = data.idUsuario;
-                document.getElementById('nombreEditar').value = data.nombre;
-                document.getElementById('apellidoPaternoEditar').value = data.paterno;
-                document.getElementById('apellidoMaternoEditar').value = data.materno;
-                document.getElementById('usuarioEditar').value = data.usuario;
-                document.getElementById('correoEditar').value = data.correo;
-                document.getElementById('rolEditar').value = data.idRol;
-                $('#editarUsuariosModal').modal('show');
+                if (data && data.idUsuario) {
+                    document.getElementById('idUsuarioEditar').value = data.idUsuario;
+                    document.getElementById('nombreEditar').value = data.nombre;
+                    document.getElementById('apellidoPaternoEditar').value = data.paterno;
+                    document.getElementById('apellidoMaternoEditar').value = data.materno;
+                    document.getElementById('usuarioEditar').value = data.usuario;
+                    document.getElementById('correoEditar').value = data.correo;
+                    document.getElementById('rolEditar').value = data.idRol;
+                    $('#editarUsuario').modal('show'); // Corrige el id del modal
+                } else {
+                    Swal.fire('Error', 'No se pudo obtener los datos del usuario.', 'error');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
                 Swal.fire('Error', 'No se pudo obtener los datos del usuario.', 'error');
             });
     }
+    
 
     function eliminarUsuario(idUsuario) {
         Swal.fire({
@@ -76,55 +81,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch('', {
-                        method: 'POST',
-                        body: new URLSearchParams({
-                            'accion': 'eliminar',
-                            'idUsuario': idUsuario
-                        })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'accion': 'eliminar',
+                        'idUsuario': idUsuario
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            Swal.fire('Eliminado', 'El usuario ha sido eliminado.',
-                                'success');
-                            actualizarListaUsuarios();
-                        } else {
-                            Swal.fire('Error', data.message, 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.fire('Error', 'Error en la solicitud.', 'error');
-                    });
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire('Eliminado', 'El usuario ha sido eliminado.', 'success');
+                        actualizarListaUsuarios();
+                    } else {
+                        Swal.fire('Error', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error', 'Error en la solicitud.', 'error');
+                });
             }
         });
     }
+    
 
     function actualizarListaUsuarios() {
         fetch('')
             .then(response => response.json())
             .then(data => {
-                cardContainer.innerHTML = '';
-                data.forEach(usuario => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                <div class="card-body">
-                    <h5 class="card-title">${usuario.nombre} ${usuario.paterno} ${usuario.materno}</h5>
-                    <p class="card-text">Usuario: ${usuario.usuario}</p>
-                    <p class="card-text">Correo: ${usuario.correo}</p>
-                    <button onclick="editarUsuario(${usuario.idUsuario})" class="btn btn-primary">Editar</button>
-                    <button onclick="eliminarUsuario(${usuario.idUsuario})" class="btn btn-danger">Eliminar</button>
-                </div>
-            `;
-                    cardContainer.appendChild(card);
-                });
+                if (Array.isArray(data)) {
+                    cardContainer.innerHTML = '';
+                    data.forEach(usuario => {
+                        const card = document.createElement('div');
+                        card.className = 'card my-2';
+                        card.style.width = '18rem';
+                        card.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${usuario.nombre} ${usuario.paterno} ${usuario.materno}</h5>
+                                <p class="card-text">Usuario: ${usuario.usuario}</p>
+                                <p class="card-text">Correo: ${usuario.correo}</p>
+                                <p class="card-text">Rol: ${usuario.rol}</p>
+                                <div class="button-container">
+                                    <div class="button edit-btn" onclick="editarUsuario(${usuario.idUsuario})">Editar</div>
+                                    <div class="button deactivate-btn">Desactivar</div>
+                                    <div class="button delete-btn" onclick="eliminarUsuario(${usuario.idUsuario})">Eliminar</div>
+                                </div>
+                            </div>
+                        `;
+                        cardContainer.appendChild(card);
+                    });
+                } else {
+                    Swal.fire('Error', 'No se pudo obtener la lista de usuarios.', 'error');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
                 Swal.fire('Error', 'No se pudo obtener la lista de usuarios.', 'error');
             });
     }
-
-    actualizarListaUsuarios();
+    
 });

@@ -21,11 +21,11 @@ $users = $userController->handleRequest();
             <div class="col-lg-2">
                 <ul class="list-unstyled vertical-nav">
                     <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="actividadformativa.php" class="btn btn-primary btn-block my-1 menu">Actividad
+                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad
                             Formativa</a></li>
-                    <li><a href="usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
                     <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
             </div>
@@ -62,9 +62,9 @@ $users = $userController->handleRequest();
                                 <p class="card-text">Correo: <?php echo $user['correo'] ?></p>
                                 <p class="card-text">Rol: <?php echo $user['rol'] ?></p>
                                 <div class="button-container">
-                                    <div class="button edit-btn" onclick="">Editar</div>
+                                    <div class="button edit-btn" onclick="editarUsuario">Editar</div>
                                     <div class="button deactivate-btn">Desactivar</div>
-                                    <div class="button delete-btn" onclick="">Eliminar</div>
+                                    <div class="button delete-btn" onclick="eliminarUsuario">Eliminar</div>
                                 </div>
                             </div>
                         </div>
@@ -74,112 +74,107 @@ $users = $userController->handleRequest();
             </div>
         </div>
 
-        <!-- Modal para agregar usuarios -->
-        <div class="modal fade" id="agregarUsuariosModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+       <!-- Modal para agregar usuarios -->
+<div class="modal fade" id="agregarUsuariosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="agregarUsuarioForm">
+                    <div class="campo">
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                        <label for="nombre">Nombre(s)</label>
                     </div>
-                    <div class="modal-body">
-                        <form id="agregarUsuarioForm">
-                            <div class="form-group">
-                                <label for="nombre">Nombre(s)</label>
-                                <input type="text" id="nombre" name="nombre" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellidoPaterno">Apellido Paterno</label>
-                                <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellidoMaterno">Apellido Materno</label>
-                                <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="usuario">Usuario</label>
-                                <input type="text" id="usuario" name="usuario" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo Electrónico</label>
-                                <input type="email" id="correo" name="correo" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" name="password" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rol">Rol</label>
-                                <select id="rol" name="rol" class="form-control" required>
-                                    <?php echo $options; ?>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
+                    <div class="campo">
+                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control" required>
+                        <label for="apellidoPaterno">Apellido Paterno</label>
                     </div>
-                </div>
+                    <div class="campo">
+                        <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control" required>
+                        <label for="apellidoMaterno">Apellido Materno</label>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="usuario" name="usuario" class="form-control" required>
+                        <label for="usuario">Usuario</label>
+                    </div>
+                    <div class="campo">
+                        <input type="email" id="correo" name="correo" class="form-control" required>
+                        <label for="correo">Correo Electrónico</label>
+                    </div>
+                    <div class="campo">
+                        <input type="password" id="password" name="password" class="form-control" required>
+                        <label for="password">Contraseña</label>
+                    </div>
+                    <div class="campo">
+                        <select id="rol" name="rol" class="form-control" required>
+                            <?php echo $options; ?>
+                        </select>
+                        <label for="rol">Rol</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+<!-- Modal para editar usuarios -->
+<div class="modal fade" id="editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editarUsuarioForm">
+                    <input type="hidden" id="idUsuarioEditar" name="idUsuario">
+                    <div class="campo">
+                        <input type="text" id="nombreEditar" name="nombre" class="form-control" required>
+                        <label for="nombreEditar">Nombre(s)</label>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="apellidoPaternoEditar" name="apellidoPaterno" class="form-control" required>
+                        <label for="apellidoPaternoEditar">Apellido Paterno</label>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="apellidoMaternoEditar" name="apellidoMaterno" class="form-control" required>
+                        <label for="apellidoMaternoEditar">Apellido Materno</label>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="usuarioEditar" name="usuario" class="form-control" required>
+                        <label for="usuarioEditar">Usuario</label>
+                    </div>
+                    <div class="campo">
+                        <input type="email" id="correoEditar" name="correo" class="form-control" required>
+                        <label for="correoEditar">Correo Electrónico</label>
+                    </div>
+                    <div class="campo">
+                        <select id="rolEditar" name="rol" class="form-control" required>
+                            <?php echo $options; ?>
+                        </select>
+                        <label for="rolEditar">Rol</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <!-- Modal para editar usuarios -->
-        <div class="modal fade" id="editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editarUsuarioForm">
-                            <input type="hidden" id="idUsuarioEditar" name="idUsuario">
-                            <div class="form-group">
-                                <label for="nombreEditar">Nombre(s)</label>
-                                <input type="text" id="nombreEditar" name="nombre" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellidoPaternoEditar">Apellido Paterno</label>
-                                <input type="text" id="apellidoPaternoEditar" name="apellidoPaterno"
-                                    class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellidoMaternoEditar">Apellido Materno</label>
-                                <input type="text" id="apellidoMaternoEditar" name="apellidoMaterno"
-                                    class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="usuarioEditar">Usuario</label>
-                                <input type="text" id="usuarioEditar" name="usuario" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="correoEditar">Correo Electrónico</label>
-                                <input type="email" id="correoEditar" name="correo" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rolEditar">Rol</label>
-                                <select id="rolEditar" name="rol" class="form-control" required>
-                                    <?php echo $options; ?>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Footer -->
         <footer class="footer">
             <p>Departamento de Formación Docente</p>
@@ -190,7 +185,7 @@ $users = $userController->handleRequest();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="../../webapp/assets/js/usuarios.js"></script>
+        <script src="../../assets/js/usuarios.js"></script>
 
         <script>
         fetch("../../templates/header.html")

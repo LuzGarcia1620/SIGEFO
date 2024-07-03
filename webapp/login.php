@@ -45,7 +45,7 @@
     <div id="container">
         <div class="login-card">
             <div id="left">
-                <img src="./Assets/img/uaem.png" style="width: 50%;" />
+                <img src="../../webapp/assets/img/uaem.png" style="width: 50%;" />
                 <span>Departamento de Formación Docente</span>
             </div>
             <div id="right">
@@ -89,13 +89,13 @@
                                 <div>
                                     <h5 class="mb-1">Universidad Autónoma del Estado de Morelos</h5>
                                     <p class="mb-1">Departamento de Formación Docente</p>
-                                    <p class="mb-1"><img src="./Assets/img/mapas-y-banderas.png" alt="ubicacion"
+                                    <p class="mb-1"><img src="../../webapp/assets/img/mapas-y-banderas.png" alt="ubicacion"
                                             class="img-fluid" style="height: 10px;"> Av. Universidad 1001, Chamilpa,
                                         Cuernavaca, Morelos, México</p>
-                                    <p class="mb-1"><img src="./Assets/img/llamada-telefonica.png" alt="telefono"
+                                    <p class="mb-1"><img src="../../webapp/assets/img/llamada-telefonica.png" alt="telefono"
                                             class="img-fluid" style="height: 10px;"> (777) 329 70 00 Ext. 3249, 3352 y
                                         3935</p>
-                                    <p class="mb-1"><img src="./Assets/img/correo-electronico.png" alt="correo"
+                                    <p class="mb-1"><img src="../../webapp/assets/img/correo-electronico.png" alt="correo"
                                             class="img-fluid" style="height: 10px;"> eval_docente@uaem.mx</p>
                                 </div>
                             </div>
