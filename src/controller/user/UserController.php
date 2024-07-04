@@ -13,6 +13,7 @@ class UserController
     public function handleRequest() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $action = $_POST["action"];
+            $responseMessage = '';
 
             switch ($action) {
                 case 'save':
@@ -28,22 +29,37 @@ class UserController
                         $_POST['rol']
                     );
 
-                    $service->save($beanUser);
+                    $result = $service->save($beanUser);
+
+                    if ($result) {
+                        $responseMessage = 'success';
+                    } else {
+                        $responseMessage = 'error';
+                    }
                     break;
                 case 'update':
                     break;
+
                 case 'delete':
-                    break;
+                    $idUsuario = intval($_POST['idUsuario']);
+    error_log("Intentando eliminar usuario con ID: " . $idUsuario);
+    $result = $this->userService->delete($idUsuario);
+    $responseMessage = $result ? 'success' : 'error';
+    error_log("Resultado de eliminación: " . $responseMessage);
+    break;
+
                 case 'change':
                     break;
                 default:
-                    echo "Invalid request method";
+                    $responseMessage = 'invalid';
                     break;
             }
+
+            echo $responseMessage;
+            exit;
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
             if (isset($_GET['id'])) {
                 $id = intval($_GET['id']);
                 $user = $this->userService->getById($id);
@@ -57,4 +73,3 @@ class UserController
         }
     }
 }
-

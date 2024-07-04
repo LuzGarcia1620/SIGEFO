@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="../../assets/css/usuarios.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
 <body>
-<?php
+    <?php
 require __DIR__."/../../../src/controller/user/UserController.php";
 require __DIR__."/../../../src/controller/rol/RolController.php";
 
@@ -26,10 +27,14 @@ $roles = $rolController->handleRequest();
             <div class="col-lg-2">
                 <ul class="list-unstyled vertical-nav">
                     <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                    <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/webapp/views/superadmin/actividades.php"
+                            class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
+                    <li><a href="/webapp/views/superadmin/usuarios.php"
+                            class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/webapp/views/superadmin/consultas.php"
+                            class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/webapp/views/superadmin/asistencia.php"
+                            class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
                     <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
             </div>
@@ -49,137 +54,152 @@ $roles = $rolController->handleRequest();
                             </svg>
                             <input id="buscarInput" placeholder="Buscar" type="text" class="input">
                         </div>
-                        <img src="../../assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn" class="img-fluid"
-                            style="cursor: pointer; width: 70px;">
+                        <img src="../../assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn"
+                            class="img-fluid" style="cursor: pointer; width: 70px;">
                     </div>
                 </div>
 
                 <div>
-                    <div class="divider-line"></div>
-                    <div class="card-container d-flex justify-content-around flex-wrap">
-                        <?php foreach ($users as $user): ?>
-                        <div class="card my-2" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $user['nombre'].' '.$user['paterno'].' '.$user['materno'] ?></h5>
-                                <p class="card-text">Usuario: <?php echo $user['usuario'] ?> </p>
-                                <p class="card-text">Correo: <?php echo $user['correo'] ?></p>
-                                <p class="card-text">Rol: <?php echo $user['rol'] ?></p>
-                                <div class="button-container">
-                                    <div class="button edit-btn" onclick="editarUsuario">Editar</div>
-                                    <div class="button deactivate-btn">Desactivar</div>
-                                    <div class="button delete-btn" onclick="eliminarUsuario">Eliminar</div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
+    <div class="divider-line"></div>
+    <div class="card-container d-flex justify-content-around flex-wrap">
+        <?php foreach ($users as $user): ?>
+        <div class="card my-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <?php echo $user['nombre'].' '.$user['paterno'].' '.$user['materno'] ?>
+                </h5>
+                <p class="card-text">Usuario: <?php echo $user['usuario'] ?> </p>
+                <p class="card-text">Correo: <?php echo $user['correo'] ?></p>
+                <p class="card-text">Rol: <?php echo $user['rol'] ?></p>
+                <div class="buttons">
+                    <div class="button-container">
+                        <button class="button edit-btn" onclick="editarUsuario()">Editar</button>
+                    </div>
+                    <div class="button-container">
+                        <button class="button deactivate-btn">Desactivar</button>
+                    </div>
+                    <div class="button-container">
+                        <button class="button delete-btn" onclick="eliminarUsuario()">Eliminar</button>
                     </div>
                 </div>
             </div>
         </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+            </div>
+        </div>
 
-       <!-- Modal para agregar usuarios -->
-<div class="modal fade" id="agregarUsuariosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="agregarUsuarioForm" action="../../../src/controller/user/UserController.php" method="post">
-                    <div class="campo">
-                        <input type="text" id="nombre" name="nombre" class="form-control" required>
-                        <label for="nombre">Nombre(s)</label>
+        <!-- Modal para agregar usuarios -->
+        <div class="modal fade" id="agregarUsuariosModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="campo">
-                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control" required>
-                        <label for="apellidoPaterno">Apellido Paterno</label>
+                    <div class="modal-body">
+                        <form id="userForm" action="../../../src/controller/user/UserController.php"
+                            onsubmit="return validateAndSubmitForm(event)" method="POST">
+                            <div class="campo">
+                                <input type="text" id="nombre" name="nombre" class="form-control" required>
+                                <label for="nombre">Nombre(s)</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control"
+                                    required>
+                                <label for="apellidoPaterno">Apellido Paterno</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control"
+                                    required>
+                                <label for="apellidoMaterno">Apellido Materno</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="usuario" name="usuario" class="form-control" required>
+                                <label for="usuario">Usuario</label>
+                            </div>
+                            <div class="campo">
+                                <input type="email" id="correo" name="correo" class="form-control" required>
+                                <label for="correo">Correo Electrónico</label>
+                            </div>
+                            <div class="campo">
+                                <input type="password" id="password" name="password" class="form-control" required>
+                                <label for="password">Contraseña</label>
+                            </div>
+                            <div class="campo">
+                                <select id="rol" name="rol" class="form-control" required>
+                                    <?php foreach ($roles as $rol): ?>
+                                    <option value="<?php echo $rol['id'] ?>">
+                                        <?php echo $rol['nombre'] ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label for="rol">Rol</label>
+                            </div>
+                            <input type="hidden" name="action" value="save">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="campo">
-                        <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control" required>
-                        <label for="apellidoMaterno">Apellido Materno</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="usuario" name="usuario" class="form-control" required>
-                        <label for="usuario">Usuario</label>
-                    </div>
-                    <div class="campo">
-                        <input type="email" id="correo" name="correo" class="form-control" required>
-                        <label for="correo">Correo Electrónico</label>
-                    </div>
-                    <div class="campo">
-                        <input type="password" id="password" name="password" class="form-control" required>
-                        <label for="password">Contraseña</label>
-                    </div>
-                    <div class="campo">
-                        <select id="rol" name="rol" class="form-control" required>
-                            <?php foreach ($roles as $rol): ?>
-                                <option value="<?php echo $rol['id'] ?>">
-                                    <?php echo $rol['nombre'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <label for="rol">Rol</label>
-                    </div>
-                    <input type="hidden" name="action" value="save">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal para editar usuarios -->
-<div class="modal fade" id="editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editarUsuarioForm">
-                    <input type="hidden" id="idUsuarioEditar" name="idUsuario">
-                    <div class="campo">
-                        <input type="text" id="nombreEditar" name="nombre" class="form-control" required>
-                        <label for="nombreEditar">Nombre(s)</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="apellidoPaternoEditar" name="apellidoPaterno" class="form-control" required>
-                        <label for="apellidoPaternoEditar">Apellido Paterno</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="apellidoMaternoEditar" name="apellidoMaterno" class="form-control" required>
-                        <label for="apellidoMaternoEditar">Apellido Materno</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="usuarioEditar" name="usuario" class="form-control" required>
-                        <label for="usuarioEditar">Usuario</label>
-                    </div>
-                    <div class="campo">
-                        <input type="email" id="correoEditar" name="correo" class="form-control" required>
-                        <label for="correoEditar">Correo Electrónico</label>
-                    </div>
-                    <div class="campo">
-                        <select id="rolEditar" name="rol" class="form-control" required>
-                        </select>
-                        <label for="rolEditar">Rol</label>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        <!-- Modal para editar usuarios -->
+        <div class="modal fade" id="editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editarUsuarioForm">
+                            <input type="hidden" id="idUsuarioEditar" name="idUsuario">
+                            <div class="campo">
+                                <input type="text" id="nombreEditar" name="nombre" class="form-control" required>
+                                <label for="nombreEditar">Nombre(s)</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="apellidoPaternoEditar" name="apellidoPaterno"
+                                    class="form-control" required>
+                                <label for="apellidoPaternoEditar">Apellido Paterno</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="apellidoMaternoEditar" name="apellidoMaterno"
+                                    class="form-control" required>
+                                <label for="apellidoMaternoEditar">Apellido Materno</label>
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="usuarioEditar" name="usuario" class="form-control" required>
+                                <label for="usuarioEditar">Usuario</label>
+                            </div>
+                            <div class="campo">
+                                <input type="email" id="correoEditar" name="correo" class="form-control" required>
+                                <label for="correoEditar">Correo Electrónico</label>
+                            </div>
+                            <div class="campo">
+                                <select id="rolEditar" name="rol" class="form-control" required>
+                                </select>
+                                <label for="rolEditar">Rol</label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Footer -->
@@ -187,7 +207,7 @@ $roles = $rolController->handleRequest();
             <p>Departamento de Formación Docente</p>
             <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
         </footer>
-       
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

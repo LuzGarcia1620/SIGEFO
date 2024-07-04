@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const agregarUserBtn = document.getElementById('agregarUserBtn');
-    const agregarUsuarioForm = document.getElementById('agregarUsuarioForm');
-    const editarUsuarioForm = document.getElementById('editarUsuarioForm');
     const buscarInput = document.getElementById('buscarInput');
     const cardContainer = document.querySelector('.card-container');
 
@@ -19,6 +17,46 @@ document.addEventListener('DOMContentLoaded', function() {
     agregarUserBtn.addEventListener('click', function() {
         $('#agregarUsuariosModal').modal('show');
     });
+
+    window.eliminarUsuario = function(idUsuario) {
+        console.log('Intentando eliminar usuario con ID:', idUsuario); // <-- Añadir
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('../../../src/controller/user/UserController.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'action': 'delete',
+                        'idUsuario': idUsuario
+                    })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Respuesta del servidor:', data); // <-- Añadir
+                    if (data === 'success') {
+                        Swal.fire('Eliminado', 'El usuario ha sido eliminado.', 'success');
+                        actualizarListaUsuarios();
+                    } else {
+                        Swal.fire('Error', 'No se pudo eliminar el usuario.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error', 'Error en la solicitud.', 'error');
+                });
+            }
+        });
+    };
+    
 
     function editarUsuario(idUsuario) {
         fetch(`?idUsuario=${idUsuario}`)
@@ -42,45 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire('Error', 'No se pudo obtener los datos del usuario.', 'error');
             });
     }
-    
-
-    function eliminarUsuario(idUsuario) {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás revertir esto.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch('', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        'accion': 'eliminar',
-                        'idUsuario': idUsuario
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire('Eliminado', 'El usuario ha sido eliminado.', 'success');
-                        actualizarListaUsuarios();
-                    } else {
-                        Swal.fire('Error', data.message, 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire('Error', 'Error en la solicitud.', 'error');
-                });
-            }
-        });
-    }
-    
 
     function actualizarListaUsuarios() {
         fetch('')
@@ -99,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p class="card-text">Correo: ${usuario.correo}</p>
                                 <p class="card-text">Rol: ${usuario.rol}</p>
                                 <div class="button-container">
-                                    <div class="button edit-btn" onclick="editarUsuario(${usuario.idUsuario})">Editar</div>
-                                    <div class="button deactivate-btn">Desactivar</div>
-                                    <div class="button delete-btn" onclick="eliminarUsuario(${usuario.idUsuario})">Eliminar</div>
+                                    <button class="button edit-btn" onclick="editarUsuario(${usuario.idUsuario})">Editar</button>
+                                    <button class="button deactivate-btn">Desactivar</button>
+                                    <button class="button delete-btn" onclick="eliminarUsuario(${usuario.idUsuario})">Eliminar</button>
                                 </div>
                             </div>
                         `;
@@ -116,5 +115,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire('Error', 'No se pudo obtener la lista de usuarios.', 'error');
             });
     }
+
+    function sendFormData(event) {
+    event.preventDefault();
+
+    var formData = new FormData(document.getElementById('userForm'));
+
+    fetch('../../../src/controller/user/UserController.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result); // Verifica el resultado aquí
+        if (result.trim() === 'success') {
+            Swal.fire('Success', 'User saved successfully!', 'success');
+            // Recarga la página o actualiza la lista de usuarios
+        } else {
+            Swal.fire('Error', 'Failed to save user.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error', 'An error occurred.', 'error');
+    });
+}
+
     
 });

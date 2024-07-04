@@ -94,20 +94,8 @@ input:hover {
 
 
 /*===== Estilos de las Cards =====*/
-/* Contenedor para las cards */
-
-/* Estilos para el contenedor de las cards */
-.card-container {
-  display: flex;
-  justify-content: space-around; /* Distribuye las cards horizontalmente */
-  flex-wrap: wrap; /* Permite que las cards se ajusten a la pantalla */
-  gap: 20px; /* Espacio entre las cards */
-}
-
-/* Estilos para las cards */
 .card {
-  width: 350px;
-  height: 500px;
+  width: 100%; /* Cambia el ancho a 100% para ocupar el espacio disponible */
   background: rgb(255, 255, 255);
   border-radius: 0.4em;
   box-shadow: 0.3em 0.3em 0.7em #00000015;
@@ -116,10 +104,25 @@ input:hover {
   margin-bottom: 30px;
 }
 
+.card-body {
+  /* height: 250px; */ /* Elimina la altura fija para ajustarse al contenido */
+  width: 100%; /* Ajusta el ancho al 100% */
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between; 
+  flex-wrap: wrap; /* las cards se ajustan según el contenido */
+  gap: 80px; /* Espacio entre las cards */
+  margin-bottom: 50px;
+  margin-top: 30px;
+  margin: 35px;
+}
+
+
 .card:hover {
   border: #001660 0.2em solid;
 }
-
 
 .name {
   font-size: 20px;
@@ -133,22 +136,23 @@ input:hover {
   padding: 15px;
 }
 
-.button-container {
+.buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-  margin: 15px;
+  justify-content: space-around; /* Distribuye los botones equitativamente */
+}
+
+.button-container {
+  margin: 5px;
 }
 
 .button {
-  width: 90px;
-  height: 40px;
+  width: auto; /* Permite que el ancho sea automático según el contenido */
+  min-width: 70px; /* Ancho mínimo para asegurar que todos los botones tengan el mismo tamaño mínimo */
+  height: 30px;
   border-radius: 6px;
   color: #f6f6f6;
   font-size: 13px;
   font-family: Aleo, sans-serif;
-  font-weight: 400;
-  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -156,20 +160,14 @@ input:hover {
 
 .edit-btn {
   background: #001d7d;
-  width: 100px;
-  height: 35px;
 }
 
 .deactivate-btn {
   background: #e79f00;
-  width: 100px;
-  height: 35px;
 }
 
 .delete-btn {
   background: #8b0007;
-  width: 100px;
-  height: 35px;
 }
 
 /* Top Bar Styles */
