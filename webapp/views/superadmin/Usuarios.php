@@ -12,8 +12,13 @@
 <body>
 <?php
 require __DIR__."/../../../src/controller/user/UserController.php";
+require __DIR__."/../../../src/controller/rol/RolController.php";
+
 $userController = new UserController();
 $users = $userController->handleRequest();
+
+$rolController = new RolController();
+$roles = $rolController->handleRequest();
 ?>
     <div id="headerContainer"></div>
     <div class="container-fluid">
@@ -21,8 +26,7 @@ $users = $userController->handleRequest();
             <div class="col-lg-2">
                 <ul class="list-unstyled vertical-nav">
                     <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad
-                            Formativa</a></li>
+                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
                     <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
                     <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
                     <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
@@ -39,7 +43,6 @@ $users = $userController->handleRequest();
                             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
                                 <g>
                                     <path
-
                                         d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
                                     </path>
                                 </g>
@@ -85,7 +88,7 @@ $users = $userController->handleRequest();
                 </button>
             </div>
             <div class="modal-body">
-                <form id="agregarUsuarioForm">
+                <form id="agregarUsuarioForm" action="../../../src/controller/user/UserController.php" method="post">
                     <div class="campo">
                         <input type="text" id="nombre" name="nombre" class="form-control" required>
                         <label for="nombre">Nombre(s)</label>
@@ -112,10 +115,15 @@ $users = $userController->handleRequest();
                     </div>
                     <div class="campo">
                         <select id="rol" name="rol" class="form-control" required>
-                            <?php echo $options; ?>
+                            <?php foreach ($roles as $rol): ?>
+                                <option value="<?php echo $rol['id'] ?>">
+                                    <?php echo $rol['nombre'] ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                         <label for="rol">Rol</label>
                     </div>
+                    <input type="hidden" name="action" value="save">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -160,7 +168,6 @@ $users = $userController->handleRequest();
                     </div>
                     <div class="campo">
                         <select id="rolEditar" name="rol" class="form-control" required>
-                            <?php echo $options; ?>
                         </select>
                         <label for="rolEditar">Rol</label>
                     </div>

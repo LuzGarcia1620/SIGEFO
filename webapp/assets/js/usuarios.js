@@ -20,32 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#agregarUsuariosModal').modal('show');
     });
 
-    // Envío del formulario para agregar usuario
-    agregarUsuarioForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(agregarUsuarioForm);
-        formData.append('accion', 'agregar');
-
-        fetch('', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire('Éxito', 'Usuario agregado exitosamente.', 'success');
-                    $('#agregarUsuariosModal').modal('hide');
-                    actualizarListaUsuarios();
-                } else {
-                    Swal.fire('Error', data.message, 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                Swal.fire('Error', 'Error en la solicitud.', 'error');
-            });
-    });
-
     function editarUsuario(idUsuario) {
         fetch(`?idUsuario=${idUsuario}`)
             .then(response => response.json())
