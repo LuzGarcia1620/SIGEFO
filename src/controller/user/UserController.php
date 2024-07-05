@@ -43,16 +43,26 @@ class UserController
                         error_log($e);
                     }
                     break;
+                    
                 case 'update':
                     break;
 
-                case 'delete':
-                    $idUsuario = intval($_POST['idUsuario']);
-                    error_log("Intentando eliminar usuario con ID: " . $idUsuario);
-                    $result = $this->userService->delete($idUsuario);
-                    $responseMessage = $result ? 'success' : 'error';
-                    error_log("Resultado de eliminación: " . $responseMessage);
-                    break;
+                    case 'delete':
+                        try {
+                            $idUsuario = intval($_POST['idUsuario']);
+                            $result = $this->userService->delete($idUsuario);
+    
+                            if ($result) {
+                                echo 'success';
+                            } else {
+                                echo 'error';
+                            }
+                        } catch (Exception $e) {
+                            error_log($e);
+                            echo 'error';
+                        }
+                        break;
+                    
                 case 'change':
                     break;
                 default:

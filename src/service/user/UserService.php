@@ -41,10 +41,19 @@ class UserService
         }
     }
 
-    /*public function delete($idUsuario) {
-        $sql = "DELETE FROM usuario WHERE idUsuario = ?";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([$idUsuario]);
-    }*/
+    public function delete($idUsuario) {
+        $conn = $this->getConnection(); 
+
+        $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->bind_param("i", $idUsuario);
+        $result = $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return $result;
+    }
+
+    
     
 }

@@ -60,33 +60,35 @@ $roles = $rolController->handleRequest();
                 </div>
 
                 <div>
-    <div class="divider-line"></div>
-    <div class="card-container d-flex justify-content-around flex-wrap">
-        <?php foreach ($users as $user): ?>
-        <div class="card my-2" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <?php echo $user['nombre'].' '.$user['paterno'].' '.$user['materno'] ?>
-                </h5>
-                <p class="card-text">Usuario: <?php echo $user['usuario'] ?> </p>
-                <p class="card-text">Correo: <?php echo $user['correo'] ?></p>
-                <p class="card-text">Rol: <?php echo $user['rol'] ?></p>
-                <div class="buttons">
-                    <div class="button-container">
-                        <button class="button edit-btn" onclick="editarUsuario()">Editar</button>
-                    </div>
-                    <div class="button-container">
-                        <button class="button deactivate-btn">Desactivar</button>
-                    </div>
-                    <div class="button-container">
-                        <button class="button delete-btn" onclick="eliminarUsuario()">Eliminar</button>
+                    <div class="divider-line"></div>
+                    <div class="card-container d-flex justify-content-around flex-wrap">
+                        <?php foreach ($users as $user): ?>
+                        <div class="card my-2" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <?php echo $user['nombre'].' '.$user['paterno'].' '.$user['materno'] ?>
+                                </h5>
+                                <p class="card-text">Usuario: <?php echo $user['usuario'] ?> </p>
+                                <p class="card-text">Correo: <?php echo $user['correo'] ?></p>
+                                <p class="card-text">Rol: <?php echo $user['rol'] ?></p>
+                                <div class="buttons">
+                                    <div class="button-container">
+                                        <button class="button edit-btn" onclick="editarUsuario()">Editar</button>
+                                    </div>
+                                    <div class="button-container">
+                                        <button class="button deactivate-btn">Desactivar</button>
+                                    </div>
+                                    <div class="button-container">
+                                        <!-- Ejemplo de cómo llamar a las funciones desde un botón -->
+                                        <button class="button delete-btn"
+                                            onclick="eliminarUsuario(<?php echo $user['id']; ?>)">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
-</div>
             </div>
         </div>
 
@@ -210,7 +212,7 @@ $roles = $rolController->handleRequest();
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../assets/js/usuarios.js"></script>
 
         <script>

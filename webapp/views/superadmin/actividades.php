@@ -19,7 +19,7 @@
 <?php
 require __DIR__."/../../../src/controller/user/UserController.php";
 $userController = new UserController();
-$users = $userController->handleRequest();
+$actividades = $userController->handleRequest();
 ?>
 
     <div id="headerContainer"></div>
@@ -60,10 +60,11 @@ $users = $userController->handleRequest();
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Actividad 1</td>
-                                <td>Completado</td>
-                                <td>
+                        <?php foreach ($actividades as $actividad): ?>
+                                <tr>
+                                    <td><?php echo $actividad['nombre']; ?></td>
+                                    <td><?php echo $actividad['status']; ?></td>
+                                    <td>
                                     <div class="img-container">
                                         <img src="../../assets/img/lupa.png" alt="ver" onclick="openModal('modal1')" />
                                         <img src="../../assets/img/editar.png" alt="editar" onclick="openModal('modal2')" />
@@ -71,6 +72,7 @@ $users = $userController->handleRequest();
                                     </div>
                                 </td>
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -90,14 +92,16 @@ $users = $userController->handleRequest();
                 <div class="modal-footer-title">Ver Actividad</div>
                 <div class="divider-line"></div>
                 <div class="modal-body-title">Desarrollo de actividades dentro del aula</div>
-                <p>Dirigido: personal académico de la UAEM</p>
-                <p>Objetivo: Reconocer la utilidad y pertinencia de diversas<br />herramientas didácticas aplicables a la planeación didáctica</p>
-                <p>Imparte: Dra. Paulina Lizette Toscano Arenas, Docente de la UAEM</p>
-                <p>Modalidad: En línea</p>
-                <p>Duración: 20 horas distribuidas en 5 horas sincrónicas y 15 horas asincrónicas.</p>
-                <p>Fecha: 22 al 26 de enero de 2024</p>
-                <p>Horario: 9:00 a 10:00 h</p>
-
+                <div class>
+                <p>Dirigido al: </p>
+                <p>Objetivo: </p>
+                <p>Imparte: </p>
+                <p>Modalidad: </p>
+                <p>Duración: </p>
+                <p>Fecha: </p>
+                <p>Horario: </p>   
+                </div>
+                
                 <div class="button-container">
                     <div>
                         <button class="blue-button" onclick="closeModal('modal1')">Regresar</button>

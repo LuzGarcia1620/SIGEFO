@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    window.eliminarUsuario = function(idUsuario) {
-        console.log('Intentando eliminar usuario con ID:', idUsuario); // <-- Añadir
+    function eliminarUsuario(idUsuario) {
+        console.log('Intentando eliminar usuario con ID:', idUsuario);
         Swal.fire({
             title: '¿Estás seguro?',
             text: "No podrás revertir esto.",
@@ -70,10 +70,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(response => response.text())
                 .then(data => {
-                    console.log('Respuesta del servidor:', data); // <-- Añadir
+                    console.log('Respuesta del servidor:', data);
                     if (data === 'success') {
-                        Swal.fire('Eliminado', 'El usuario ha sido eliminado.', 'success');
-                        actualizarListaUsuarios();
+                        Swal.fire({
+                            title: 'Eliminado',
+                            text: 'El usuario ha sido eliminado.',
+                            icon: 'success',
+                            willClose: () => {
+                                location.reload(); // Recargar la página después de cerrar SweetAlert2
+                            }
+                        });
                     } else {
                         Swal.fire('Error', 'No se pudo eliminar el usuario.', 'error');
                     }
@@ -88,7 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     function editarUsuario(idUsuario) {
-        fetch(`?idUsuario=${idUsuario}`)
+        console.log('Intentando editar usuario con ID:', idUsuario);
+        fetch(`?idUsuario=
+            {idUsuario}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.idUsuario) {
