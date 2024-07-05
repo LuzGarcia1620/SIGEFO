@@ -36,21 +36,15 @@ class UserService
             $stmt->bindValue(7, $beanUser->getIdRol());
 
             return $stmt->execute();
-            if ($result) {
-                return true;
-            } else {
-                throw new Exception("Failed to insert user.");
-            }
         } catch (Exception $e) {
             error_log("Save user failed: " . $e->getMessage());
-            return false;
         }
     }
 
-    public function delete($idUsuario) {
+    /*public function delete($idUsuario) {
         $sql = "DELETE FROM usuario WHERE idUsuario = ?";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$idUsuario]);
-    }
+    }*/
     
 }

@@ -102,8 +102,7 @@ $roles = $rolController->handleRequest();
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="userForm" action="../../../src/controller/user/UserController.php"
-                            onsubmit="return validateAndSubmitForm(event)" method="POST">
+                        <form id="userForm" action="/src/controller/user/UserController.php" method="post">
                             <div class="campo">
                                 <input type="text" id="nombre" name="nombre" class="form-control" required>
                                 <label for="nombre">Nombre(s)</label>
