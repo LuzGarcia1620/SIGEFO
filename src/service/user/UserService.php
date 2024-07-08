@@ -1,15 +1,17 @@
 <?php
-require __DIR__."/../../../src/config/PostgreSQL.php";
+require __DIR__ . "/../../../src/config/PostgreSQL.php";
 
 class UserService
 {
     private $postgres;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->postgres = new PostgreSQL;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         try {
             $conn = $this->postgres->connect();
 
@@ -18,11 +20,12 @@ class UserService
 
             return $stmt->fetchAll();
         } catch (Exception $e) {
-            error_log($e);
+            error_log("Get All Error: " . $e->getMessage());
         }
     }
 
-    public function save(BeanUser $beanUser) {
+    public function save(BeanUser $beanUser)
+    {
         try {
             $conn = $this->postgres->connect();
 
@@ -41,19 +44,36 @@ class UserService
         }
     }
 
-    public function delete($idUsuario) {
-        $conn = $this->getConnection(); 
+    public function update(BeanUser $beanUser, $idUsuario)
+    {
+        try {
+            $conn = $this->postgres->connect();
 
-        $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
-        $stmt->bind_param("i", $idUsuario);
-        $result = $stmt->execute();
+            $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, nombre = ?, paterno = ?, materno = ?, correo = ? WHERE idUsuario = ?;");
+            $stmt->bindValue(1, $beanUser->getUsuario());
+            $stmt->bindValue(2, $beanUser->getNombre());
+            $stmt->bindValue(3, $beanUser->getPaterno());
+            $stmt->bindValue(4, $beanUser->getMaterno());
+            $stmt->bindValue(5, $beanUser->getCorreo());
+            $stmt->bindParam(6, $idUsuario);
 
-        $stmt->close();
-        $conn->close();
-
-        return $result;
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Update user failed: " . $e->getMessage());
+        }
     }
 
-    
-    
+    public function delete($idUsuario)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("DELETE FROM usuario WHERE idUsuario = ?;");
+            $stmt->bindParam(1, $idUsuario);
+
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Delete user failed: " . $e->getMessage());
+        }
+    }
 }

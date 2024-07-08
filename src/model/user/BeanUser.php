@@ -10,8 +10,13 @@ class BeanUser
     private $materno;
     private $correo;
     private $idRol;
-    
-    public function __construct($usuario, $password, $nombre, $paterno, $materno, $correo, $idRol)
+
+    public function __construct()
+    {
+
+    }
+
+    public function constructSave($usuario, $password, $nombre, $paterno, $materno, $correo, $idRol)
     {
         $this->usuario = $usuario;
         $this->password = $password;
@@ -22,9 +27,13 @@ class BeanUser
         $this->idRol = $idRol;
     }
 
-    public function getIdUsuario()
+    public function constructUpdate($usuario, $nombre, $paterno, $materno, $correo)
     {
-        return $this->idUsuario;
+        $this->usuario = $usuario;
+        $this->nombre = $nombre;
+        $this->paterno = $paterno;
+        $this->materno = $materno;
+        $this->correo = $correo;
     }
 
     public function setIdUsuario($idUsuario)
