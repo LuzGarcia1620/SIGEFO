@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const agregarUsuarioForm = document.getElementById("userForm");
     const deleteUsuarioForm = document.getElementById("deleteUserForm");
     const updateUsuarioForm = document.getElementById("editarUsuarioForm");
+    const changeUsuarioForm = document.getElementById("changeUserForm")
     const editarUserBtns = document.getElementsByClassName('buttonUpdate');
     const borrarUserBtns = document.getElementsByClassName('buttonErase');
+    const changeUserBtns = document.getElementsByClassName('buttonDisable')
 
     // Buscar usuarios
     document.getElementById('buscarInput').addEventListener('input', function () {
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 confirmButtonText: 'Sí, eliminar'
             }).then((result) => {
                 if (result.isConfirmed)
-                    eliminarUsuario()
+                    eliminarUsuario();
             });
         });
     })
@@ -157,6 +159,68 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response, status, xhr) {
                 if (xhr.status === 200) {
                     Swal.fire('Éxito', 'Usuario eliminado exitosamente.', 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    }
+
+    Array.from(changeUserBtns).forEach((btn) => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const card = this.closest('.card');
+            const idUsuario = card.getAttribute('data-id');
+            document.getElementById('idUsuarioC').value = idUsuario;
+            const status = card.getAttribute('data-status');
+            console.log(status)
+            if (status === "1") {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Se deshabilitará este usuario",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, deshabilitar'
+                }).then((result) => {
+                    if (result.isConfirmed)
+                        changeStatusUsuario();
+                });
+            } else {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Se habilitará este usuario",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, habilitar'
+                }).then((result) => {
+                    if (result.isConfirmed)
+                        changeStatusUsuario();
+                });
+            }
+        });
+    })
+
+    const changeStatusUsuario = () => {
+        const formData = new FormData(changeUsuarioForm);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Se cambio el status exitosamente.', 'success');
                     location.reload();
                 } else {
                     Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');

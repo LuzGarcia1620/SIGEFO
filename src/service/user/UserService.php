@@ -15,7 +15,7 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT u.idusuario, u.usuario, u.nombre, u.paterno, u.materno, u.correo, r.nombre AS rol FROM usuario AS u JOIN rol AS r ON r.id = u.idrol;");
+            $stmt = $conn->prepare("SELECT u.idusuario, u.usuario, u.nombre, u.paterno, u.materno, u.correo, r.nombre AS rol, u.status FROM usuario AS u JOIN rol AS r ON r.id = u.idrol;");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -29,7 +29,7 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("INSERT INTO usuario (usuario, password, nombre, paterno, materno, correo, idRol) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("INSERT INTO usuario (usuario, password, nombre, paterno, materno, correo, idRol, status) VALUES (?, ?, ?, ?, ?, ?, ?, true);");
             $stmt->bindValue(1, $beanUser->getUsuario());
             $stmt->bindValue(2, $beanUser->getPassword());
             $stmt->bindValue(3, $beanUser->getNombre());
@@ -74,6 +74,30 @@ class UserService
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Delete user failed: " . $e->getMessage());
+        }
+    }
+
+    public function changeStatus($idUsuario)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $user = $conn->prepare("SELECT * FROM usuario WHERE idUsuario = ?;");
+            $user->bindValue(1, $idUsuario);
+            $user->execute();
+            $userFound = $user->fetch();
+
+            if ($userFound['status'] == 1) {
+                $stmt = $conn->prepare("UPDATE usuario SET status = false WHERE idUsuario = ?;");
+                $stmt->bindParam(1, $idUsuario);
+            } else {
+                $stmt = $conn->prepare("UPDATE usuario SET status = true WHERE idUsuario = ?;");
+                $stmt->bindParam(1, $idUsuario);
+            }
+
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Change status user failed: " . $e->getMessage());
         }
     }
 }

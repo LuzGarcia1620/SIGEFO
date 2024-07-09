@@ -26,7 +26,7 @@ class UserController
 
                         $beanUser->constructSave(
                             $_POST['usuario'],
-                            $_POST['password'],
+                            sha1($_POST['password']),
                             $_POST['nombre'],
                             $_POST['apellidoPaterno'],
                             $_POST['apellidoMaterno'],
@@ -91,14 +91,29 @@ class UserController
 
                     } catch (Exception $e) {
                         error_log($e);
-                        echo 'error';
                     }
                     break;
 
                 case 'change':
+                    try {
+                        $service = $this->userService;
+
+                        $idUsuario = $_POST["idUsuario"];
+
+                        $result = $service->changeStatus($idUsuario);
+
+                        if ($result) {
+                            header('HTTP/1.0 200 OK');
+                        } else {
+                            header('HTTP/1.0 400 Bad Request');
+                        }
+                    } catch (Exception $e) {
+                        error_log($e);
+                    }
                     break;
+
                 default:
-                    $responseMessage = 'invalid';
+                    error_log("Unsupported request method");
                     break;
             }
         }

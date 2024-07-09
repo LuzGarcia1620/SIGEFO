@@ -63,7 +63,7 @@ $roles = $rolController->handleRequest();
                 <div class="divider-line"></div>
                 <div class="card-container d-flex justify-content-around flex-wrap">
                     <?php foreach ($users as $user): ?>
-                        <div class="card my-2" style="width: 18rem;" data-id="<?php echo $user['idusuario']; ?>">
+                        <div class="card my-2" style="width: 18rem;" data-id="<?php echo $user['idusuario']; ?>" data-status="<?php echo $user['status']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <?php echo $user['nombre'] . ' ' . $user['paterno'] . ' ' . $user['materno'] ?>
@@ -76,7 +76,14 @@ $roles = $rolController->handleRequest();
                                         <button type="button" class="button edit-btn buttonUpdate">Editar</button>
                                     </div>
                                     <div class="button-container">
-                                        <button class="button deactivate-btn">Desactivar</button>
+                                        <form method="post" id="changeUserForm"
+                                              action="/src/controller/user/UserController.php">
+                                            <input type="hidden" name="action" value="change">
+                                            <input type="hidden" id="idUsuarioC" name="idUsuario">
+                                            <button type="button" class="button deactivate-btn buttonDisable">
+                                                <?php echo $user['status'] == 1 ? 'Desactivar' : 'Activar'; ?>
+                                            </button>
+                                        </form>
                                     </div>
                                     <div class="button-container">
                                         <form method="post" id="deleteUserForm"
