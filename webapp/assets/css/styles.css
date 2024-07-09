@@ -87,7 +87,6 @@ body {
   color: white !important;
 }
 
-/* Estilo para el carrusel */
 /* Espacio entre el carrusel y el texto/imagen */
 .carousel {
   margin-right: 20px;
@@ -133,7 +132,11 @@ nav {
 }
 
 /*===== NAVEGACIÓN VERTICAL =====*/
-/* Estilo para la barra de navegación vertical */
+
+.navback{
+  margin-top: 30px;
+}
+
 .vertical-nav {
   padding: 0;
   background-color: #f6f6f6;
@@ -151,9 +154,6 @@ nav {
   text-decoration: none;
   border: none; /* Esto quita cualquier borde de los enlaces en la navegación vertical */
 }
-
-/* Cambia el color del enlace al pasar el cursor sobre él */
-/*===== NAVEGACIÓN VERTICAL =====*/
 
 /* Cambia el color del enlace al pasar el cursor sobre él */
 .vertical-nav a:hover {

@@ -1,6 +1,6 @@
 <?php
 
-class BeanActividad
+class BeanActivity
 {
     private $idActividad;
     private $idInstructor;

@@ -1,7 +1,7 @@
 <?php
 require __DIR__."/../../../src/config/PostgreSQL.php";
 
-class ActividadService
+class ActivityService
 {
     private $postgres;
 
@@ -84,6 +84,39 @@ class ActividadService
         } catch (Exception $e) {
             error_log("Delete actividad failed: " . $e->getMessage());
             return false;
+        }
+    }
+
+    public function getInstructors() {
+        try {
+            $conn = $this->postgres->connect();
+            $stmt = $conn->prepare("SELECT idInstructor, CONCAT(nombre, ' ', paterno, ' ', materno) AS nombre FROM instructor INNER JOIN usuario ON instructor.idUsuario = usuario.idUsuario;");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Error getting instructors: " . $e->getMessage());
+        }
+    }
+
+    public function getModalities() {
+        try {
+            $conn = $this->postgres->connect();
+            $stmt = $conn->prepare("SELECT id, nombre FROM modalidad;");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Error getting modalities: " . $e->getMessage());
+        }
+    }
+
+    public function getTypes() {
+        try {
+            $conn = $this->postgres->connect();
+            $stmt = $conn->prepare("SELECT id, tipo FROM tipo;");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Error getting types: " . $e->getMessage());
         }
     }
 }

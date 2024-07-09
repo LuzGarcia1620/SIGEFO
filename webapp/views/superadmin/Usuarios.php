@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/usuarios.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
@@ -25,6 +25,7 @@ $roles = $rolController->handleRequest();
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2">
+        <div class="navback">
             <ul class="list-unstyled vertical-nav">
                 <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
                 <li><a href="/webapp/views/superadmin/actividades.php"
@@ -37,6 +38,7 @@ $roles = $rolController->handleRequest();
                        class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
                 <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
             </ul>
+        </div>
         </div>
 
         <div class="col-lg-10 min mv-10">

@@ -4,38 +4,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario de Actividad Formativa</title>
+    <title>Formulario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./Assets/css/instructor.css" />
-    <link rel="stylesheet" href="./Assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/form.css" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
 </head>
 
 <body>
 
     <?php
-   include_once("conexion.php");
-   $conexion = new CConexion();
-   $conexion->conexionBD(); // Conectar a la base de datos
    
-   $perfiles = obtenerPerfiles();
-   $modalidades = obtenerModalidades();
-   $clasificaciones = obtenerClasificaciones();
-   $tipos = obtenerTipos();
-
     ?>
 
     <div id="headerContainer"></div>
     <div class="container-fluid">
         <div class="row">
-            <!-- Navegación Vertical -->
-            <div class="col-lg-2">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="instructor.php" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
-                    <li><a href="Asistencia.php" class="btn btn-primary btn-block my-1 menu">Lista de Asistencia</a></li>
-                    <li><a href="material.php" class="btn btn-primary btn-block my-1 menu">Material</a></li>
-                    <li><a href="salir.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+             <!-- Navegación Vertical -->
+             <div class="col-lg-2">
+                <div class="navback">
+                 <ul class="list-unstyled vertical-nav">
+                 <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
+                    <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/webapp/views/instructor/material.php" class="btn btn-primary btn-block my-1 menu">Material</a></li>
+                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
+                </div>
             </div>
             <!-- Contenido Principal -->
             <div class="col-lg-10">
@@ -306,103 +300,16 @@
         <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/form.js"></script>
+
     <script>
-    // Mostrar campo "Otra Modalidad" si selecciona "Otro"
-    function toggleOtraModalidad(select) {
-        var otraModalidad = document.getElementById("otraModalidad");
-        if (select.value === "otro") {
-            otraModalidad.style.display = "block";
-        } else {
-            otraModalidad.style.display = "none";
-        }
-    }
-
-    // Mostrar campo "Otro " si selecciona "Otro"
-
-
-    // Calcular duración total
-    function calcularDuracionTotal() {
-        var presencial = parseInt(document.getElementById('presencial').value) || 0;
-        var enLinea = parseInt(document.getElementById('enLinea').value) || 0;
-        var independiente = parseInt(document.getElementById('independiente').value) || 0;
-        var duracion = presencial + enLinea + independiente;
-        document.getElementById('duracion').value = duracion;
-    }
-
-    document.getElementById('presencial').addEventListener('input', calcularDuracionTotal);
-    document.getElementById('enLinea').addEventListener('input', calcularDuracionTotal);
-    document.getElementById('independiente').addEventListener('input', calcularDuracionTotal);
-
-    // Manejo de la navegación entre secciones del formulario
-    let currentStep = 0;
-    const formSections = document.querySelectorAll('.form-section');
-    const sectionTitles = [
-        'Datos Generales',
-        'Características de la Actividad Formativa',
-        'Modalidad',
-        'Requerimientos para el Desarrollo de la Actividad'
-    ];
-
-    function showStep(step) {
-        formSections.forEach((section, index) => {
-            section.style.display = index === step ? 'block' : 'none';
-        });
-        document.getElementById('section-title').textContent = sectionTitles[step];
-    }
-
-    function nextStep() {
-        if (currentStep < formSections.length - 1) {
-            currentStep++;
-            showStep(currentStep);
-        }
-    }
-
-    function prevStep() {
-        if (currentStep > 0) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    }
-
-    // Inicializar el formulario mostrando la primera sección
-    showStep(currentStep);
-
-
-    //contador de palabras
-    function countWords() {
-        const textInput = document.getElementById('presentacion');
-        const wordCountDisplay = document.getElementById('wordCountDisplay');
-        const words = textInput.value.split(/\s+/).filter(word => word.length > 0);
-        const wordCount = words.length;
-
-        wordCountDisplay.textContent = `Palabras: ${wordCount} / 500`;
-
-        if (wordCount > 500) {
-            wordCountDisplay.classList.add('word-count');
-        } else {
-            wordCountDisplay.classList.remove('word-count');
-        }
-    }
-
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const wordCount = document.getElementById('presentacion').value.split(/\s+/).filter(word => word
-            .length > 0).length;
-
-        if (wordCount > 500) {
-            event.preventDefault();
-            alert('El texto no debe superar las 500 palabras.');
-        }
-    });
-
-    fetch("./templates/header.html")
+    fetch("../../templates/header.html")
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("headerContainer").innerHTML = data;
-        });
-    fetch("./templates/menu.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("menuContainer").innerHTML = data;
         });
     </script>
 </body>

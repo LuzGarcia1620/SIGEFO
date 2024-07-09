@@ -1,13 +1,13 @@
 <?php
-require __DIR__."/../../service/actividad/ActividadService.php";
-require __DIR__."/../../model/actividad/BeanActividad.php";
+require __DIR__."/../../service/activity/ActivityService.php";
+require __DIR__."/../../model/activity/BeanActivity.php";
 
-class ActividadController
+class ActivityController
 {
-    private $actividadService;
+    private $activityService;
 
     public function __construct(){
-        $this->actividadService = new ActividadService();
+        $this->activityService = new ActivityService();
     }
 
     public function handleRequest() {
@@ -18,9 +18,9 @@ class ActividadController
             switch ($action) {
                 case 'save':
                     try {
-                        $service = $this->actividadService;
+                        $service = $this->activityService;
 
-                        $beanActividad = new BeanActividad(
+                        $beanActivity = new BeanActivity(
                             $_POST['idInstructor'],
                             $_POST['idTipo'],
                             $_POST['nombre'],
@@ -33,7 +33,7 @@ class ActividadController
                             $_POST['idModalidad']
                         );
 
-                        $result = $service->save($beanActividad);
+                        $result = $service->save($beanActivity);
 
                         if ($result) {
                             header('HTTP/1.0 200 OK');
@@ -53,7 +53,7 @@ class ActividadController
                 case 'delete':
                     try {
                         $idActividad = intval($_POST['idActividad']);
-                        $result = $this->actividadService->delete($idActividad);
+                        $result = $this->activityService->delete($idActividad);
 
                         if ($result) {
                             echo 'success';
@@ -78,13 +78,20 @@ class ActividadController
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             if (isset($_GET['id'])) {
                 $id = intval($_GET['id']);
-                $actividad = $this->actividadService->getById($id);
+                $activity = $this->activityService->getById($id);
 
-                return $actividad;
+                return $activity;
             } else {
-                $actividades = $this->actividadService->getAll();
-
-                return $actividades ? $actividades : array();
+                $actividades = $this->activityService->getAll();
+                $instructores = $this->activityService->getInstructors();
+                $modalidades = $this->activityService->getModalities();
+                $tipos = $this->activityService->getTypes();
+                return [
+                    'actividades' => $actividades,
+                    'instructores' => $instructores,
+                    'modalidades' => $modalidades,
+                    'tipos' => $tipos
+                ];
             }
         }
     }

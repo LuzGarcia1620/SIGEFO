@@ -1,7 +1,7 @@
-
 .card-body{
     padding: 20px;
 }
+
 .card{
 margin-top: 80px;
 }
@@ -13,8 +13,4 @@ margin-top: 80px;
 
 .btn{
     margin-top: 20px;
-}
-
-.regresar{
-    width: 10%;
 }

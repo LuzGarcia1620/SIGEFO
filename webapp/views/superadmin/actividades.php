@@ -17,9 +17,13 @@
 <body>
 
 <?php
-require __DIR__."/../../../src/controller/user/UserController.php";
-$userController = new UserController();
-$actividades = $userController->handleRequest();
+require __DIR__."/../../../src/controller/activity/ActivityController.php";
+$ActivityController = new ActivityController();
+$data = $ActivityController->handleRequest();
+$actividades = $data['actividades'];
+$instructores = $data['instructores'];
+$modalidades = $data['modalidades'];
+$tipos = $data['tipos'];
 ?>
 
     <div id="headerContainer"></div>
@@ -27,11 +31,10 @@ $actividades = $userController->handleRequest();
         <div class="row flex-grow-1">
             <!-- Navegación Vertical -->
             <div class="col-md-2">
-                <div class="conte">
+            <div class="navback">
                     <ul class="list-unstyled vertical-nav">
                     <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad
-                            Formativa</a></li>
+                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
                     <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
                     <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
                     <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
@@ -121,6 +124,15 @@ $actividades = $userController->handleRequest();
                 <div class="modal-footer-title">Editar Actividad</div>
                 <div class="divider-line"></div>
                 <form class="form">
+                <div class="campo">
+                    <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
+                            <option value="" disabled selected>Selecciona una modalidad</option>
+                            <?php foreach ($modalidades as $modalidad): ?>
+                                <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?></option>
+                            <?php endforeach; ?>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
                     <div class="campo">
                         <input type="text" id="nombre" name="nombre" required="">
                         <label for="nombre">Nombre de la Actividad</label>
@@ -135,21 +147,20 @@ $actividades = $userController->handleRequest();
                         <label for="objetivo">Objetivo</label>
                     </div>
                     <div class="campo">
-                        <select id="Instructor" name="Instructor" required="">
+                    <select id="Instructor" name="Instructor" required="">
                             <option value="" disabled selected>Seleccione el instructor</option>
-                            <!-- Aquí se agregarán las opciones dinámicamente desde el servidor -->
+                            <?php foreach ($instructores as $instructor): ?>
+                                <option value="<?php echo $instructor['idInstructor']; ?>"><?php echo $instructor['nombre']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="campo">
-                                <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
-                                    <option value="" disabled selected>Selecciona una modalidad</option>
-                                    <?php foreach ($modalidades as $modalidad): ?>
-                                    <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                    <option value="otro">Otro</option>
-                                </select>
-                            </div>
+                    <select id="tipo" name="idTipo" required>
+                            <option value="" disabled selected>Selecciona un tipo</option>
+                            <?php foreach ($tipos as $tipo): ?>
+                                <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="campo">
                         <input type="text" id="Fecha" name="Fecha" required="">
                         <label for="Fecha">Fecha</label>
@@ -182,7 +193,15 @@ $actividades = $userController->handleRequest();
             <div class="tarjeta">
                 <div class="modal-footer-title">Nueva Actividad</div>
                 <div class="divider-line"></div>
-                <form class="form">
+                <form class="form" method="POST" action="/src/controller/activity/ActivityController.php">
+                <div class="campo">
+                    <select id="Modalidad" name="idModalidad" required>
+                            <option value="" disabled selected>Selecciona una modalidad</option>
+                            <?php foreach ($modalidades as $modalidad): ?>
+                                <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="campo">
                         <input type="text" id="nombre" name="nombre" required>
                         <label for="nombre">Nombre de la Actividad</label>
@@ -196,18 +215,19 @@ $actividades = $userController->handleRequest();
                         <label for="objetivo">Objetivo</label>
                     </div>
                     <div class="campo">
-                        <select id="Instructor" name="Instructor" required>
+                    <select id="Instructor" name="idInstructor" required>
                             <option value="" disabled selected>Selecciona un instructor</option>
-                            
+                            <?php foreach ($instructores as $instructor): ?>
+                                <option value="<?php echo $instructor['idInstructor']; ?>"><?php echo $instructor['nombre']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="campo">
-                        <select id="Modalidad" name="Modalidad" required>
-                            <option value="" disabled selected>Selecciona una modalidad</option>
-                            <option value="Presencial">Presencial</option>
-                            <option value="En línea">En línea</option>
-                            <option value="Virtual">Virtual</option>
-                            <option value="Híbrida">Híbrida</option>
+                        <select id="tipo" name="idTipo" required>
+                            <option value="" disabled selected>Selecciona un tipo</option>
+                            <?php foreach ($tipos as $tipo): ?>
+                                <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="campo">
@@ -235,6 +255,7 @@ $actividades = $userController->handleRequest();
             </div>
         </div>
     </div>
+
     <script>
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
