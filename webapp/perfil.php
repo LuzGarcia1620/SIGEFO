@@ -1,6 +1,22 @@
+<?php
+session_start();
+require __DIR__."/../../../src/controller/user/UserController.php";
+
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$idUsuario = $_SESSION['idUsuario'];
+$idRol = $_SESSION['idRol'];
+
+$userController = new UserController();
+$user = $userController->getUserById($idUsuario);
+$rol = $userController->getRoleById($idRol);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,68 +25,61 @@
     <link rel="stylesheet" href="../../assets/css/perfil.css" />
     <link rel="stylesheet" href="../../assets/css/styles.css" />
 </head>
-
 <body>
-<?php
-require __DIR__."/../../../src/controller/user/UserController.php";
-$userController = new UserController();
-$users = $userController->handleRequest();
-?>
-
     <div id="headerContainer"></div>
     <div class="container-fluid">
         <div class="row">
             <!-- Navegación Vertical -->
-        <div class="col-lg-2">
-            <div class="navback">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="/webapp/views/instructor/perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a>
-                    </li>
-                    <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
-                    </li>
-                    <li><a href="/webapp/views/instructor/materialInstructor.php" class="btn btn-primary btn-block my-1 menu">Material</a>
-                    </li>
-                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                </ul>
+            <div class="col-lg-2">
+                <div class="navback">
+                    <ul class="list-unstyled vertical-nav">
+                        <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                        <?php if ($rol['nombre'] == 'SuperAdmin'): ?>
+                            <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
+                            <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                            <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                            <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                        <?php elseif ($rol['nombre'] == 'Instructor'): ?>
+                            <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
+                            <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                            <li><a href="/webapp/views/instructor/material.php" class="btn btn-primary btn-block my-1 menu">Material</a></li>
+                        <?php endif; ?>
+                        <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
             <!-- Contenido Principal -->
             <div class="col-lg-10 main-content d-flex justify-content-center align-items-center">
                 <div class="custom-card">
                     <div class="card-body">
-                        <h1 class="text-center">¡Bienvenido!</h1>
+                        <h1 class="text-center">¡Bienvenida, <?php echo $user['nombre']; ?>!</h1>
                         <div class="line"></div>
                         <br>
                         <form>
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" value="Diego" readonly />
+                                <input type="text" class="form-control" id="nombre" value="<?php echo $user['nombre']; ?>" readonly />
                             </div>
                             <div class="form-group">
                                 <label for="usuario">Usuario:</label>
-                                <input type="text" class="form-control" id="usuario" value="Diego" readonly />
+                                <input type="text" class="form-control" id="usuario" value="<?php echo $user['usuario']; ?>" readonly />
                             </div>
                             <div class="form-group">
                                 <label for="puesto">Puesto:</label>
-                                <input type="text" class="form-control" id="puesto" value="Instructor" readonly />
+                                <input type="text" class="form-control" id="puesto" value="<?php echo $rol['nombre']; ?>" readonly />
                             </div>
                             <div class="form-group">
                                 <label for="correo">Correo:</label>
-                                <input type="email" class="form-control" id="correo" value="diego@gmail.com"
-                                    readonly />
+                                <input type="email" class="form-control" id="correo" value="<?php echo $user['correo']; ?>" readonly />
                             </div>
-
                             <div class="form-group">
                                 <label for="contraseña">Contraseña:</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="contraseña" value="asd123"
-                                        readonly />
+                                    <input type="password" class="form-control" id="contraseña" value="*******" readonly />
                                     <div class="input-group-append">
                                         <span class="input-group-text" onclick="togglePassword('contraseña', this)">
                                             <i class="fa fa-eye"></i>
-                                            <img src="../../assets/img/visibilidad.png"
-                                                alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
+                                            <img src="../../assets/img/visibilidad.png" alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
                                         </span>
                                     </div>
                                 </div>
@@ -81,13 +90,11 @@ $users = $userController->handleRequest();
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="newPassword" />
                                         <div class="input-group-append">
-                                            <span class="input-group-text"
-                                                onclick="togglePassword('newPassword', this)">
+                                            <span class="input-group-text" onclick="togglePassword('newPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../../assets/img/visibilidad.png"
-                                                    alt="Nueva Contraseña Icono"
-                                                    style="width: 20px; height: 20px; margin-left: 5px;">
-                                            </span>
+                                                <img src="../../assets/img/visibilidad.png" alt="Nueva Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
+                                           
+                                                </span>
                                         </div>
                                     </div>
                                 </div>
@@ -96,12 +103,9 @@ $users = $userController->handleRequest();
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="repeatPassword" />
                                         <div class="input-group-append">
-                                            <span class="input-group-text"
-                                                onclick="togglePassword('repeatPassword', this)">
+                                            <span class="input-group-text" onclick="togglePassword('repeatPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../../assets/img/visibilidad.png"
-                                                    alt="Confirmar Contraseña Icono"
-                                                    style="width: 20px; height: 20px; margin-left: 5px;">
+                                                <img src="../../assets/img/visibilidad.png" alt="Confirmar Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
                                             </span>
                                         </div>
                                     </div>
@@ -114,13 +118,12 @@ $users = $userController->handleRequest();
             </div>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <p>Departamento de Formación Docente</p>
         <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
     </footer>
-
+    
     <script>
     function togglePassword(id, element) {
         const input = document.getElementById(id);
@@ -141,11 +144,8 @@ $users = $userController->handleRequest();
             document.getElementById("headerContainer").innerHTML = data;
         });
     </script>
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

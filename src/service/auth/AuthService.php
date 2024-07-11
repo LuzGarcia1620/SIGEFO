@@ -1,12 +1,13 @@
 <?php
 require __DIR__."/../../../src/config/PostgreSQL.php";
-class AuthService
-{
-    public function login($usuario, $password){
+
+class AuthService {
+    public function login($usuario, $password) {
         try {
             $postgres = new PostgreSQL();
             $conn = $postgres->connect();
 
+            // Consulta a la base de datos
             $stmt = $conn->prepare("SELECT * FROM usuario WHERE usuario = :user AND password = :pass");
             $stmt->bindParam(':user', $usuario);
             $stmt->bindParam(':pass', $password);
@@ -15,18 +16,38 @@ class AuthService
             $rs = $stmt->fetch();
 
             if (!$rs) {
-                echo "Usuario o Contraseña Incorrecta";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error de autenticación',
+                        text: 'Usuario o contraseña incorrectos',
+                        showConfirmButton: true
+                    }).then(() => {
+                        window.location.href = '../../webapp/login.php';
+                    });
+                </script>";
+                return false;
             } else {
-                echo "Sesion Exitosa, Eres Perro wey";
-                return $rs;
-                /*echo "ID: " . $rs['idusuario'] . "<br>";
-                echo "Usuario: " . $rs['usuario'] . "<br>";
-                echo "Nombre: " . $rs['nombre'] . "<br>";
-                echo "A. Paterno: " . $rs['paterno'] . "<br>";
-                echo "A. Materno: " . $rs['materno'] . "<br>";*/
+                // Iniciar sesión y establecer variables de sesión
+                session_start();
+                $_SESSION['idUsuario'] = $rs['idusuario'];
+                $_SESSION['idRol'] = $rs['idrol']; // Asegúrate de que este campo existe en tu tabla
+                header("Location: ../../webapp/perfil.php");
+                exit();
+                return true;
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '" . $e->getMessage() . "',
+                    showConfirmButton: true
+                }).then(() => {
+                    window.location.href = '../../webapp/login.php';
+                });
+            </script>";
+            return false;
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . "/../../service/user/UserService.php";
-require __DIR__ . "/../../model/user/BeanUser.php";
+require_once __DIR__ . "/../../service/user/UserService.php";
+require_once __DIR__ . "/../../model/user/BeanUser.php";
 
 class UserController
 {

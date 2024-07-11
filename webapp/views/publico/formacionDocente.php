@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/styles.css" />
-    <link rel="stylesheet" href="../../assets/css/formaciondocente.css" />
+    <link rel="stylesheet" href="../../asets/css/formaciondocente.css" />
+    
     <title>Formación Docente</title>
 </head>
 
 <body>
-
     <div id="headerContainer"></div>
      <!-- NavBAR -->
      <nav class="navbar navbar-expand-lg navbar-light bg-light">

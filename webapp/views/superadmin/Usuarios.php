@@ -27,7 +27,7 @@ $roles = $rolController->handleRequest();
         <div class="col-lg-2">
         <div class="navback">
             <ul class="list-unstyled vertical-nav">
-                <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                <li><a href="/webapp/views/superadmin/perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
                 <li><a href="/webapp/views/superadmin/actividades.php"
                        class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
                 <li><a href="/webapp/views/superadmin/usuarios.php"

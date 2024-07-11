@@ -40,12 +40,12 @@ $resources = $resourceController->handleRequest();
         <div class="col-lg-2">
             <div class="navback">
                 <ul class="list-unstyled vertical-nav">
-                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/webapp/views/instructor/perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
                     <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a>
                     </li>
                     <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
                     </li>
-                    <li><a href="/webapp/views/instructor/material.php" class="btn btn-primary btn-block my-1 menu">Material</a>
+                    <li><a href="/webapp/views/instructor/materialInstructor.php" class="btn btn-primary btn-block my-1 menu">Material</a>
                     </li>
                     <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
@@ -120,7 +120,7 @@ $resources = $resourceController->handleRequest();
                         <h5 class="titulos">Modalidad de la Actividad Formativa</h5>
                         <div class="input-field">
                             <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
-                                <option value="" disabled selected>Selecciona una modalidad</option>
+                                <option value="" disabled selected>Seleccione una modalidad</option>
                                 <?php foreach ($modalities as $modality): ?>
                                     <option value="<?php echo $modality['id'] ?>">
                                         <?php echo $modality['nombre'] ?>
@@ -168,7 +168,7 @@ $resources = $resourceController->handleRequest();
                     <div class="form-section" style="display: none;">
                         <div class="input-field">
                             <select id="tipo" name="tipo" required>
-                                <option value="">Selecciona el Tipo</option>
+                                <option value="">Seleccione el Tipo</option>
                                 <?php foreach ($types as $type): ?>
                                     <option value="<?php echo $type['id'] ?>">
                                         <?php echo $type['tipo'] ?>
@@ -196,6 +196,7 @@ $resources = $resourceController->handleRequest();
                         <h5 class="titulos">Clasificación de la actividad</h5>
                         <div class="input-field">
                             <select id="clasificacion" name="clasificacion" required>
+                            <option value="">Seleccione la clasificación</option>
                                 <?php foreach ($clasifications as $clasification): ?>
                                     <option value="<?php echo $clasification['id'] ?>">
                                         <?php echo $clasification['nombre'] ?>

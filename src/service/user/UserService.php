@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "/../../../src/config/PostgreSQL.php";
+require_once __DIR__ . "/../../../src/config/PostgreSQL.php";
 
 class UserService
 {
