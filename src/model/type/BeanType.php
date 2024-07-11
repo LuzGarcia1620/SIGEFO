@@ -1,6 +1,6 @@
 <?php
 
-class BeanProfile
+class BeanType
 {
     private $id;
     private $nombre;

@@ -1,6 +1,6 @@
 <?php
 
-class BeanProfile
+class BeanUnidadAcademica
 {
     private $id;
     private $nombre;

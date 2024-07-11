@@ -13,6 +13,13 @@ class BeanActivity
     private $status;
     private $idClasificacion;
     private $idModalidad;
+    private $dirigidoA;
+    private $perfilIngreso;
+    private $perfilEgreso;
+    private $objetivo;
+    private $temario;
+    private $cupo;
+    private $presentacion;
 
     public function __construct($idInstructor, $idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $status, $idClasificacion, $idModalidad)
     {
@@ -26,6 +33,13 @@ class BeanActivity
         $this->status = $status;
         $this->idClasificacion = $idClasificacion;
         $this->idModalidad = $idModalidad;
+        $this->dirigidoA = $dirigidoA;
+        $this->perfilIngreso = $perfilIngreso;
+        $this->perfilEgreso = $perfilEgreso;
+        $this->objetivo = $objetivo;
+        $this->temario = $temario;
+        $this->cupo = $cupo;
+        $this->presentacion = $presentacion;
     }
 
     public function getIdActividad()
@@ -136,6 +150,76 @@ class BeanActivity
     public function setIdModalidad($idModalidad)
     {
         $this->idModalidad = $idModalidad;
+    }
+
+    public function getDirigidoA()
+    {
+        return $this->dirigidoA;
+    }
+
+    public function setDirigidoA($dirigidoA)
+    {
+        $this->dirigidoA = $dirigidoA;
+    }
+
+    public function getPerfilIngreso()
+    {
+        return $this->perfilIngreso;
+    }
+
+    public function setperfilIngreso($perfilIngreso)
+    {
+        $this->perfilIngreso = $perfilIngreso;
+    }
+
+    public function getPerfilEgreso()
+    {
+        return $this->perfilEgreso;
+    }
+
+    public function setPerfilEgreso($perfilEgreso)
+    {
+        $this->perfilEgreso = $perfilEgreso;
+    }
+
+    public function getObjetivo()
+    {
+        return $this->objetivo;
+    }
+
+    public function setObjetivo($objetivo)
+    {
+        $this->objetivo = $objetivo;
+    }
+
+    public function getTemario()
+    {
+        return $this->temario;
+    }
+
+    public function setTemario($temario)
+    {
+        $this->temario = $temario;
+    }
+
+    public function getCupo()
+    {
+        return $this->dirigidoA;
+    }
+
+    public function setCupo($cupo)
+    {
+        $this->cupo = $cupo;
+    }
+
+    public function getPresentacion()
+    {
+        return $this->presentacion;
+    }
+
+    public function setPresentacion($presentacion)
+    {
+        $this->presentacion = $presentacion;
     }
 }
 ?>
