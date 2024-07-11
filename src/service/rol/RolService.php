@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . "/../../../src/config/PostgreSQL.php";
 
 class RolService
 {

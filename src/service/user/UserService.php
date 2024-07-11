@@ -7,7 +7,7 @@ class UserService
 
     public function __construct()
     {
-        $this->postgres = new PostgreSQL;
+        $this->postgres = new PostgreSQL();
     }
 
     public function getAll()

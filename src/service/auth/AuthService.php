@@ -4,7 +4,7 @@ class AuthService
 {
     public function login($usuario, $password){
         try {
-            $postgres = new PostgreSQL;
+            $postgres = new PostgreSQL();
             $conn = $postgres->connect();
 
             $stmt = $conn->prepare("SELECT * FROM usuario WHERE usuario = :user AND password = :pass");

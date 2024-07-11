@@ -11,7 +11,28 @@
 </head>
 
 <body>
+<?php
+require __DIR__ . "/../../../src/controller/profile/ProfileController.php";
+require __DIR__ . "/../../../src/controller/modality/ModalityController.php";
+require __DIR__ . "/../../../src/controller/type/TypeController.php";
+require __DIR__ . "/../../../src/controller/clasificacion/ClasificacionController.php";
+require __DIR__ . "/../../../src/controller/recurso/RecursoController.php";
 
+$profileController = new ProfileController();
+$profiles = $profileController->handleRequest();
+
+$modalityController = new ModalityController();
+$modalities = $modalityController->handleRequest();
+
+$typeController = new TypeController();
+$types = $typeController->handleRequest();
+
+$clasificationController = new ClasificacionController();
+$clasifications = $clasificationController->handleRequest();
+
+$resourceController = new RecursoController();
+$resources = $resourceController->handleRequest();
+?>
 <div id="headerContainer"></div>
 <div class="container-fluid">
     <div class="row">
@@ -70,8 +91,11 @@
                         <div class="input-field">
                             <select id="perfil" name="perfil" required>
                                 <option value="" disabled selected>Selecciona un perfil</option>
-                                <option value="">
-                                </option>
+                                <?php foreach ($profiles as $profile): ?>
+                                    <option value="<?php echo $profile['id'] ?>">
+                                        <?php echo $profile['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="input-field">
@@ -97,7 +121,11 @@
                         <div class="input-field">
                             <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
                                 <option value="" disabled selected>Selecciona una modalidad</option>
-                                <option value=""></option>
+                                <?php foreach ($modalities as $modality): ?>
+                                    <option value="<?php echo $modality['id'] ?>">
+                                        <?php echo $modality['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
@@ -140,8 +168,12 @@
                     <div class="form-section" style="display: none;">
                         <div class="input-field">
                             <select id="tipo" name="tipo" required>
-                                <option value=""></option>
-                                <option value="">No hay tipos disponibles</option>
+                                <option value="">Selecciona el Tipo</option>
+                                <?php foreach ($types as $type): ?>
+                                    <option value="<?php echo $type['id'] ?>">
+                                        <?php echo $type['tipo'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
@@ -164,7 +196,11 @@
                         <h5 class="titulos">Clasificación de la actividad</h5>
                         <div class="input-field">
                             <select id="clasificacion" name="clasificacion" required>
-                                <option value=""></option>
+                                <?php foreach ($clasifications as $clasification): ?>
+                                    <option value="<?php echo $clasification['id'] ?>">
+                                        <?php echo $clasification['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="input-field">
@@ -206,62 +242,17 @@
                         <h5 class="titulos">Tipo de recurso que requiere (Marque la casilla con la opción deseada)
                         </h5>
                         <div class="checkbox-wrapper-46">
-                            <input type="checkbox" id="cbx-46-1" class="inp-cbx"/>
-                            <label for="cbx-46-1" class="cbx">
-                                    <span>
-                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                <span>Apertura de Aula virtual en plataforma de aprendizaje Moodle</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-wrapper-46">
-                            <input type="checkbox" id="cbx-46-2" class="inp-cbx"/>
-                            <label for="cbx-46-2" class="cbx">
-                                    <span>
-                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                <span>Apertura de Aula virtual en plataforma de aprendizaje Microsoft Teams</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-wrapper-46">
-                            <input type="checkbox" id="cbx-46-3" class="inp-cbx"/>
-                            <label for="cbx-46-3" class="cbx">
-                                    <span>
-                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                <span>Apoyo para la elaboración de recursos digitales como videos, entre
-                                        otros</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-wrapper-46">
-                            <input type="checkbox" id="cbx-46-4" class="inp-cbx"/>
-                            <label for="cbx-46-4" class="cbx">
-                                    <span>
-                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                <span>Apoyo técnico de transmisiones en vivo en plataforma: Google Meet, Zoom o
-                                        Microsoft</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-wrapper-46">
-                            <input type="checkbox" id="cbx-46-5" class="inp-cbx"/>
-                            <label for="cbx-46-5" class="cbx">
-                                    <span>
-                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                <span>Apoyo técnico para montaje de la actividad formativa en plataforma de
-                                        aprendizaje Moodle</span>
-                            </label>
+                            <?php foreach ($resources as $resource): ?>
+                                <input type="checkbox" id="cbx-46-<?php echo $resource['idrecurso'] ?>" class="inp-cbx" name="recurso" value="<?php echo $resource['idrecurso'] ?>"/>
+                                <label for="cbx-46-<?php echo $resource['idrecurso'] ?>" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    <span><?php echo $resource['recurso'] ?></span>
+                                </label>
+                            <?php endforeach; ?>
                         </div>
                         <div class="button-group">
                             <button type="button" class="btn btn-secondary botones btn-left"
