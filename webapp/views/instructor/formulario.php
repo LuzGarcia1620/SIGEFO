@@ -17,6 +17,7 @@ require __DIR__ . "/../../../src/controller/modality/ModalityController.php";
 require __DIR__ . "/../../../src/controller/type/TypeController.php";
 require __DIR__ . "/../../../src/controller/clasificacion/ClasificacionController.php";
 require __DIR__ . "/../../../src/controller/recurso/RecursoController.php";
+require __DIR__ . "/../../../src/controller/formInstructor/FormController.php";
 
 $profileController = new ProfileController();
 $profiles = $profileController->handleRequest();
@@ -32,6 +33,9 @@ $clasifications = $clasificationController->handleRequest();
 
 $resourceController = new RecursoController();
 $resources = $resourceController->handleRequest();
+
+$formController = new FormController();
+$form = $formController->handleRequest();
 ?>
 <div id="headerContainer"></div>
 <div class="container-fluid">
@@ -56,23 +60,23 @@ $resources = $resourceController->handleRequest();
             <div class="contenido mx-auto" style="max-width:800px;">
                 <h4 id="section-title">Datos Generales</h4>
                 <div class="line"></div>
-                <form class="form" action="" method="POST">
+                <form class="form" id="formInstructor" action="/src/controller/formInstructor/FormController.php" method="POST">
 
                     <!-- Sección 1 -->
                     <div class="form-section">
-                        <div class="input-field">
+                        <div class="input-field"> <!--No se ocupa para el PA-->
                             <input type="text" id="nombre" name="nombre" required>
                             <label for="nombre">Nombre(s)</label>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field"><!--No se ocupa para el PA-->
                             <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
                             <label for="apellidoPaterno">Apellido Paterno</label>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field"><!--No se ocupa para el PA-->
                             <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
                             <label for="apellidoMaterno">Apellido Materno</label>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field"><!--No se ocupa para el PA-->
                             <input type="email" id="correo" name="correo" required>
                             <label for="correo">Correo Electrónico</label>
                         </div>
@@ -220,12 +224,12 @@ $resources = $resourceController->handleRequest();
                             <input type="text" id="temario" name="temario" required>
                             <label for="temario">Temario</label>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field"><!--No se ocupa para el PA-->
                             <input type="text" id="actividad" name="actividad" required>
                             <label for="actividad">Actividades</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" id="cupo" name="cupo" required>
+                            <input type="number" id="cupo" name="cupo" required>
                             <label for="cupo">Cupo</label>
                         </div>
                         <div class="button-group">
@@ -255,6 +259,10 @@ $resources = $resourceController->handleRequest();
                                 </label>
                             <?php endforeach; ?>
                         </div>
+                        <input type="hidden" id="action" name="action" value="save"><!--Este si se queda-->
+                        <!--Esto es de manera provisional nomas para probaar, los inputs hidden-->
+                        <input type="hidden" id="idUsuario" name="idUsuario" value="1"><!-- Este se agarra de la sesion -->
+                        <input type="hidden" id="status" name="status" value="Enviado"><!-- No se si se tenga que escribir o es un Booleano en la BD, ai que checar esto-->
                         <div class="button-group">
                             <button type="button" class="btn btn-secondary botones btn-left"
                                     onclick="prevStep()">Anterior
@@ -274,9 +282,11 @@ $resources = $resourceController->handleRequest();
     <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../assets/js/form.js"></script>
 </body>
 

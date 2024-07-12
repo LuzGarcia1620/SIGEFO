@@ -86,3 +86,32 @@ fetch("../../templates/header.html")
     .then((data) => {
         document.getElementById("headerContainer").innerHTML = data;
     });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const formInstructor = document.getElementById('formInstructor');
+
+    $('#formInstructor').on('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(formInstructor);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Formulario agregado exitosamente.', 'success');
+                    /*$('#agregarUsuariosModal').modal('hide');
+                    location.reload();*/
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    });
+})

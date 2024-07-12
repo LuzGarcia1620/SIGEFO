@@ -21,9 +21,13 @@ class BeanActivity
     private $cupo;
     private $presentacion;
 
-    public function __construct($idInstructor, $idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $status, $idClasificacion, $idModalidad)
+    public function __construct()
     {
-        $this->idInstructor = $idInstructor;
+
+    }
+
+    public function constructSave($idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $status, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion)
+    {
         $this->idTipo = $idTipo;
         $this->nombre = $nombre;
         $this->duracion = $duracion;
@@ -204,7 +208,7 @@ class BeanActivity
 
     public function getCupo()
     {
-        return $this->dirigidoA;
+        return $this->cupo;
     }
 
     public function setCupo($cupo)
