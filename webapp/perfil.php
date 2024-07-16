@@ -1,18 +1,9 @@
 <?php
 session_start();
-require __DIR__."/../../../src/controller/user/UserController.php";
+require __DIR__. "/../src/service/user/UserService.php";
 
-if (!isset($_SESSION['idUsuario'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$idUsuario = $_SESSION['idUsuario'];
-$idRol = $_SESSION['idRol'];
-
-$userController = new UserController();
-$user = $userController->getUserById($idUsuario);
-$rol = $userController->getRoleById($idRol);
+$userService = new UserService();
+$user = $userService->getOne($_SESSION['idUsuario'])
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +25,12 @@ $rol = $userController->getRoleById($idRol);
                 <div class="navback">
                     <ul class="list-unstyled vertical-nav">
                         <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                        <?php if ($rol['nombre'] == 'SuperAdmin'): ?>
+                        <?php if ($user['rol'] == 'SuperAdmin'): ?>
                             <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
                             <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
                             <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
                             <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                        <?php elseif ($rol['nombre'] == 'Instructor'): ?>
+                        <?php elseif ($user['rol'] == 'Instructor'): ?>
                             <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
                             <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
                             <li><a href="/webapp/views/instructor/material.php" class="btn btn-primary btn-block my-1 menu">Material</a></li>
@@ -52,13 +43,13 @@ $rol = $userController->getRoleById($idRol);
             <div class="col-lg-10 main-content d-flex justify-content-center align-items-center">
                 <div class="custom-card">
                     <div class="card-body">
-                        <h1 class="text-center">¡Bienvenida, <?php echo $user['nombre']; ?>!</h1>
+                        <h1 class="text-center">¡Bienvenid@ Señor Catedratico, <?php echo $user['nombre']; ?>!</h1>
                         <div class="line"></div>
                         <br>
                         <form>
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" value="<?php echo $user['nombre']; ?>" readonly />
+                                <input type="text" class="form-control" id="nombre" value="<?php echo $user['nombre'] . " " . $user['paterno'] . " " . $user['materno']; ?>" readonly />
                             </div>
                             <div class="form-group">
                                 <label for="usuario">Usuario:</label>
@@ -66,7 +57,7 @@ $rol = $userController->getRoleById($idRol);
                             </div>
                             <div class="form-group">
                                 <label for="puesto">Puesto:</label>
-                                <input type="text" class="form-control" id="puesto" value="<?php echo $rol['nombre']; ?>" readonly />
+                                <input type="text" class="form-control" id="puesto" value="<?php echo $user['rol']; ?>" readonly />
                             </div>
                             <div class="form-group">
                                 <label for="correo">Correo:</label>
@@ -75,11 +66,11 @@ $rol = $userController->getRoleById($idRol);
                             <div class="form-group">
                                 <label for="contraseña">Contraseña:</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="contraseña" value="*******" readonly />
+                                    <input type="password" class="form-control" id="contraseña" value="<?php echo $user['password'] ?>" readonly />
                                     <div class="input-group-append">
                                         <span class="input-group-text" onclick="togglePassword('contraseña', this)">
                                             <i class="fa fa-eye"></i>
-                                            <img src="../../assets/img/visibilidad.png" alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
+                                            <img src="../webapp/assets/img/visibilidad.png" alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
                                         </span>
                                     </div>
                                 </div>
@@ -92,7 +83,7 @@ $rol = $userController->getRoleById($idRol);
                                         <div class="input-group-append">
                                             <span class="input-group-text" onclick="togglePassword('newPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../../assets/img/visibilidad.png" alt="Nueva Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
+                                                <img src="../webapp/assets/img/visibilidad.png" alt="Nueva Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
                                            
                                                 </span>
                                         </div>
@@ -105,7 +96,7 @@ $rol = $userController->getRoleById($idRol);
                                         <div class="input-group-append">
                                             <span class="input-group-text" onclick="togglePassword('repeatPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../../assets/img/visibilidad.png" alt="Confirmar Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
+                                                <img src="../webapp/assets/img/visibilidad.png" alt="Confirmar Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
                                             </span>
                                         </div>
                                     </div>
@@ -131,14 +122,14 @@ $rol = $userController->getRoleById($idRol);
 
         if (input.type === "password") {
             input.type = "text";
-            eyeIcon.src = "../../assets/img/invisible.png";
+            eyeIcon.src = "../../webapp/assets/img/invisible.png";
         } else {
             input.type = "password";
-            eyeIcon.src = "../../assets/img/visibilidad.png";
+            eyeIcon.src = "../../webapp/assets/img/visibilidad.png";
         }
     }
 
-    fetch("../../templates/header.html")
+    fetch("../../webapp/templates/header.html")
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("headerContainer").innerHTML = data;

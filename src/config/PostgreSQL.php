@@ -6,7 +6,6 @@ class PostgreSQL
     private $dbname = "postgres";
     private $username = "postgres";
     private $password = "root";
-
     
     public function connect() {
         $hostDB = "pgsql:host=$this->host;port=$this->port;dbname=$this->dbname";

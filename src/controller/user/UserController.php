@@ -119,16 +119,11 @@ class UserController
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            if (isset($_GET['id'])) {
-                $id = intval($_GET['id']);
-                $user = $this->userService->getById($id);
+            $users = $this->userService->getAll();
 
-                return $user;
-            } else {
-                $users = $this->userService->getAll();
-
-                return $users ? $users : array();
-            }
+            return $users ? $users : array();
         }
     }
+
+
 }

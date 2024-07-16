@@ -24,6 +24,20 @@ class UserService
         }
     }
 
+    public function getOne($idUsuario)
+    {
+        try {
+            $conn = $this->postgres->connect();
+            $stmt = $conn->prepare("SELECT u.idUsuario, u.nombre, u.paterno, u.materno, u.usuario, u.correo, u.password, u.status, r.nombre AS rol FROM usuario as u JOIN rol as r ON u.idRol = r.id WHERE u.idUsuario = ?;");
+            $stmt->bindParam(1, $idUsuario);
+            $stmt->execute();
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            error_log("Get One Error: " . $e->getMessage());
+        }
+    }
+
     public function save(BeanUser $beanUser)
     {
         try {
@@ -82,10 +96,7 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $user = $conn->prepare("SELECT * FROM usuario WHERE idUsuario = ?;");
-            $user->bindValue(1, $idUsuario);
-            $user->execute();
-            $userFound = $user->fetch();
+            $userFound = $this->getOne($idUsuario);
 
             if ($userFound['status'] == 1) {
                 $stmt = $conn->prepare("UPDATE usuario SET status = false WHERE idUsuario = ?;");

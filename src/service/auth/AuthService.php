@@ -7,47 +7,18 @@ class AuthService {
             $postgres = new PostgreSQL();
             $conn = $postgres->connect();
 
+            $hash_password = sha1($password);
+
             // Consulta a la base de datos
-            $stmt = $conn->prepare("SELECT * FROM usuario WHERE usuario = :user AND password = :pass");
-            $stmt->bindParam(':user', $usuario);
-            $stmt->bindParam(':pass', $password);
+            $stmt = $conn->prepare("SELECT u.idUsuario, u.nombre, u.paterno, u.materno, u.usuario, u.correo, u.password, u.status, r.nombre AS rol FROM usuario as u JOIN rol as r ON u.idRol = r.id WHERE usuario = ? AND password = ?;");
+            $stmt->bindParam(1, $usuario);
+            $stmt->bindParam(2, $hash_password);
             $stmt->execute();
 
-            $rs = $stmt->fetch();
+            return $stmt->fetch();
 
-            if (!$rs) {
-                echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error de autenticación',
-                        text: 'Usuario o contraseña incorrectos',
-                        showConfirmButton: true
-                    }).then(() => {
-                        window.location.href = '../../webapp/login.php';
-                    });
-                </script>";
-                return false;
-            } else {
-                // Iniciar sesión y establecer variables de sesión
-                session_start();
-                $_SESSION['idUsuario'] = $rs['idusuario'];
-                $_SESSION['idRol'] = $rs['idrol']; // Asegúrate de que este campo existe en tu tabla
-                header("Location: ../../webapp/perfil.php");
-                exit();
-                return true;
-            }
         } catch (Exception $e) {
-            echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: '" . $e->getMessage() . "',
-                    showConfirmButton: true
-                }).then(() => {
-                    window.location.href = '../../webapp/login.php';
-                });
-            </script>";
-            return false;
+            error_log("User not found" . $e->getMessage());
         }
     }
 }

@@ -1,22 +1,45 @@
 <?php
 require __DIR__ . "/../../service/auth/AuthService.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+class AuthController
+{
+    private $authService;
 
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+    public function __construct(){
+        $this->authService = new AuthService();
+    }
 
-    if (isset($_POST["action"]) && $_POST["action"] === 'login') {
-        if (isset($_POST['usuario']) && isset($_POST['password'])) {
-            $controller = new AuthService();
-            $controller->login($_POST['usuario'], $_POST['password']);
+    public function handleRequest()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $action = $_POST["action"];
 
-        } else {
-            echo "Usuario o contraseña no proporcionados.";
+            switch ($action) {
+                case 'login':
+                    try {
+                        $service = $this->authService;
+
+                        $user = $_POST['usuario'];
+                        $password = $_POST['password'];
+
+                        $result = $service->login($user, $password);
+                        if ($result) {
+                            header('HTTP/1.0 200 OK');
+                            session_start();
+                            $_SESSION['idUsuario'] = $result["idusuario"];
+                            $_SESSION['rol'] = $result["rol"];
+                        } else {
+                            header('HTTP/1.0 400 Bad Request');
+                        }
+                    } catch (Exception $e) {
+                        error_log($e->getMessage());
+                    }
+                    break;
+            }
         }
-    } else {
-        echo "Acción no válida.";
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+        }
     }
 }
-?>
