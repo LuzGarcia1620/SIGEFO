@@ -1,0 +1,35 @@
+# Restringimos el acceso directo a archivos .php desde orígenes diferentes a
+# localhost.
+<Files "*.php">
+    Require ip 127.0.0.1
+</Files>
+
+# Ahora autorizamos el único punto de acceso para peticiones que provienen
+# de IPs externas, nuestro archivo index.php
+<Files "index.php">
+    Require all granted
+</Files>
+
+# Activamos el motor de reescritura de rutas.
+RewriteEngine On
+
+# Quita el comentario si quieres forzar el acceso a través de HTTPS
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+# Activamos el header de autorización si usas php en modo cgi.
+# RewriteCond %{HTTP:Authorization} ^(.*)
+# RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+# Le indicamos a mod_rewrite la ruta relativa dentro de la cual están nuestros
+# archivos, si vas a usar un directorio al final de la URL ej.
+# http://midominio.com/routeman
+# debes escribir el RewriteBase
+# RewriteBase /formacion/
+
+# y ahora nuestro control de redirección, estas líneas le indican al servidor
+# que cualquier nombre de archivo o directorio en una URL debe redireccionarlo
+# al archivo index.php.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]

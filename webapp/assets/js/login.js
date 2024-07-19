@@ -1,9 +1,9 @@
-fetch('../../webapp/templates/header.html')
+fetch('/SIGEFO/webapp/templates/header.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('headerContainer').innerHTML = data;
     });
-fetch('../../webapp/templates/footer.html')
+fetch('/SIGEFO/webapp/templates/footer.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('footerContainer').innerHTML = data;
@@ -15,7 +15,7 @@ function mostrarPassword() {
     const isPasswordVisible = passwordInput.type === 'password';
 
     passwordInput.type = isPasswordVisible ? 'text' : 'password';
-    passwordIcon.src = isPasswordVisible ? '../../webapp/assets/img/invisible.png' : '../../webapp/assets/img/visibilidad.png';
+    passwordIcon.src = isPasswordVisible ? '/SIGEFO/webapp/assets/img/invisible.png' : '/SIGEFO/webapp/assets/img/visibilidad.png';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (xhr.status === 200) {
                     Swal.fire('Éxito', 'Inicio de Sesion Exitoso', 'success');
                     setTimeout(() => {
-                        window.location.href = "./perfil.php"
+                        window.location.href = "/SIGEFO/perfil"
                     }, 2000)
                 } else {
                     Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require __DIR__. "/../src/service/user/UserService.php";
+require dirname(__DIR__) .  '/src/service/user/UserService.php';
 
 $userService = new UserService();
 $user = $userService->getOne($_SESSION['idUsuario'])
@@ -13,11 +13,13 @@ $user = $userService->getOne($_SESSION['idUsuario'])
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../assets/css/perfil.css" />
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/perfil.css" />
+    <!--<link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />-->
 </head>
 <body>
-    <div id="headerContainer"></div>
+    <div>
+        <?php include __DIR__ . '/templates/header.html'; ?>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <!-- Navegación Vertical -->
@@ -70,7 +72,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                     <div class="input-group-append">
                                         <span class="input-group-text" onclick="togglePassword('contraseña', this)">
                                             <i class="fa fa-eye"></i>
-                                            <img src="../webapp/assets/img/visibilidad.png" alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
+                                            <img src="/SIGEFO/webapp/assets/img/visibilidad.png" alt="visible" style="width: 20px; height: 20px; margin-left: 5px;">
                                         </span>
                                     </div>
                                 </div>
@@ -83,7 +85,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                         <div class="input-group-append">
                                             <span class="input-group-text" onclick="togglePassword('newPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../webapp/assets/img/visibilidad.png" alt="Nueva Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
+                                                <img src="/SIGEFO/webapp/assets/img/visibilidad.png" alt="Nueva Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
                                            
                                                 </span>
                                         </div>
@@ -96,7 +98,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                         <div class="input-group-append">
                                             <span class="input-group-text" onclick="togglePassword('repeatPassword', this)">
                                                 <i class="fa fa-eye"></i>
-                                                <img src="../webapp/assets/img/visibilidad.png" alt="Confirmar Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
+                                                <img src="/SIGEFO/webapp/assets/img/visibilidad.png" alt="Confirmar Contraseña Icono" style="width: 20px; height: 20px; margin-left: 5px;">
                                             </span>
                                         </div>
                                     </div>
@@ -108,13 +110,11 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                 </div>
             </div>
         </div>
+        <div >
+            <?php include __DIR__ . '/templates/footer.html' ?>
+        </div>
     </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Departamento de Formación Docente</p>
-        <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-    </footer>
-    
+
     <script>
     function togglePassword(id, element) {
         const input = document.getElementById(id);
@@ -122,18 +122,12 @@ $user = $userService->getOne($_SESSION['idUsuario'])
 
         if (input.type === "password") {
             input.type = "text";
-            eyeIcon.src = "../../webapp/assets/img/invisible.png";
+            eyeIcon.src = "/SIGEFO/webapp/assets/img/invisible.png";
         } else {
             input.type = "password";
-            eyeIcon.src = "../../webapp/assets/img/visibilidad.png";
+            eyeIcon.src = "/SIGEFO/webapp/assets/img/visibilidad.png";
         }
     }
-
-    fetch("../../webapp/templates/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("headerContainer").innerHTML = data;
-        });
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
