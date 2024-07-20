@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../assets/css/consultas.css" />
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/consultas.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
 </head>
 
 <body>
@@ -18,20 +18,22 @@ $userController = new UserController();
 $users = $userController->handleRequest();
 ?>
 
-    <div id="headerContainer"></div>
+    <div>
+        <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <!-- Navegación Vertical -->
             <div class="col-lg-2">
             <div class="navback">
                     <ul class="list-unstyled vertical-nav">
-                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad
+                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad
                             Formativa</a></li>
-                    <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
                 </div>
 
@@ -153,11 +155,10 @@ $users = $userController->handleRequest();
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Departamento de Formación Docente</p>
-        <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-    </footer>
+<!--Footer-->
+<div>
+    <?php include __DIR__ . '/../../templates/footer.html'; ?>
+</div>
 
     <script>
     fetch("../../templates/header.html")

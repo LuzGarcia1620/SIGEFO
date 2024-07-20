@@ -49,7 +49,7 @@ $form = $formController->handleRequest();
                     <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
                     <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a>
                     </li>
-                    <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
+                    <li><a href="/SIGEFO/cotejo" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
                     </li>
                     <li><a href="/SIGEFO/material" class="btn btn-primary btn-block my-1 menu">Material</a>
                     </li>
