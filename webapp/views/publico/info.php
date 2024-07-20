@@ -1,49 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
-    <link rel="stylesheet" href="../../assets/css/info.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/info.css" />
     <title>Formación Docente</title>
 </head>
 
 <body>
-    <div id="headerContainer"></div>
+    <div>
+    <?php include __DIR__ . '/templates/header.html'; ?>
+    </div>
     <!-- NavBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./evaluaciondocente.php">Evaluación Docente</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./formaciondocente.php">Formación Docente</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./documentosconsulta.php">Documentos de Consulta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contacto.php">Contacto</a>
-                    </li>
-                </ul>
-                <a class="navbar-brand ms-auto" href="./index.php">UAEM</a>
-            </div>
-        </div>
-    </nav>
+    <nav class="dropdownmenu">
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Evaluación Docente</a>
+            <ul id="submenu">
+                <li><a href="">Instrumento de evaluacion docente</a></li>
+                <li><a href="">Cronograma</a></li>
+                <li><a href="">Fechas de aplicación</a></li>
+                <li><a href="">Reporte de Resultados</a></li>
+                <li><a href="">Monitoreo</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Formación Docente</a>
+            <ul id="submenu">
+                <li><a href="">Acceso a Plataforma</a></li>
+                <li><a href="">Actividades Formativas</a></li>
+                <li><a href="">Galería</a></li>
+                <li><a href="">Descargar constancia</a></li>
+            </ul>
+        </li>
+        <li><a href="">Documentos de Consulta</a></li>
+        <li><a href="">Contacto</a></li>
+    </ul>
+</nav>
     <!-- Fin de la NavBar -->
 
     <!-- Botón de Regresar -->
-<a href="formaciondocente.php" class="regresar">Regresar</a>
+<a href="/SIGEFO/" class="regresar">Regresar</a>
 <br>
 
 <!-- Card -->
@@ -51,7 +49,7 @@
     <div class="card p-3 shadow-md">
         <div class="row g-0">
             <div class="col-md-5">
-                <img src="../../assets/img/curso.png" class="img-fluid rounded-start" alt="Img">
+                <img src="/SIGEFO/webapp/assets/img/curso.png" class="img-fluid rounded-start" alt="Img">
             </div>
             <div class="col-md-7">
                 <div class="card-body">
@@ -79,23 +77,23 @@
                     class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-center mb-2 mb-md-0 follow-us">
                     <h5 class="text-center text-md-end mb-2">¡Síguenos en nuestras redes sociales!</h5>
                     <div class="d-flex justify-content-center justify-content-md-end follow-us">
-                        <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"><img src="./Assets/img/correo.png"
+                        <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"><img src="/SIGEFO/webapp/assets/img/correo.png"
                                 alt="Correo" class="img-fluid"></a>
                         <a href="https://www.facebook.com/uaemformaciondocente" class="text-white me-2"><img
-                                src="../../assets/img/facebook.png" alt="Facebook" class="img-fluid"></a>
+                                src="/SIGEFO/webapp/assets/img/facebook.png" alt="Facebook" class="img-fluid"></a>
                         <a href="https://www.youtube.com/channel/UCvc3SSAArfY-DsWXXZ4mwhg" class="text-white"><img
-                                src="../../assets/img/youtube.png" alt="YouTube" class="img-fluid"></a>
+                                src="/SIGEFO/webapp/assets/img/youtube.png" alt="YouTube" class="img-fluid"></a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 text-center text-md-center">
                     <div class="mb-2">
                         <h5 class="mb-1">Universidad Autónoma del Estado de Morelos</h5>
                         <p class="mb-3">Departamento de Formación Docente</p>
-                        <p class="mb-1"><img src="../../assets/img/mapas-y-banderas.png" alt="ubicacion" class="img-fluid"
+                        <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/mapas-y-banderas.png" alt="ubicacion" class="img-fluid"
                                 style="height: 17px;"> Av. Universidad 1001, Chamilpa, Cuernavaca, Morelos, México</p>
-                        <p class="mb-1"><img src="../../assets/img/llamada-telefonica.png" alt="telefono" class="img-fluid"
+                        <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/llamada-telefonica.png" alt="telefono" class="img-fluid"
                                 style="height: 17px;"> (777) 329 70 00 Ext. 3249, 3352 y 3935</p>
-                        <p class="mb-1"><img src="../../assets/img/correo-electronico.png" alt="correo" class="img-fluid"
+                        <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/correo-electronico.png" alt="correo" class="img-fluid"
                                 style="height: 17px;"> eval_docente@uaem.mx</p>
                     </div>
                 </div>
@@ -103,7 +101,7 @@
         </div>
     </footer>
     <!-- Scripts -->
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
 
     <script>
     fetch('../../templates/header.html')

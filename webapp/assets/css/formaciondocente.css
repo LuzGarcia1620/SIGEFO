@@ -56,6 +56,37 @@ li:hover ul#submenu {
     background-color: #ffffff;
 }
 
+/*boton de regresar*/
+.regresar {
+    width: 155px; /* Ancho fijo en pantallas más grandes */
+    height: 37px;
+    background: #41538F;
+    border-radius: 13px;
+    color: white;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    line-height: 37px;
+    transition: width 0.3s, margin-left 0.3s; /* Animación suave en los cambios */
+}
+
+/* Ajusta el ancho del botón en pantallas más pequeñas */
+@media (max-width: 576px) {
+    .regresar {
+        width: 100%; /* Botón ocupa todo el ancho */
+        margin-left: 0; /* Centra el botón */
+        text-align: center;
+    }
+}
+
+
+.regresar:hover {
+    color: rgb(245, 230, 212);
+    text-decoration: none;
+}
+
 /* CARD */
 .card-custom {
     border: 1px solid #d1d1d1;
@@ -67,6 +98,7 @@ li:hover ul#submenu {
     width: 40%; /* Ancho de la card */
     margin-top: 30px;
     margin-bottom: 30px;
+    margin: 30px;
 }
 
 .card-custom:hover {

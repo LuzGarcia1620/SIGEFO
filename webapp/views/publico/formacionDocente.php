@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -11,12 +11,15 @@
 </head>
 
 <body>
-<div id="headerContainer"></div>
+    <div>
+    <?php include dirname ( dirname (__DIR__ . '/webapp/templates/header.html')) ; ?>
+    </div>
+
 <!-- NavBAR -->
 <nav class="dropdownmenu">
     <ul>
-        <li><a href="http://www.jochaho.com/wordpress/">Inicio</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">Evaluación Docente</a>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Evaluación Docente</a>
             <ul id="submenu">
                 <li><a href="">Instrumento de evaluacion docente</a></li>
                 <li><a href="">Cronograma</a></li>
@@ -33,8 +36,8 @@
                 <li><a href="">Descargar constancia</a></li>
             </ul>
         </li>
-        <li><a href="http://www.jochaho.com/wordpress/category/news/">Documentos de Consulta</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">Contacto</a></li>
+        <li><a href="">Documentos de Consulta</a></li>
+        <li><a href="">Contacto</a></li>
     </ul>
 </nav>
 <!-- Fin de la NavBar -->
@@ -42,7 +45,7 @@
 <div class="container mt-4">
     <div class="row">
         <!-- Card 1 -->
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-md-2 d-flex justify-content-center">
             <div class="card card-custom">
                 <div class="card-header card-header-custom">
                     La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección General de Educación Superior
@@ -53,7 +56,7 @@
                     <p class="card-text">Dirigido al Personal Académico de la UAEM</p>
                 </div>
                 <div class="card-footer card-footer-custom">
-                    <a href="#" class="btn btn-custom">Ver más información</a>
+                    <a href="/SIGEFO/informacion" class="btn btn-custom">Ver más información</a>
                 </div>
             </div>
         </div>
@@ -70,7 +73,7 @@
                     <p class="card-text">Dirigido al Personal Académico de la UAEM</p>
                 </div>
                 <div class="card-footer card-footer-custom">
-                    <a href="#" class="btn btn-custom">Ver más información</a>
+                    <a href="SIGEFO/informacion" class="btn btn-custom">Ver más información</a>
                 </div>
             </div>
         </div>
@@ -87,48 +90,23 @@
                     <p class="card-text">Dirigido al Personal Académico de la UAEM</p>
                 </div>
                 <div class="card-footer card-footer-custom">
-                    <a href="#" class="btn btn-custom">Ver más información</a>
+                    <a href="SIGEFO/informacion" class="btn btn-custom">Ver más información</a>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Footer-->
+    <div>
+    <?php include __DIR__ . '/templates/footerPublico.html' ?>
     </div>
 </div>
 
-
-<!--footer-->
-<footer class="bg-custom-footer py-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-center mb-2 mb-md-0 follow-us">
-                <h5 class="text-center text-md-end mb-2">¡Síguenos en nuestras redes sociales!</h5>
-                <div class="d-flex justify-content-center justify-content-md-end follow-us">
-                    <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"><img src="/SIGEFO/webapp/assets/img/correo.png"
-                                                                                       alt="Correo" class="img-fluid"></a>
-                    <a href="https://www.facebook.com/uaemformaciondocente" class="text-white me-2"><img
-                                src="/SIGEFO/webapp/assets/img/facebook.png" alt="Facebook" class="img-fluid"></a>
-                    <a href="https://www.youtube.com/channel/UCvc3SSAArfY-DsWXXZ4mwhg" class="text-white"><img
-                                src="/SIGEFO/webapp/assets/img/youtube.png" alt="YouTube" class="img-fluid"></a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 text-center text-md-center">
-                <div class="mb-2">
-                    <h5 class="mb-1">Universidad Autónoma del Estado de Morelos</h5>
-                    <p class="mb-3">Departamento de Formación Docente</p>
-                    <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/mapas-y-banderas.png" alt="ubicacion" class="img-fluid"
-                                         style="height: 17px;"> Av. Universidad 1001, Chamilpa, Cuernavaca, Morelos, México</p>
-                    <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/llamada-telefonica.png" alt="telefono" class="img-fluid"
-                                         style="height: 17px;"> (777) 329 70 00 Ext. 3249, 3352 y 3935</p>
-                    <p class="mb-1"><img src="/SIGEFO/webapp/assets/img/correo-electronico.png" alt="correo" class="img-fluid"
-                                         style="height: 17px;"> eval_docente@uaem.mx</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="SIGEFO/webapp/assets/js/formaciondocente.js"></script>
 </body>
 
 </html>
