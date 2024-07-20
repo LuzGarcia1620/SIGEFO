@@ -12,7 +12,7 @@
 
 <body>
     <div>
-    <?php include dirname ( dirname (__DIR__ . '/webapp/templates/header.html')) ; ?>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
     </div>
 
 <!-- NavBAR -->
@@ -30,7 +30,7 @@
         </li>
         <li><a href="#">Formación Docente</a>
             <ul id="submenu">
-                <li><a href="">Acceso a Plataforma</a></li>
+                <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
                 <li><a href="">Actividades Formativas</a></li>
                 <li><a href="">Galería</a></li>
                 <li><a href="">Descargar constancia</a></li>
@@ -42,10 +42,10 @@
 </nav>
 <!-- Fin de la NavBar -->
 
-<div class="container mt-4">
+<div class="container mt-6">
     <div class="row">
         <!-- Card 1 -->
-        <div class="col-md-2 d-flex justify-content-center">
+        <div class="col-md-6 d-flex justify-content-center">
             <div class="card card-custom">
                 <div class="card-header card-header-custom">
                     La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección General de Educación Superior
@@ -62,7 +62,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-md-6 justify-content-center">
             <div class="card card-custom">
                 <div class="card-header card-header-custom">
                     La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección General de Educación Superior
@@ -95,12 +95,12 @@
             </div>
         </div>
     </div>
-
-    <!--Footer-->
-    <div>
-    <?php include __DIR__ . '/templates/footerPublico.html' ?>
-    </div>
 </div>
+
+ <!--Footer-->
+ <div>
+    <?php include __DIR__ . '/../../templates/footerPublico.html'; ?>
+    </div>
 
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

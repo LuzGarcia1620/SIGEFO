@@ -12,25 +12,23 @@
 
 <body>
 
-    <div id="headerContainer"></div>
+<div>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
     <div class="container-fluid">
         <div class="row">
 
             <!-- Navegación Vertical -->
             <div class="col-md-2">
                 <div class="navback">
-                    <ul class="list-unstyled vertical-nav">
-                        <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                        <li><a href="/webapp/views/superadmin/actividades.php"
-                                class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                        <li><a href="/webapp/views/superadmin/usuarios.php"
-                                class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                        <li><a href="/webapp/views/superadmin/consultas.php"
-                                class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                        <li><a href="/webapp/views/superadmin/asistencia.php"
-                                class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                        <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                    </ul>
+                <ul class="list-unstyled vertical-nav">
+                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
+                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                </ul>
                 </div>
             </div>
 
@@ -93,19 +91,18 @@
 
         </div>
 
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>Departamento de Formación Docente</p>
-            <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-        </footer>
+        <!--Footer-->
+    <div>
+    <?php include __DIR__ . '/../../templates/footer.html'; ?>
+    </div>
+        <!-- FIN Footer -->
 
         <script>
-        fetch("../../templates/header.html")
+        /*fetch("../../templates/header.html")
             .then((response) => response.text())
             .then((data) => {
                 document.getElementById("headerContainer").innerHTML = data;
-            });
+            });*/
         </script>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

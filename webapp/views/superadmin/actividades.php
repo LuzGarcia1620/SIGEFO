@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../assets/css/ActividadFormativa.css" />
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/ActividadFormativa.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
 </head>
 
 <body>
@@ -26,19 +26,21 @@ $modalidades = $data['modalidades'];
 $tipos = $data['tipos'];
 ?>
 
-    <div id="headerContainer"></div>
+<div>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
     <div class="container-fluid d-flex flex-column min-vh-100">
         <div class="row flex-grow-1">
             <!-- Navegación Vertical -->
             <div class="col-md-2">
             <div class="navback">
                     <ul class="list-unstyled vertical-nav">
-                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                    <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
+                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
                 </div>
             </div>
@@ -48,7 +50,7 @@ $tipos = $data['tipos'];
                 <div class="titulo">Actividades</div>
                 <div>
                     <button class="actividad" onclick="openModal('modal3')">
-                        <img src="../../assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
+                        <img src="/SIGEFO/webapp/assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
                     </button>
                 </div>
                 <div class="divider-line"></div>
@@ -69,9 +71,9 @@ $tipos = $data['tipos'];
                                     <td><?php echo $actividad['status']; ?></td>
                                     <td>
                                     <div class="img-container">
-                                        <img src="../../assets/img/lupa.png" alt="ver" onclick="openModal('modal1')" />
-                                        <img src="../../assets/img/editar.png" alt="editar" onclick="openModal('modal2')" />
-                                        <img src="../../assets/img/borrar.png" alt="borrar" id="deleteActivityImage" />
+                                        <img src="/SIGEFO/webapp/assets/img/lupa.png" alt="ver" onclick="openModal('modal1')" />
+                                        <img src="/SIGEFO/webapp/assets/img/editar.png" alt="editar" onclick="openModal('modal2')" />
+                                        <img src="/SIGEFO/webapp/assets/img/borrar.png" alt="borrar" id="deleteActivityImage" />
                                     </div>
                                 </td>
                             </tr>
@@ -81,12 +83,6 @@ $tipos = $data['tipos'];
                 </div>
             </div>
         </div>
-        <!-- Footer -->
-        <footer class="footer mt-auto">
-            <p>Departamento de Formación Docente</p>
-            <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-        </footer>
-    </div>
 
     <!-- Modales VER ACTIVIDAD -->
     <div id="modal1" class="modal">
@@ -256,6 +252,11 @@ $tipos = $data['tipos'];
         </div>
     </div>
 
+        <!--Footer-->
+ <div>
+    <?php include __DIR__ . '/../../templates/footer.html'; ?>
+    </div>
+
     <script>
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
@@ -266,12 +267,6 @@ $tipos = $data['tipos'];
         const modal = document.getElementById(modalId);
         modal.style.display = "none";
     }
-
-    fetch("../../templates/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("headerContainer").innerHTML = data;
-        });
 
     // Función para cerrar el modal
     function closeModal(modalId) {

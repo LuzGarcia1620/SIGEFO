@@ -9,7 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div id="headerContainer"></div>
+<div>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +40,7 @@
         </div>
     </nav>
     
-    <a href="info.php" class="regresar">Regresar</a>
+    <a href="/SIGEFO/informacion" class="regresar">Regresar</a>
     <br>
 
     <div class="container d-flex justify-content-center align-items-center">

@@ -6,28 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Material</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../assets/css/asistencia.css" />
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/asistencia.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
 </head>
 
 <body>
-
-    <div id="headerContainer"></div>
+<div>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
     <div class="container-fluid">
         <div class="row">
 
-             <!-- Navegación Vertical -->
+        <!-- Navegación Vertical -->
         <div class="col-lg-2">
             <div class="navback">
                 <ul class="list-unstyled vertical-nav">
-                    <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a>
+                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a>
                     </li>
-                    <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
+                    <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
                     </li>
-                    <li><a href="/webapp/views/instructor/materialInstructor.php" class="btn btn-primary btn-block my-1 menu">Material</a>
+                    <li><a href="/SIGEFO/materialInstructor" class="btn btn-primary btn-block my-1 menu">Material</a>
                     </li>
-                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
             </div>
         </div>
@@ -81,10 +82,9 @@
 
 
         <!-- Footer -->
-        <footer class="footer">
-            <p>Departamento de Formación Docente</p>
-            <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-        </footer>
+        <div>
+    <?php include __DIR__ . '/../../templates/footer.html'; ?>
+    </div>
 
         <script>
         fetch("../../templates/header.html")

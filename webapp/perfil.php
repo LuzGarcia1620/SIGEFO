@@ -28,14 +28,14 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                     <ul class="list-unstyled vertical-nav">
                         <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
                         <?php if ($user['rol'] == 'SuperAdmin'): ?>
-                            <li><a href="/webapp/views/superadmin/actividades.php" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                            <li><a href="/webapp/views/superadmin/usuarios.php" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                            <li><a href="/webapp/views/superadmin/consultas.php" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                            <li><a href="/webapp/views/superadmin/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                            <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
+                            <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
+                            <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
+                            <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
                         <?php elseif ($user['rol'] == 'Instructor'): ?>
-                            <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
-                            <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                            <li><a href="/webapp/views/instructor/material.php" class="btn btn-primary btn-block my-1 menu">Material</a></li>
+                            <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
+                            <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                            <li><a href="/SIGEFO/material" class="btn btn-primary btn-block my-1 menu">Material</a></li>
                         <?php endif; ?>
                         <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                     </ul>

@@ -92,10 +92,9 @@ li:hover ul#submenu {
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 20px;
     transition: transform 0.2s;
-    height: auto;
-    width: 40%; /* Ancho de la card */
+    width: 80%;
+    height: 70px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin: 30px;

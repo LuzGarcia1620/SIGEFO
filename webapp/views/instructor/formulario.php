@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Formulario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../assets/css/form.css"/>
-    <link rel="stylesheet" href="../../assets/css/styles.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/form.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/>
 </head>
 
 <body>
@@ -37,21 +37,23 @@ $resources = $resourceController->handleRequest();
 $formController = new FormController();
 $form = $formController->handleRequest();
 ?>
-<div id="headerContainer"></div>
+<div>
+    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    </div>
 <div class="container-fluid">
     <div class="row">
         <!-- Navegación Vertical -->
         <div class="col-lg-2">
             <div class="navback">
                 <ul class="list-unstyled vertical-nav">
-                    <li><a href="/webapp/views/instructor/perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/webapp/views/instructor/formulario.php" class="btn btn-primary btn-block my-1 menu">Formulario</a>
+                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                    <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a>
                     </li>
-                    <li><a href="/webapp/views/instructor/asistencia.php" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
+                    <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
                     </li>
-                    <li><a href="/webapp/views/instructor/materialInstructor.php" class="btn btn-primary btn-block my-1 menu">Material</a>
+                    <li><a href="/SIGEFO/material" class="btn btn-primary btn-block my-1 menu">Material</a>
                     </li>
-                    <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                 </ul>
             </div>
         </div>
@@ -277,17 +279,16 @@ $form = $formController->handleRequest();
 </div>
 
 <!-- Footer -->
-<footer class="footer">
-    <p>Departamento de Formación Docente</p>
-    <p>Av. Universidad 1001 Col. Chamilpa C.P. 62209, Cuernavaca, Morelos</p>
-</footer>
+<div>
+    <?php @include __DIR__ . '/../../templates/footer.html'; ?>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../../assets/js/form.js"></script>
+<script src="/SIGEFO/webapp/assets/js/form.js"></script>
 </body>
 
 </html>
