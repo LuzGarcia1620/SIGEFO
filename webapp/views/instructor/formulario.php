@@ -127,12 +127,12 @@ $form = $formController->handleRequest();
                         <div class="input-field">
                             <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
                                 <option value="" disabled selected>Seleccione una modalidad</option>
-                                <?php foreach ($modalities as $modality): ?>
-                                    <option value="<?php echo $modality['id'] ?>">
-                                        <?php echo $modality['nombre'] ?>
+                                <?php for($i = 0; $i <= 8; $i++): ?>
+                                    <option value="<?php echo $modalities[$i]['id'] ?>">
+                                        <?php echo $modalities[$i]['nombre'] ?>
                                     </option>
-                                <?php endforeach; ?>
-                                <option value="otro">Otro</option>
+                                <?php endfor; ?>
+                                <option value="otro" name="otro">Otro</option>
                             </select>
                         </div>
                         <div class="input-field" id="otraModalidad" style="display: none;">
@@ -180,12 +180,7 @@ $form = $formController->handleRequest();
                                         <?php echo $type['tipo'] ?>
                                     </option>
                                 <?php endforeach; ?>
-                                <option value="otro">Otro</option>
                             </select>
-                        </div>
-                        <div class="input-field" id="otroTipo" style="display: none;">
-                            <input type="text" id="otroTipoTexto" name="otroTipoTexto">
-                            <label for="otroTipoTexto">Especifique Otro Tipo de Actividad</label>
                         </div>
                         <div class="input-field">
                             <input type="text" id="dirigido" name="dirigido" required>

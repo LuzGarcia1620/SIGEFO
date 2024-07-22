@@ -81,12 +81,6 @@ document.querySelector('form').addEventListener('submit', function (event) {
     }
 });
 
-fetch("../../templates/header.html")
-    .then((response) => response.text())
-    .then((data) => {
-        document.getElementById("headerContainer").innerHTML = data;
-    });
-
 document.addEventListener('DOMContentLoaded', function () {
     const formInstructor = document.getElementById('formInstructor');
 

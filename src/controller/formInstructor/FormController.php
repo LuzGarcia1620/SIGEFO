@@ -31,6 +31,13 @@ class FormController
                         $beanInstructor = $this->beanInstructor;
                         $beanActivity = $this->beanActivity;
 
+                        if ($_POST['modalidad'] == 'otro') {
+                            $m = $_POST['otraModalidadTexto'];
+                            $modalityId = $service->saveCustomModality($m);
+                        } else {
+                            $modalityId = $_POST['modalidad'];
+                        }
+
                         $beanArea->constructSave(
                             $_POST['areas']
                         );
@@ -54,7 +61,7 @@ class FormController
                             $_POST['independiente'],
                             $_POST['status'],
                             $_POST['clasificacion'],
-                            $_POST['modalidad'],
+                            $modalityId,
                             $_POST['dirigido'],
                             $_POST['ingreso'],
                             $_POST['egreso'],

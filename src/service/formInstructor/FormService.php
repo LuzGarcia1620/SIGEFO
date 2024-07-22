@@ -10,6 +10,16 @@ class FormService
         $this->postgres = new PostgreSQL();
     }
 
+    public function saveCustomModality ($modality)
+    {
+        $conn = $this->postgres->connect();
+        $stmt = $conn->prepare("INSERT INTO modalidad (nombre) VALUES (?) RETURNING id;");
+        $stmt->bindParam(1, $modality);
+        $stmt->execute();
+
+        return $stmt->fetchColumn();
+    }
+
     public function saveForm(BeanArea $beanArea, BeanInstructor $beanInstructor, BeanActivity $beanActivity, $idRecurso)
     {
         $conn = $this->postgres->connect();

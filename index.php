@@ -3,7 +3,7 @@ require __DIR__ . "/src/routes/Router.php";
 
 $router = new Router();
 /*INICIO*/
-$router->addRoute('/SIGEFO/', 'webapp/views/publico/FormacionDocente.php');
+$router->addRoute('/SIGEFO/', 'webapp/views/publico/formacionDocente.php');
 $router->addRoute('/SIGEFO/login', 'webapp/login.php');
 $router->addRoute('/SIGEFO/perfil', 'webapp/perfil.php');
 /*Publico*/
