@@ -21,10 +21,11 @@ $ActivityController = new ActivityController();
 $data = $ActivityController->handleRequest();
 $actividades = $data['actividades'];
 $instructores = $data['instructores'];
-$modalidades = $data['modalidades'];
+
 $tipos = $data['tipos'];
 
-
+$modalityController = new ModalityController();
+$modalities = $modalityController->handleRequest();
 
 ?>
 
@@ -194,12 +195,15 @@ $tipos = $data['tipos'];
             <form class="form" method="POST" action="/src/controller/activity/ActivityController.php">
                 <input type="hidden" name="action" value="save">
                 <div class="campo">
-                    <select id="Modalidad" name="idModalidad" required>
-                        <option value="" disabled selected>Seleccione una actividad</option>
-                        <?php foreach ($modalidades as $modalidad): ?>
-                            <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
+                                <option value="" disabled selected>Seleccione una modalidad</option>
+                                <?php foreach ($modalities as $modality): ?>
+                                    <option value="<?php echo $modality['id'] ?>">
+                                        <?php echo $modality['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                                <option value="otro">Otro</option>
+                            </select>
                 </div>
                 <div class="campo">
                     <input type="text" id="nombre" name="nombre" required>
@@ -275,7 +279,7 @@ $tipos = $data['tipos'];
                         <div class="campo">
                             <br>
                             <p>Presentación de la actividad formativa (Máximo 500 palabras)</p>
-                            <textarea id="presentacion" name="presentacion" rows="2" cols="50" required
+                            <textarea id="presentacion" name="presentacion" rows="2" cols="72" required
                                       oninput="countWords()"></textarea>
                             <p id="wordCountDisplay">Palabras: 0 / 500</p>
                         </div>

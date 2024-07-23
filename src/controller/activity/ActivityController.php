@@ -26,19 +26,19 @@ class ActivityController
                             $_POST['idTipo'],
                             $_POST['nombre'],
                             $_POST['duracion'],
-                            0, // Assuming horasPresencial, horasLinea, horasIndependiente are not in the form and default to 0
+                            0, 
                             0,
                             0,
-                            true, // Assuming status is true by default
-                            0, // Assuming idClasificacion is not in the form and default to 0
+                            true, 
+                            0, 
                             $_POST['idModalidad'],
                             $_POST['dirigido'],
-                            "", // Assuming perfilIngreso is not in the form and default to empty string
-                            "", // Assuming perfilEgreso is not in the form and default to empty string
+                            "", 
+                            "", 
                             $_POST['objetivo'],
-                            "", // Assuming temario is not in the form and default to empty string
-                            0, // Assuming cupo is not in the form and default to 0
-                            "" // Assuming presentacion is not in the form and default to empty string
+                            "", 
+                            0, 
+                            "" 
                         );
 
                         $result = $this->activityService->save($beanActivity);
