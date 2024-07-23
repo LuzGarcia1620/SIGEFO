@@ -210,13 +210,7 @@ $form = $formController->handleRequest();
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="input-field">
-                            <br>
-                            <p>Presentación de la actividad formativa (Máximo 500 palabras)</p>
-                            <textarea id="presentacion" name="presentacion" rows="2" cols="50" required
-                                      oninput="countWords()"></textarea>
-                            <p id="wordCountDisplay">Palabras: 0 / 500</p>
-                        </div>
+                         
                         <h5 id="section-title">Duración de la Actividad Formativa</h5>
                         <div class="input-field">
                             <input type="text" id="objetivo" name="objetivo" required>

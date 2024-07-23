@@ -26,7 +26,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
             <div class="col-lg-2">
                 <div class="navback">
                     <ul class="list-unstyled vertical-nav">
-                        <li><a href="perfil.php" class="btn btn-block my-1 menu">Perfil</a></li>
+                        <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
                         <?php if ($user['rol'] == 'SuperAdmin'): ?>
                             <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
                             <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>

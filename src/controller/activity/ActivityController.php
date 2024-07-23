@@ -18,36 +18,49 @@ class ActivityController
             switch ($action) {
                 case 'save':
                     try {
-                        $service = $this->activityService;
+                        $beanActivity = new BeanActivity();
 
-                        $beanActivity = new BeanActivity(
+                        // Constructor para guardar datos
+                        $beanActivity->constructSave(
                             $_POST['idInstructor'],
                             $_POST['idTipo'],
                             $_POST['nombre'],
                             $_POST['duracion'],
-                            $_POST['horasPresencial'],
-                            $_POST['horasLinea'],
-                            $_POST['horasIndependiente'],
-                            $_POST['status'],
-                            $_POST['idClasificacion'],
-                            $_POST['idModalidad']
+                            0, // Assuming horasPresencial, horasLinea, horasIndependiente are not in the form and default to 0
+                            0,
+                            0,
+                            true, // Assuming status is true by default
+                            0, // Assuming idClasificacion is not in the form and default to 0
+                            $_POST['idModalidad'],
+                            $_POST['dirigido'],
+                            "", // Assuming perfilIngreso is not in the form and default to empty string
+                            "", // Assuming perfilEgreso is not in the form and default to empty string
+                            $_POST['objetivo'],
+                            "", // Assuming temario is not in the form and default to empty string
+                            0, // Assuming cupo is not in the form and default to 0
+                            "" // Assuming presentacion is not in the form and default to empty string
                         );
 
-                        $result = $service->save($beanActivity);
+                        $result = $this->activityService->save($beanActivity);
 
                         if ($result) {
                             header('HTTP/1.0 200 OK');
+                            echo 'Activity saved successfully';
                         } else {
                             header('HTTP/1.0 400 Bad Request');
+                            echo 'Failed to save activity';
                         }
 
                         return $response;
                     } catch (Exception $e) {
                         error_log($e);
+                        header('HTTP/1.0 500 Internal Server Error');
+                        echo 'Internal server error';
                     }
                     break;
-                    
+
                 case 'update':
+                    // Handle update case
                     break;
 
                 case 'delete':
@@ -65,10 +78,11 @@ class ActivityController
                         echo 'error';
                     }
                     break;
-                    
+
                 case 'change':
+                    // Handle change case
                     break;
-                    
+
                 default:
                     $responseMessage = 'invalid';
                     break;
