@@ -1,4 +1,60 @@
+.dropdownmenu ul, .dropdownmenu li {
+  margin: 0;
+  padding: 0;
+}
+.dropdownmenu ul {
+  background: gray;
+  list-style: none;
+  width: 100%;
+}
+.dropdownmenu li {
+  float: left;
+  position: relative;
+  width: auto;
+}
+.dropdownmenu a {
+  background: #001660;
+  color: #FFFFFF;
+  display: block;
+  font: bold 12px/20px sans-serif;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+.dropdownmenu li:hover a {
+  background: #ffffff;
+  color: #000000;
+}
+#submenu {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 35px;
+  visibility: hidden;
+  z-index: 1;
 
+}
+li:hover ul#submenu {
+  opacity: 1;
+  top: 40px;
+  visibility: visible;
+}
+#submenu li {
+  float: none;
+  width: 100%;
+}
+#submenu a:hover {
+  background: #001660;
+  color: #ffffff;
+}
+#submenu a {
+  background-color: #ffffff;
+}
 
 #container {
     display: flex;
@@ -72,16 +128,20 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 
 #btn_login {
     font-size: 17px;
     margin-top: 20px;
+    margin-bottom: 20px;
     cursor: pointer;
     border-radius: 15px;
     background-color: #001660;
     color: white ;
-    height: 35px;
+    height: 150px;
     width: 200px;
 }
 
@@ -95,7 +155,6 @@
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;

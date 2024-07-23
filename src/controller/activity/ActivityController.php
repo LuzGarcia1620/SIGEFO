@@ -18,36 +18,49 @@ class ActivityController
             switch ($action) {
                 case 'save':
                     try {
-                        $service = $this->activityService;
+                        $beanActivity = new BeanActivity();
 
-                        $beanActivity = new BeanActivity(
+                        // Constructor para guardar datos
+                        $beanActivity->constructSave(
                             $_POST['idInstructor'],
                             $_POST['idTipo'],
                             $_POST['nombre'],
                             $_POST['duracion'],
-                            $_POST['horasPresencial'],
-                            $_POST['horasLinea'],
-                            $_POST['horasIndependiente'],
-                            $_POST['status'],
-                            $_POST['idClasificacion'],
-                            $_POST['idModalidad']
+                            0, 
+                            0,
+                            0,
+                            true, 
+                            0, 
+                            $_POST['idModalidad'],
+                            $_POST['dirigido'],
+                            "", 
+                            "", 
+                            $_POST['objetivo'],
+                            "", 
+                            0, 
+                            "" 
                         );
 
-                        $result = $service->save($beanActivity);
+                        $result = $this->activityService->save($beanActivity);
 
                         if ($result) {
                             header('HTTP/1.0 200 OK');
+                            echo 'Activity saved successfully';
                         } else {
                             header('HTTP/1.0 400 Bad Request');
+                            echo 'Failed to save activity';
                         }
 
                         return $response;
                     } catch (Exception $e) {
                         error_log($e);
+                        header('HTTP/1.0 500 Internal Server Error');
+                        echo 'Internal server error';
                     }
                     break;
-                    
+
                 case 'update':
+                    // Handle update case
                     break;
 
                 case 'delete':
@@ -65,10 +78,11 @@ class ActivityController
                         echo 'error';
                     }
                     break;
-                    
+
                 case 'change':
+                    // Handle change case
                     break;
-                    
+
                 default:
                     $responseMessage = 'invalid';
                     break;

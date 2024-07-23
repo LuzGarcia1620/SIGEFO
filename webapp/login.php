@@ -18,35 +18,33 @@ require __DIR__ . "/../src/controller/auth/AuthController.php";
 $authController = new AuthController();
 $auth = $authController->handleRequest();
 ?>
-<div id="headerContainer"></div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Navbar content -->
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./evaluaciondocente.html">Evaluación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./formaciondocente.html">Formación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./documentosconsulta.html">Documentos de Consulta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./contacto.html">Contacto</a>
-                </li>
-            </ul>
-            <a class="navbar-brand ms-auto" href="./index.html">UAEM</a>
-        </div>
+<div>
+    <?php include __DIR__ . '/templates/header.html'; ?>
     </div>
+    <!-- NavBAR -->
+<nav class="dropdownmenu">
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Evaluación Docente</a>
+            <ul id="submenu">
+                <li><a href="">Instrumento de evaluacion docente</a></li>
+                <li><a href="">Cronograma</a></li>
+                <li><a href="">Fechas de aplicación</a></li>
+                <li><a href="">Reporte de Resultados</a></li>
+                <li><a href="">Monitoreo</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Formación Docente</a>
+            <ul id="submenu">
+                <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
+                <li><a href="">Actividades Formativas</a></li>
+                <li><a href="">Galería</a></li>
+                <li><a href="">Descargar constancia</a></li>
+            </ul>
+        </li>
+        <li><a href="">Documentos de Consulta</a></li>
+        <li><a href="">Contacto</a></li>
+    </ul>
 </nav>
 <div id="container">
     <div class="login-card">
@@ -73,13 +71,16 @@ $auth = $authController->handleRequest();
                     </button>
                 </div>
                 <input type="hidden" name="action" value="login">
-                <button type="submit" class="arrow-wrapper" id="btn_login">Iniciar Sesion</button>
+                <button type="submit" id="btn_login">Iniciar Sesion</button>
             </form>
         </div>
     </div>
 </div>
 
 <!-- Footer content -->
+<div>
+    <?php include __DIR__ . '/templates/footerPublico.html'; ?>
+    </div>
 <footer class="sm-custom-footer py-1">
     <div class="container">
         <div class="row">

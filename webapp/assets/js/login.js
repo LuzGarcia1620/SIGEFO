@@ -1,4 +1,4 @@
-fetch('/SIGEFO/webapp/templates/header.html')
+/*fetch('/SIGEFO/webapp/templates/header.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('headerContainer').innerHTML = data;
@@ -7,7 +7,7 @@ fetch('/SIGEFO/webapp/templates/footer.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('footerContainer').innerHTML = data;
-    });
+    });*/
 
 function mostrarPassword() {
     const passwordInput = document.getElementById('password');

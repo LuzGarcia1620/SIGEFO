@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/ActividadFormativa.css" />
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
@@ -22,8 +21,12 @@ $ActivityController = new ActivityController();
 $data = $ActivityController->handleRequest();
 $actividades = $data['actividades'];
 $instructores = $data['instructores'];
-$modalidades = $data['modalidades'];
+
 $tipos = $data['tipos'];
+
+$modalityController = new ModalityController();
+$modalities = $modalityController->handleRequest();
+
 ?>
 
 <div>
@@ -122,7 +125,7 @@ $tipos = $data['tipos'];
                 <form class="form">
                 <div class="campo">
                     <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
-                            <option value="" disabled selected>Selecciona una modalidad</option>
+                            <option value="" disabled selected>Seleccione una modalidad</option>
                             <?php foreach ($modalidades as $modalidad): ?>
                                 <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?></option>
                             <?php endforeach; ?>
@@ -184,112 +187,131 @@ $tipos = $data['tipos'];
     </div>
 
     <!-- Modal 3 NUEVA ACTIVIDAD -->
-    <div id="modal3" class="modal">
-        <div class="modal-content contenido">
-            <div class="tarjeta">
-                <div class="modal-footer-title">Nueva Actividad</div>
-                <div class="divider-line"></div>
-                <form class="form" method="POST" action="/src/controller/activity/ActivityController.php">
+<div id="modal3" class="modal">
+    <div class="modal-content contenido">
+        <div class="tarjeta">
+            <div class="modal-footer-title">Nueva Actividad</div>
+            <div class="divider-line"></div>
+            <form class="form" method="POST" action="/src/controller/activity/ActivityController.php">
+                <input type="hidden" name="action" value="save">
                 <div class="campo">
-                    <select id="Modalidad" name="idModalidad" required>
-                            <option value="" disabled selected>Selecciona una modalidad</option>
-                            <?php foreach ($modalidades as $modalidad): ?>
-                                <option value="<?php echo $modalidad['id']; ?>"><?php echo $modalidad['nombre']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="nombre" name="nombre" required>
-                        <label for="nombre">Nombre de la Actividad</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="dirigido" name="dirigido" required>
-                        <label for="dirigido">A quién va dirigido</label>
-                    </div>
-                    <div class="campo">
-                        <textarea id="objetivo" name="objetivo" rows="3" cols="70" required></textarea>
-                        <label for="objetivo">Objetivo</label>
-                    </div>
-                    <div class="campo">
+                <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
+                                <option value="" disabled selected>Seleccione una modalidad</option>
+                                <?php foreach ($modalities as $modality): ?>
+                                    <option value="<?php echo $modality['id'] ?>">
+                                        <?php echo $modality['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                                <option value="otro">Otro</option>
+                            </select>
+                </div>
+                <div class="campo">
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="nombre">Nombre de la Actividad</label>
+                </div>
+                <div class="campo">
+                    <input type="text" id="dirigido" name="dirigido" required>
+                    <label for="dirigido">A quién va dirigido</label>
+                </div>
+                <div class="campo">
+                    <select id="tipo" name="idTipo" required>
+                        <option value="" disabled selected>Selecciona un tipo</option>
+                        <?php foreach ($tipos as $tipo): ?>
+                            <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="campo">
                     <select id="Instructor" name="idInstructor" required>
-                            <option value="" disabled selected>Selecciona un instructor</option>
-                            <?php foreach ($instructores as $instructor): ?>
-                                <option value="<?php echo $instructor['idInstructor']; ?>"><?php echo $instructor['nombre']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="campo">
-                        <select id="tipo" name="idTipo" required>
-                            <option value="" disabled selected>Selecciona un tipo</option>
-                            <?php foreach ($tipos as $tipo): ?>
-                                <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="Fecha" name="Fecha" required>
-                        <label for="Fecha">Fecha</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="Duracion" name="Duracion" required>
-                        <label for="Duracion">Duración</label>
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="Horario" name="Horario" required>
-                        <label for="Horario">Horario</label>
-                    </div>
-                </form>
-            </div>
-
-            <div class="button-container">
-                <div>
-                    <button class="blue-button" onclick="closeModal('modal3')">Regresar</button>
+                        <option value="" disabled selected>Selecciona un instructor</option>
+                        <?php foreach ($instructores as $instructor): ?>
+                            <option value="<?php echo $instructor['idInstructor']; ?>"><?php echo $instructor['nombre']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-                <div>
-                    <button class="green-button">Enviar</button>
+                <div class="campo">
+                            <input type="text" id="ingreso" name="ingreso" required>
+                            <label for="ingreso">Perfil de ingreso</label>
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="egreso" name="egreso" required>
+                            <label for="egreso">Perfil de egreso</label>
+                        </div>
+                        <h5 class="titulos">Clasificación de la actividad</h5>
+                        <div class="campo">
+                            <select id="clasificacion" name="clasificacion" required>
+                            <option value="">Seleccione la clasificación</option>
+                                <?php foreach ($clasifications as $clasification): ?>
+                                    <option value="<?php echo $clasification['id'] ?>">
+                                        <?php echo $clasification['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="campo">
+        <input type="number" id="presencial" name="presencial" required>
+        <label for="presencial">Presenciales</label>
+    </div>
+    <div class="campo">
+        <input type="number" id="enLinea" name="enLinea" required>
+        <label for="enLinea">En Línea</label>
+    </div>
+    <div class="campo">
+        <input type="number" id="independiente" name="independiente" required>
+        <label for="independiente">Trabajo Independiente</label>
+    </div>
+    <div class="campo">
+        <p>Total de la actividad (horas): </p>
+        <input type="number" id="duracion" name="duracion" required readonly>
+    </div>
+                        <div class="campo">
+                            <input type="text" id="objetivo" name="objetivo" required>
+                            <label for="objetivo">Objetivo general</label>
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="temario" name="temario" required>
+                            <label for="temario">Temario</label>
+                        </div>
+                        <div class="campo">
+                            <input type="number" id="cupo" name="cupo" required>
+                            <label for="cupo">Cupo</label>
+                        </div>
+                        <div class="campo">
+                            <br>
+                            <p>Presentación de la actividad formativa (Máximo 500 palabras)</p>
+                            <textarea id="presentacion" name="presentacion" rows="2" cols="72" required
+                                      oninput="countWords()"></textarea>
+                            <p id="wordCountDisplay">Palabras: 0 / 500</p>
+                        </div>
+                <div class="campo">
+                    <input type="text" id="Fecha" name="Fecha" required>
+                    <label for="Fecha">Fecha</label>
                 </div>
-            </div>
+                <div class="campo">
+                    <input type="text" id="Horario" name="Horario" required>
+                    <label for="Horario">Horario</label>
+                </div>
+                <div class="button-container">
+                    <div>
+                        <button class="blue-button" type="button" onclick="closeModal('modal3')">Regresar</button>
+                    </div>
+                    <div>
+                        <button class="green-button" type="submit">Enviar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
         <!--Footer-->
  <div>
     <?php include __DIR__ . '/../../templates/footer.html'; ?>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/SIGEFO/webapp/assets/js/actividades.js"></script>
 
-    <script>
-    function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "block";
-    }
-
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "none";
-    }
-
-    // Función para cerrar el modal
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-    }
-
-    // SweetAlert para eliminar la actividad al hacer clic en la imagen
-    document.getElementById('deleteActivityImage').addEventListener('click', function() {
-        Swal.fire({
-            title: "¿Está seguro que desea eliminar",
-            text: "No podrá deshacer esta acción.",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Lógica para eliminar la actividad
-                Swal.fire("Eliminado!", "La actividad ha sido eliminada.", "success");
-            }
-        });
-    });
-    </script>
 </body>
 
 </html>
