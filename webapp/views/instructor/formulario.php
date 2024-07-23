@@ -234,7 +234,13 @@ if (isset($_SESSION['idInstructor'])) {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                         
+                        <div class="input-field">
+                            <br>
+                            <p>Presentación de la actividad formativa (Máximo 500 palabras)</p>
+                            <textarea id="presentacion" name="presentacion" rows="2" cols="50" required
+                                      oninput="countWords()"></textarea>
+                            <p id="wordCountDisplay">Palabras: 0 / 500</p>
+                        </div>
                         <h5 id="section-title">Duración de la Actividad Formativa</h5>
                         <div class="input-field">
                             <input type="text" id="objetivo" name="objetivo" required>
@@ -251,6 +257,14 @@ if (isset($_SESSION['idInstructor'])) {
                         <div class="input-field">
                             <input type="number" id="cupo" name="cupo" required>
                             <label for="cupo">Cupo</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="date" id="fecha" name="fecha" required>
+                            <label for="fecha">Fecha</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="time" id="hora" name="hora" required>
+                            <label for="hora">Hora</label>
                         </div>
                         <div class="button-group">
                             <button type="button" class="btn btn-secondary botones btn-left"

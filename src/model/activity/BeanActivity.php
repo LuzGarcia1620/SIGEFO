@@ -20,13 +20,15 @@ class BeanActivity
     private $temario;
     private $cupo;
     private $presentacion;
+    private $fecha;
+    private $hora;
 
     public function __construct()
     {
 
     }
 
-    public function constructSave($idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion)
+    public function constructSave($idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion, $fecha, $hora)
     {
         $this->idTipo = $idTipo;
         $this->nombre = $nombre;
@@ -34,7 +36,6 @@ class BeanActivity
         $this->horasPresencial = $horasPresencial;
         $this->horasLinea = $horasLinea;
         $this->horasIndependiente = $horasIndependiente;
-        //$this->status = $status;
         $this->idClasificacion = $idClasificacion;
         $this->idModalidad = $idModalidad;
         $this->dirigidoA = $dirigidoA;
@@ -44,6 +45,8 @@ class BeanActivity
         $this->temario = $temario;
         $this->cupo = $cupo;
         $this->presentacion = $presentacion;
+        $this->fecha = $fecha;
+        $this->hora = $hora;
     }
 
     public function getIdActividad()
@@ -225,5 +228,24 @@ class BeanActivity
     {
         $this->presentacion = $presentacion;
     }
+
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    }
+
+    public function getHora()
+    {
+        return $this->hora;
+    }
+
+    public function setHora($hora)
+    {
+        $this->hora = $hora;
+    }
 }
-?>
