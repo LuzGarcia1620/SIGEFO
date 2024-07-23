@@ -11,7 +11,7 @@ $router->addRoute('/SIGEFO/informacion', 'webapp/views/publico/info.php');
 $router->addRoute('/SIGEFO/registro', 'webapp/views/publico/registro.php');
 /*SuperAdmin*/
 $router->addRoute('/SIGEFO/actividades', 'webapp/views/superadmin/actividades.php');
-$router->addRoute('/SIGEFO/usuarios', 'webapp/views/superadmin/usuarios.php');
+$router->addRoute('/SIGEFO/usuarios', 'webapp/views/superadmin/Usuarios.php');
 $router->addRoute('/SIGEFO/consultas', 'webapp/views/superadmin/consultas.php');
 $router->addRoute('/SIGEFO/controlasistencia', 'webapp/views/superadmin/asistencia.php');
 /*Instructor*/

@@ -1,12 +1,15 @@
 <?php
 require __DIR__ . "/../../service/auth/AuthService.php";
+require __DIR__ . "/../../service/instructor/InstructorService.php";
 
 class AuthController
 {
     private $authService;
+    private $instructorService;
 
     public function __construct(){
         $this->authService = new AuthService();
+        $this->instructorService = new InstructorService();
     }
 
     public function handleRequest()
@@ -25,9 +28,25 @@ class AuthController
                         $result = $service->login($user, $password);
                         if ($result) {
                             header('HTTP/1.0 200 OK');
-                            session_start();
-                            $_SESSION['idUsuario'] = $result["idusuario"];
-                            $_SESSION['rol'] = $result["rol"];
+
+                            if ($result['rol'] == 'Instructor') {
+                                $have = $this->instructorService->validateHaveInstructor($result['idusuario']);
+
+                                if ($have) {
+                                    session_start();
+                                    $_SESSION['idUsuario'] = $result["idusuario"];
+                                    $_SESSION['rol'] = $result["rol"];
+                                    $_SESSION['idInstructor'] = $have["idinstructor"];
+                                } else {
+                                    session_start();
+                                    $_SESSION['idUsuario'] = $result["idusuario"];
+                                    $_SESSION['rol'] = $result["rol"];
+                                }
+                            } else {
+                                session_start();
+                                $_SESSION['idUsuario'] = $result["idusuario"];
+                                $_SESSION['rol'] = $result["rol"];
+                            }
                         } else {
                             header('HTTP/1.0 400 Bad Request');
                         }

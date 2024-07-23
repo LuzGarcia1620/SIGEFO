@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/usuarios.css">
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css">
+    <link rel="stylesheet" href="/../webapp/assets/css/usuarios.css">
+    <link rel="stylesheet" href="/../webapp/assets/css/styles.css">
 </head>
 
 <body>
@@ -54,7 +54,7 @@ $roles = $rolController->handleRequest();
                         </svg>
                         <input id="buscarInput" placeholder="Buscar" type="text" class="input">
                     </div>
-                    <img src="/SIGEFO/webapp/assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn"
+                    <img src="/../webapp/assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn"
                          class="img-fluid" style="cursor: pointer; width: 70px;">
                 </div>
             </div>
@@ -220,7 +220,7 @@ $roles = $rolController->handleRequest();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/SIGEFO/webapp/assets/js/usuarios.js"></script>
+    <script src="/../webapp/assets/js/usuarios.js"></script>
 
     <script>
         /*fetch("../../templates/header.html")

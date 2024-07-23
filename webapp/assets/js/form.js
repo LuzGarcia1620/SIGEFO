@@ -97,8 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response, status, xhr) {
                 if (xhr.status === 200) {
                     Swal.fire('Éxito', 'Formulario agregado exitosamente.', 'success');
-                    /*$('#agregarUsuariosModal').modal('hide');
-                    location.reload();*/
+                    location.reload();
                 } else {
                     Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
                 }
