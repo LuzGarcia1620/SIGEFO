@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Login</title>
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css">
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/login.css">
+    <link rel="stylesheet" href="/../webapp/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/../webapp/assets/css/login.css">
+    <link rel="stylesheet" href="/../webapp/assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -49,12 +50,12 @@ $auth = $authController->handleRequest();
 <div id="container">
     <div class="login-card">
         <div id="left">
-            <img src="/SIGEFO/webapp/assets/img/uaem.png" style="width: 50%;"/>
+            <img src="/../webapp/assets/img/uaem.png" style="width: 50%;"/>
             <span>Departamento de Formación Docente</span>
         </div>
         <div id="right">
             <form id="loginForm" class="form-floating mb-3 input-container"
-                  action="C:/xampp/htdocs/SIGEFO/src/controller/auth/AuthController.php" method="post">
+                  action="/src/controller/auth/AuthController.php" method="post">
                 <div>
                     <h1>¡Bienvenido!</h1>
                     <p>Inicia sesión</p>
@@ -67,7 +68,7 @@ $auth = $authController->handleRequest();
                         <label for="password">Contraseña</label>
                     </div>
                     <button id="show_password" class="btn password-btn" type="button" onclick="mostrarPassword()">
-                        <img id="password_icon" src="/SIGEFO/webapp/assets/img/visibilidad.png" width="20px"/>
+                        <img id="password_icon" src="/../webapp/assets/img/visibilidad.png" width="20px"/>
                     </button>
                 </div>
                 <input type="hidden" name="action" value="login">
@@ -82,8 +83,8 @@ $auth = $authController->handleRequest();
     <?php include __DIR__ . '/templates/footerPublico.html'; ?>
     </div>
 
-<script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/SIGEFO/webapp/assets/js/login.js"></script>
+<script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/../webapp/assets/js/login.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

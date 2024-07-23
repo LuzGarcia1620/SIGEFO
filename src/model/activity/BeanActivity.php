@@ -26,7 +26,7 @@ class BeanActivity
 
     }
 
-    public function constructSave($idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $status, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion)
+    public function constructSave($idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion)
     {
         $this->idTipo = $idTipo;
         $this->nombre = $nombre;
@@ -34,7 +34,7 @@ class BeanActivity
         $this->horasPresencial = $horasPresencial;
         $this->horasLinea = $horasLinea;
         $this->horasIndependiente = $horasIndependiente;
-        $this->status = $status;
+        //$this->status = $status;
         $this->idClasificacion = $idClasificacion;
         $this->idModalidad = $idModalidad;
         $this->dirigidoA = $dirigidoA;

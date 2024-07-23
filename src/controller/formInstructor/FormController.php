@@ -3,6 +3,7 @@ require_once __DIR__ . "/../../service/formInstructor/FormService.php";
 require_once __DIR__ . "/../../model/area/BeanArea.php";
 require_once __DIR__ . "/../../model/instructor/BeanInstructor.php";
 require_once __DIR__ . "/../../model/activity/BeanActivity.php";
+
 class FormController
 {
     private $formService;
@@ -31,6 +32,13 @@ class FormController
                         $beanInstructor = $this->beanInstructor;
                         $beanActivity = $this->beanActivity;
 
+                        if ($_POST['modalidad'] == 'otro') {
+                            $m = $_POST['otraModalidadTexto'];
+                            $modalityId = $service->saveCustomModality($m);
+                        } else {
+                            $modalityId = $_POST['modalidad'];
+                        }
+
                         $beanArea->constructSave(
                             $_POST['areas']
                         );
@@ -52,9 +60,8 @@ class FormController
                             $_POST['presencial'],
                             $_POST['enLinea'],
                             $_POST['independiente'],
-                            $_POST['status'],
                             $_POST['clasificacion'],
-                            $_POST['modalidad'],
+                            $modalityId,
                             $_POST['dirigido'],
                             $_POST['ingreso'],
                             $_POST['egreso'],
@@ -66,7 +73,13 @@ class FormController
 
                         $idRecurso = $_POST['recurso'];
 
-                        $result = $service->saveForm($beanArea, $beanInstructor, $beanActivity, $idRecurso);
+                        $idInstructor = $_POST['idInstructor'];
+
+                        if ($idInstructor != null) {
+                            $result = $service->saveFormWithoutIns($idInstructor, $beanActivity, $idRecurso);
+                        } else {
+                            $result = $service->saveForm($beanArea, $beanInstructor, $beanActivity, $idRecurso);
+                        }
 
                         if ($result) {
                             header('HTTP/1.0 200 OK');
