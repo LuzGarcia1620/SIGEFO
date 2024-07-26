@@ -1,25 +1,26 @@
 <?php
-require __DIR__."/../../../src/config/PostgreSQL.php";
+require __DIR__ . "/../../../src/config/PostgreSQL.php";
+require __DIR__ . "/../../../src/model/activity/BeanActivity.php";
 
 class ActivityService
 {
     private $postgres;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->postgres = new PostgreSQL();
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT a.idactividad, a.nombre, a.duracion, a.horas_presencial, a.horas_linea, a.horas_independiente, a.status, 
-                                        i.nombre AS instructor, t.nombre AS tipo, c.nombre AS clasificacion, m.nombre AS modalidad 
-                                    FROM actividad AS a 
-                                    JOIN instructor AS i ON a.idinstructor = i.idinstructor 
-                                    JOIN tipo AS t ON a.idtipo = t.id 
-                                    JOIN clasificacion AS c ON a.idclasificacion = c.id 
-                                    JOIN modalidad AS m ON a.idmodalidad = m.id;");
+            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA, ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion, ac.fechaImp, ac.horaImp FROM actividad AS ac
+                                        JOIN instructor AS i ON ac.idInstructor = i.idInstructor
+                                        JOIN usuario AS us ON i.idUsuario = us.idUsuario
+                                        JOIN modalidad AS m ON ac.idModalidad = m.id
+                                        JOIN tipo AS ti ON ac.idTipo = ti.id;");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -28,18 +29,12 @@ class ActivityService
         }
     }
 
-    public function getById($idActividad) {
+    public function getById($idActividad)
+    {
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT a.idactividad, a.nombre, a.duracion, a.horas_presencial, a.horas_linea, a.horas_independiente, a.status, 
-                                        i.nombre AS instructor, t.nombre AS tipo, c.nombre AS clasificacion, m.nombre AS modalidad 
-                                    FROM actividad AS a 
-                                    JOIN instructor AS i ON a.idinstructor = i.idinstructor 
-                                    JOIN tipo AS t ON a.idtipo = t.id 
-                                    JOIN clasificacion AS c ON a.idclasificacion = c.id 
-                                    JOIN modalidad AS m ON a.idmodalidad = m.id 
-                                    WHERE a.idactividad = ?;");
+            $stmt = $conn->prepare("");
             $stmt->bindValue(1, $idActividad);
             $stmt->execute();
 
@@ -49,12 +44,14 @@ class ActivityService
         }
     }
 
-    public function save(BeanActividad $beanActividad) {
+    public function save(BeanActivity $beanActividad)
+    {
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("INSERT INTO actividad (idinstructor, idtipo, nombre, duracion, horas_presencial, horas_linea, horas_independiente, status, idclasificacion, idmodalidad) 
-                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("INSERT INTO actividad (idInstructor, idTipo, nombre, duracion, horasPresencial, horasLinea, horasIndependiente,
+                                idClasificacion, idModalidad, dirigidoA, perfilIngreso, perfilEgreso, objetivo, temario, cupo, presentacion, fechaImp, horaImp)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bindValue(1, $beanActividad->getIdInstructor());
             $stmt->bindValue(2, $beanActividad->getIdTipo());
             $stmt->bindValue(3, $beanActividad->getNombre());
@@ -62,9 +59,17 @@ class ActivityService
             $stmt->bindValue(5, $beanActividad->getHorasPresencial());
             $stmt->bindValue(6, $beanActividad->getHorasLinea());
             $stmt->bindValue(7, $beanActividad->getHorasIndependiente());
-            $stmt->bindValue(8, $beanActividad->getStatus());
-            $stmt->bindValue(9, $beanActividad->getIdClasificacion());
-            $stmt->bindValue(10, $beanActividad->getIdModalidad());
+            $stmt->bindValue(8, $beanActividad->getIdClasificacion());
+            $stmt->bindValue(9, $beanActividad->getIdModalidad());
+            $stmt->bindValue(10, $beanActividad->getDirigidoA());
+            $stmt->bindValue(11, $beanActividad->getPerfilIngreso());
+            $stmt->bindValue(12, $beanActividad->getPerfilEgreso());
+            $stmt->bindValue(13, $beanActividad->getObjetivo());
+            $stmt->bindValue(14, $beanActividad->getTemario());
+            $stmt->bindValue(15, $beanActividad->getCupo());
+            $stmt->bindValue(16, $beanActividad->getPresentacion());
+            $stmt->bindValue(17, $beanActividad->getFecha());
+            $stmt->bindValue(18, $beanActividad->getHora());
 
             return $stmt->execute();
         } catch (Exception $e) {
@@ -72,52 +77,55 @@ class ActivityService
         }
     }
 
-    public function delete($idActividad) {
+    public function update(BeanActivity $beanActividad, $idActividad)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("UPDATE actividad SET idModalidad = ?, nombre = ?, dirigidoa = ?, objetivo = ?, idInstructor = ?, idTipo = ?, fechaImp = ?, duracion = ?, horaImp = ? WHERE idActividad = ?;");
+            $stmt->bindValue(1, $beanActividad->getIdModalidad());
+            $stmt->bindValue(2, $beanActividad->getNombre());
+            $stmt->bindValue(3, $beanActividad->getDirigidoA());
+            $stmt->bindValue(4, $beanActividad->getObjetivo());
+            $stmt->bindValue(5, $beanActividad->getIdInstructor());
+            $stmt->bindValue(6, $beanActividad->getIdTipo());
+            $stmt->bindValue(7, $beanActividad->getFecha());
+            $stmt->bindValue(8, $beanActividad->getDuracion());
+            $stmt->bindValue(9, $beanActividad->getHora());
+            $stmt->bindParam(10, $idActividad);
+
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Update Activity failed: " . $e->getMessage());
+        }
+    }
+
+    public function sendToPublic($idActividad)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare('UPDATE actividad SET status = true WHERE idActividad = ?;');
+            $stmt->bindParam(1, $idActividad);
+
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Send To Public failed " . $e->getMessage());
+        }
+    }
+
+    public function delete($idActividad)
+    {
         try {
             $conn = $this->postgres->connect();
 
             $stmt = $conn->prepare("DELETE FROM actividad WHERE idactividad = ?");
-            $stmt->bindValue(1, $idActividad);
-            $stmt->execute();
+            $stmt->bindParam(1, $idActividad);
 
-            return true;
+            return $stmt->execute();
         } catch (Exception $e) {
             error_log("Delete actividad failed: " . $e->getMessage());
             return false;
         }
     }
-
-    public function getInstructors() {
-        try {
-            $conn = $this->postgres->connect();
-            $stmt = $conn->prepare("SELECT idInstructor, CONCAT(nombre, ' ', paterno, ' ', materno) AS nombre FROM instructor INNER JOIN usuario ON instructor.idUsuario = usuario.idUsuario;");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (Exception $e) {
-            error_log("Error getting instructors: " . $e->getMessage());
-        }
-    }
-
-    public function getModalities() {
-        try {
-            $conn = $this->postgres->connect();
-            $stmt = $conn->prepare("SELECT id, nombre FROM modalidad;");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (Exception $e) {
-            error_log("Error getting modalities: " . $e->getMessage());
-        }
-    }
-
-    public function getTypes() {
-        try {
-            $conn = $this->postgres->connect();
-            $stmt = $conn->prepare("SELECT id, tipo FROM tipo;");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (Exception $e) {
-            error_log("Error getting types: " . $e->getMessage());
-        }
-    }
 }
-?>

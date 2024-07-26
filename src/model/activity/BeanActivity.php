@@ -49,6 +49,41 @@ class BeanActivity
         $this->hora = $hora;
     }
 
+    public function constructSaveWithIns($idInstructor, $idTipo, $nombre, $duracion, $horasPresencial, $horasLinea, $horasIndependiente, $idClasificacion, $idModalidad, $dirigidoA, $perfilIngreso, $perfilEgreso, $objetivo, $temario, $cupo, $presentacion, $fecha, $hora)
+    {
+        $this->idInstructor = $idInstructor;
+        $this->idTipo = $idTipo;
+        $this->nombre = $nombre;
+        $this->duracion = $duracion;
+        $this->horasPresencial = $horasPresencial;
+        $this->horasLinea = $horasLinea;
+        $this->horasIndependiente = $horasIndependiente;
+        $this->idClasificacion = $idClasificacion;
+        $this->idModalidad = $idModalidad;
+        $this->dirigidoA = $dirigidoA;
+        $this->perfilIngreso = $perfilIngreso;
+        $this->perfilEgreso = $perfilEgreso;
+        $this->objetivo = $objetivo;
+        $this->temario = $temario;
+        $this->cupo = $cupo;
+        $this->presentacion = $presentacion;
+        $this->fecha = $fecha;
+        $this->hora = $hora;
+    }
+
+    public function constructUpdate($idModalidad, $nombre, $dirigidoA, $objetivo, $idInstructor, $idTipo, $fecha, $duracion, $hora)
+    {
+        $this->idModalidad = $idModalidad;
+        $this->nombre = $nombre;
+        $this->dirigidoA = $dirigidoA;
+        $this->objetivo = $objetivo;
+        $this->idInstructor = $idInstructor;
+        $this->idTipo = $idTipo;
+        $this->fecha = $fecha;
+        $this->duracion = $duracion;
+        $this->hora = $hora;
+    }
+
     public function getIdActividad()
     {
         return $this->idActividad;

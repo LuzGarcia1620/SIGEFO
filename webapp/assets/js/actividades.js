@@ -53,6 +53,155 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('presencial').addEventListener('input', calcularDuracionTotal);
     document.getElementById('enLinea').addEventListener('input', calcularDuracionTotal);
     document.getElementById('independiente').addEventListener('input', calcularDuracionTotal);
+    const formSuperAdmin = document.getElementById('formSuperAdmin');
+    const formSuperAdminUpdate = document.getElementById('formSuperAdminUpdate');
+    const formSuperAdminSend = document.getElementById('formSuperAdminSend');
+    const formSuperAdminDelete = document.getElementById('formSuperAdminDelete');
+
+    $('#formSuperAdmin').on('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(formSuperAdmin);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Formulario agregado exitosamente.', 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    });
+
+    $('.btnUpdateAc').on('click', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Confirmación Actualización',
+            text: "¿Esta seguro de actualizar el registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, actualizar'
+        }).then((result) => {
+            if (result.isConfirmed)
+                actualizarActividad()
+        });
+    });
+
+    //Metodo con AJAX para mostrar las alertas indicando el estado de la actualación del Usuario
+    const actualizarActividad = () => {
+        const formData = new FormData(formSuperAdminUpdate);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Actividad actualizada exitosamente.', 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    }
+
+    $('.btnSendAc').on('click', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Confirmación de Envio',
+            text: "¿Esta seguro de enviar la Actividad?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, Enviar'
+        }).then((result) => {
+            if (result.isConfirmed)
+                enviarActividad()
+        });
+    });
+
+    const enviarActividad = () => {
+        const formData = new FormData(formSuperAdminSend);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Actividad enviada al publico exitosamente.', 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    }
+
+    $('.btnDeleteAc').on('click', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Confirmación de Eliminación',
+            text: "¿Esta seguro de eliminar la Actividad?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed)
+                eliminarActividad()
+        });
+    });
+
+    const eliminarActividad = () => {
+        const formData = new FormData(formSuperAdminDelete);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Actividad Eliminada exitosamente.', 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    }
 });
 
 //contador de palabras
@@ -80,30 +229,3 @@ document.querySelector('form').addEventListener('submit', function (event) {
         alert('El texto no debe superar las 500 palabras.');
     }
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-    const formSuperAdmin = document.getElementById('formSuperAdmin');
-
-    $('#formSuperAdmin').on('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(formSuperAdmin);
-
-        $.ajax({
-            url: '',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response, status, xhr) {
-                if (xhr.status === 200) {
-                    Swal.fire('Éxito', 'Formulario agregado exitosamente.', 'success');
-                } else {
-                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
-                }
-            },
-            error: function (xhr, status, error) {
-                Swal.fire('Error', 'Error en la solicitud.', 'error');
-            }
-        });
-    });
-})
