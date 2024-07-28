@@ -15,18 +15,9 @@ class BeanDocente
     private $idUnidadAcademica;
     private $idPerfil;
 
-    public function __construct($nombre, $paterno, $materno, $sexo, $edad, $correo, $grado, $disciplina, $idUnidadAcademica, $idPerfil)
+    public function __construct()
     {
-        $this->nombre = $nombre;
-        $this->paterno = $paterno;
-        $this->materno = $materno;
-        $this->sexo = $sexo;
-        $this->edad = $edad;
-        $this->correo = $correo;
-        $this->grado = $grado;
-        $this->disciplina = $disciplina;
-        $this->idUnidadAcademica = $idUnidadAcademica;
-        $this->idPerfil = $idPerfil;
+
     }
 
     public function getIdDocente()
@@ -139,4 +130,3 @@ class BeanDocente
         $this->idPerfil = $idPerfil;
     }
 }
-?>
