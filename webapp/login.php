@@ -12,7 +12,8 @@
 </head>
 
 <body>
-<?php require __DIR__ . "/../src/controller/auth/AuthController.php";
+<?php
+require __DIR__ . "/../src/controller/auth/AuthController.php";
 
 $authController = new AuthController();
 $auth = $authController->handleRequest();
@@ -45,8 +46,6 @@ $auth = $authController->handleRequest();
         <li><a href="">Contacto</a></li>
     </ul>
 </nav>
-<!-- Fin de la NavBar -->
-
 <div id="container">
     <div class="login-card">
         <div id="left">
@@ -82,6 +81,33 @@ $auth = $authController->handleRequest();
 <div>
     <?php include __DIR__ . '/templates/footerPublico.html'; ?>
     </div>
+<footer class="sm-custom-footer py-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 d-flex flex-column align-items-start mb-2 mb-md-0 follow-us">
+                <h5 class="text-center text-md-start mb-1">¡Síguenos en nuestras redes sociales!</h5>
+                <div class="d-flex justify-content-start follow-us">
+                    <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"><img
+                                src="../webapp/assets/img/correo.png" alt="Correo" class="img-fluid"></a>
+                    <a href="https://www.facebook.com/uaemformaciondocente" class="text-white me-2"><img
+                                src="../webapp/assets/img/facebook.png" alt="Facebook" class="img-fluid"></a>
+                    <a href="https://www.youtube.com/channel/UCvc3SSAArfY-DsWXXZ4mwhg" class="text-white"><img
+                                src="../webapp/assets/img/youtube.png" alt="YouTube" class="img-fluid"></a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h5 class="mb-1">Universidad Autónoma del Estado de Morelos</h5>
+                <p class="mb-1">Departamento de Formación Docente</p>
+                <p class="mb-1"><img src="/../webapp/assets/img/mapas-y-banderas.png" alt="ubicacion"
+                                     class="img-fluid" style="height: 10px;"> Av. Universidad 1001, Chamilpa,
+                    Cuernavaca, Morelos, México</p>
+                <p class="mb-1"><img src="/../webapp/assets/img/llamada-telefonica.png" alt="telefono"
+                                     class="img-fluid" style="height: 10px;"> (777) 329 70 00 Ext. 3249, 3352 y
+                    3935</p>
+                <p class="mb-1"><img src="/../webapp/assets/img/correo-electronico.png" alt="correo"
+                                     class="img-fluid" style="height: 10px;"> eval_docente@uaem.mx</p>
+            </div>
+</footer>
 
 <script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/../webapp/assets/js/login.js"></script>

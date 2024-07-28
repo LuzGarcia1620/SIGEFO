@@ -1,6 +1,6 @@
 <?php
 require __DIR__."/../../service/activity/ActivityService.php";
-require __DIR__."/../../model/activity/BeanActivity.php";
+require_once __DIR__."/../../model/activity/BeanActivity.php";
 
 class ActivityController
 {
@@ -13,7 +13,6 @@ class ActivityController
     public function handleRequest() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $action = $_POST["action"];
-            $response = '';
 
             switch ($action) {
                 case 'save':
@@ -21,24 +20,25 @@ class ActivityController
                         $beanActivity = new BeanActivity();
 
                         // Constructor para guardar datos
-                        $beanActivity->constructSave(
+                        $beanActivity->constructSaveWithIns(
                             $_POST['idInstructor'],
                             $_POST['idTipo'],
                             $_POST['nombre'],
                             $_POST['duracion'],
-                            0, 
-                            0,
-                            0,
-                            true, 
-                            0, 
-                            $_POST['idModalidad'],
+                            $_POST['presencial'],
+                            $_POST['enLinea'],
+                            $_POST['independiente'],
+                            $_POST['clasificacion'],
+                            $_POST['modalidad'],
                             $_POST['dirigido'],
-                            "", 
-                            "", 
+                            $_POST['ingreso'],
+                            $_POST['egreso'],
                             $_POST['objetivo'],
-                            "", 
-                            0, 
-                            "" 
+                            $_POST['temario'],
+                            $_POST['cupo'],
+                            $_POST['presentacion'],
+                            $_POST['fecha'],
+                            $_POST['horario']
                         );
 
                         $result = $this->activityService->save($beanActivity);
@@ -50,8 +50,6 @@ class ActivityController
                             header('HTTP/1.0 400 Bad Request');
                             echo 'Failed to save activity';
                         }
-
-                        return $response;
                     } catch (Exception $e) {
                         error_log($e);
                         header('HTTP/1.0 500 Internal Server Error');
@@ -60,31 +58,76 @@ class ActivityController
                     break;
 
                 case 'update':
-                    // Handle update case
+                    try {
+                        $beanActivity = new BeanActivity();
+
+                        $beanActivity->constructUpdate(
+                            $_POST['modalidad'],
+                            $_POST['nombre'],
+                            $_POST['dirigido'],
+                            $_POST['objetivo'],
+                            $_POST['Instructor'],
+                            $_POST['idTipo'],
+                            $_POST['fecha'],
+                            $_POST['duracion'],
+                            $_POST['horario']
+                        );
+
+                        $idActividad = $_POST['idActividad'];
+
+                        $result = $this->activityService->update($beanActivity, $idActividad);
+
+                        if ($result) {
+                            header('HTTP/1.0 200 OK');
+                        } else {
+                            header('HTTP/1.0 400 Bad Request');
+                        }
+                    } catch (Exception $e) {
+                        error_log($e);
+                        header('HTTP/1.0 500 Internal Server Error');
+                    }
+                    break;
+
+                case 'sendToPublic':
+                    try {
+                        $service = $this->activityService;
+
+                        $idActividad= $_POST["idActividad"];
+
+                        $result = $service->sendToPublic($idActividad);
+
+                        if ($result) {
+                            header('HTTP/1.0 200 OK');
+                        } else {
+                            header('HTTP/1.0 400 Bad Request');
+                        }
+                    } catch (Exception $e) {
+                        error_log($e);
+                        header('HTTP/1.0 500 Internal Server Error');
+                    }
                     break;
 
                 case 'delete':
                     try {
-                        $idActividad = intval($_POST['idActividad']);
-                        $result = $this->activityService->delete($idActividad);
+                        $service = $this->activityService;
+
+                        $idActividad= $_POST["idActividad"];
+
+                        $result = $service->delete($idActividad);
 
                         if ($result) {
-                            echo 'success';
+                            header('HTTP/1.0 200 OK');
                         } else {
-                            echo 'error';
+                            header('HTTP/1.0 400 Bad Request');
                         }
                     } catch (Exception $e) {
                         error_log($e);
-                        echo 'error';
+                        header('HTTP/1.0 500 Internal Server Error');
                     }
                     break;
 
-                case 'change':
-                    // Handle change case
-                    break;
-
                 default:
-                    $responseMessage = 'invalid';
+                    error_log("Method invalid");
                     break;
             }
         }
@@ -97,17 +140,10 @@ class ActivityController
                 return $activity;
             } else {
                 $actividades = $this->activityService->getAll();
-                $instructores = $this->activityService->getInstructors();
-                $modalidades = $this->activityService->getModalities();
-                $tipos = $this->activityService->getTypes();
-                return [
-                    'actividades' => $actividades,
-                    'instructores' => $instructores,
-                    'modalidades' => $modalidades,
-                    'tipos' => $tipos
-                ];
+
+                return $actividades ? $actividades : array();
+
             }
         }
     }
 }
-?>

@@ -28,7 +28,7 @@ class FormService
 
             $conn->beginTransaction();
 
-            $stmt = $conn->prepare("SELECT form (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("SELECT form (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bindValue(1, $beanArea->getNombre());
             $stmt->bindValue(2,$beanInstructor->getIdUsuario());
             $stmt->bindValue(3,$beanInstructor->getGrado());
@@ -52,7 +52,9 @@ class FormService
             $stmt->bindValue(21, $beanActivity->getTemario());
             $stmt->bindValue(22, $beanActivity->getCupo());
             $stmt->bindValue(23, $beanActivity->getPresentacion());
-            $stmt->bindParam(24, $idRecurso);
+            $stmt->bindValue(24, $beanActivity->getFecha());
+            $stmt->bindValue(25, $beanActivity->getHora());
+            $stmt->bindParam(26, $idRecurso);
 
             $stmt->execute();
             $result = $stmt->fetchColumn();
@@ -74,7 +76,7 @@ class FormService
 
             $conn->beginTransaction();
 
-            $stmt = $conn->prepare("SELECT formWithoutIns (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("SELECT formWithoutIns (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bindParam(1, $idInstructor);
             $stmt->bindValue(2, $beanActivity->getIdTipo());
             $stmt->bindValue(3, $beanActivity->getNombre());
@@ -91,7 +93,9 @@ class FormService
             $stmt->bindValue(14, $beanActivity->getTemario());
             $stmt->bindValue(15, $beanActivity->getCupo());
             $stmt->bindValue(16, $beanActivity->getPresentacion());
-            $stmt->bindValue(17, $idRecurso);
+            $stmt->bindValue(17, $beanActivity->getFecha());
+            $stmt->bindValue(18, $beanActivity->getHora());
+            $stmt->bindValue(19, $idRecurso);
 
             $result = $stmt->execute();
 

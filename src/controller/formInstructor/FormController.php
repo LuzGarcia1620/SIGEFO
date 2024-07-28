@@ -68,7 +68,9 @@ class FormController
                             $_POST['objetivo'],
                             $_POST['temario'],
                             $_POST['cupo'],
-                            $_POST['presentacion']
+                            $_POST['presentacion'],
+                            $_POST['fecha'],
+                            $_POST['hora']
                         );
 
                         $idRecurso = $_POST['recurso'];
