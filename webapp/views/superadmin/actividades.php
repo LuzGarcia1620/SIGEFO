@@ -24,8 +24,8 @@ $instructores = $data['instructores'];
 
 $tipos = $data['tipos'];
 
-$modalityController = new ModalityController();
-$modalities = $modalityController->handleRequest();
+
+
 
 ?>
 
@@ -223,7 +223,7 @@ $modalities = $modalityController->handleRequest();
                 </div>
                 <div class="campo">
                     <select id="Instructor" name="idInstructor" required>
-                        <option value="" disabled selected>Selecciona un instructor</option>
+                    <option value="" disabled selected>Selecciona un instructor</option>
                         <?php foreach ($instructores as $instructor): ?>
                             <option value="<?php echo $instructor['idInstructor']; ?>"><?php echo $instructor['nombre']; ?></option>
                         <?php endforeach; ?>
@@ -279,7 +279,7 @@ $modalities = $modalityController->handleRequest();
                         <div class="campo">
                             <br>
                             <p>Presentación de la actividad formativa (Máximo 500 palabras)</p>
-                            <textarea id="presentacion" name="presentacion" rows="2" cols="72" required
+                            <textarea id="presentacion" name="presentacion" rows="2" cols="71" required
                                       oninput="countWords()"></textarea>
                             <p id="wordCountDisplay">Palabras: 0 / 500</p>
                         </div>
