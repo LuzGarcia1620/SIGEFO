@@ -25,18 +25,9 @@ $users = $userController->handleRequest();
         <div class="row">
             <!-- Navegación Vertical -->
             <div class="col-lg-2">
-            <div class="navback">
-                    <ul class="list-unstyled vertical-nav">
-                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad
-                            Formativa</a></li>
-                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                </ul>
-                </div>
-
+          <div>
+          <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
+          </div>
             </div>
             <!-- Contenido Principal -->
             <div class="col-lg-10 d-flex justify-content-center align-items-center" style="height: 50vh;">

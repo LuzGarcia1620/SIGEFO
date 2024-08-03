@@ -28,14 +28,9 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                     <ul class="list-unstyled vertical-nav">
                         <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
                         <?php if ($user['rol'] == 'SuperAdmin'): ?>
-                            <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                            <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                            <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                            <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
+                            <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
                         <?php elseif ($user['rol'] == 'Instructor'): ?>
-                            <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a></li>
-                            <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                            <li><a href="/SIGEFO/material" class="btn btn-primary btn-block my-1 menu">Material</a></li>
+                            <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?>
                         <?php endif; ?>
                         <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
                     </ul>
@@ -45,7 +40,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
             <div class="col-lg-10 main-content d-flex justify-content-center align-items-center">
                 <div class="custom-card">
                     <div class="card-body">
-                        <h1 class="text-center">¡Bienvenid@ Señor Catedratico, <?php echo $user['nombre']; ?>!</h1>
+                        <h1 class="text-center">¡Bienvenid@, <?php echo $user['nombre']; ?>!</h1>
                         <div class="line"></div>
                         <br>
                         <form>
@@ -77,8 +72,9 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
+                           
+                                <div class="bg-container">
+                                <div class="form-group">
                                     <label for="newPassword">Nueva contraseña</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="newPassword" />
@@ -91,7 +87,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     <label for="repeatPassword">Repetir contraseña</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="repeatPassword" />
@@ -103,13 +99,16 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                       
                             <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                            </div>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
+        
         <div >
             <?php include __DIR__ . '/templates/footer.html' ?>
         </div>

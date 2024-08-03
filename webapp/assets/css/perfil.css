@@ -104,3 +104,10 @@ html, body {
     background-color: #f8f9fa;
 }
 
+
+/* Contenedor azul */
+.bg-container {
+    background-color: #5A8BB4;
+    padding: 20px;
+    border-radius: 10px;
+}

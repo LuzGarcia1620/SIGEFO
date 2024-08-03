@@ -8,9 +8,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/ActividadFormativa.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/ActividadFormativa.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/>
 </head>
 
 <body>
@@ -49,17 +49,8 @@ $clasifications = isset($clasifications) ? $clasifications : array();
     <div class="row flex-grow-1">
         <!-- Navegación Vertical -->
         <div class="col-md-2">
-            <div class="navback">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad
-                            Formativa</a></li>
-                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
-                    </li>
-                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                </ul>
+            <div>
+            <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
             </div>
         </div>
         <!-- Contenido Principal -->
@@ -68,7 +59,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
             <div class="titulo">Actividades</div>
             <div>
                 <button class="actividad" onclick="openModal('modalNA3')">
-                    <img src="/../webapp/assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
+                    <img src="/SIGEFO/webapp/assets/img/agregar.png" alt="Imagen" class="icono"> Nueva actividad
                 </button>
             </div>
             <div class="divider-line"></div>
@@ -91,14 +82,14 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             <td><?php echo $actividad['status']; ?></td>
                             <td>
                                 <div class="img-container">
-                                    <img src="/../webapp/assets/img/lupa.png" alt="ver"
+                                    <img src="/SIGEFO/webapp/assets/img/lupa.png" alt="ver"
                                          onclick="openModal('modal<?php echo $actividad['idactividad'] ?>') "/>
-                                    <img src="/../webapp/assets/img/editar.png" alt="editar"
+                                    <img src="/SIGEFO/webapp/assets/img/editar.png" alt="editar"
                                          onclick="openModal('modalE<?php echo $actividad['idactividad'] ?>')"/>
                                     <form id="formSuperAdminDelete" method="post" action="/src/controller/activity/ActivityController.php">
                                         <input type="hidden" id="idActividad" name="idActividad" value="<?php echo $actividad['idactividad'] ?>"/>
                                         <input type="hidden" id="action" name="action" value="delete" required>
-                                        <img src="/../webapp/assets/img/borrar.png" alt="borrar" id="deleteActivityImage" class="btnDeleteAc"/>
+                                        <img src="/SIGEFO/webapp/assets/img/borrar.png" alt="borrar" id="deleteActivityImage" class="btnDeleteAc"/>
                                         <!--<button class="green-button btnSendUpdate">Enviar</button>-->
                                     </form>
                                     <!--<img src="/../webapp/assets/img/borrar.png" alt="borrar" id="deleteActivityImage"/>-->
@@ -367,7 +358,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../../webapp/assets/js/actividades.js"></script>
+    <script src="/SIGEFO/webapp/assets/js/actividades.js"></script>
 
 </body>
 

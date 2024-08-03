@@ -1,21 +1,14 @@
-/*fetch('/SIGEFO/webapp/templates/header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('headerContainer').innerHTML = data;
-    });
-fetch('/SIGEFO/webapp/templates/footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footerContainer').innerHTML = data;
-    });*/
+function togglePassword(id, element) {
+    const input = document.getElementById(id);
+    const eyeIcon = element.querySelector("img");
 
-function mostrarPassword() {
-    const passwordInput = document.getElementById('password');
-    const passwordIcon = document.getElementById('password_icon');
-    const isPasswordVisible = passwordInput.type === 'password';
-
-    passwordInput.type = isPasswordVisible ? 'text' : 'password';
-    passwordIcon.src = isPasswordVisible ? '/SIGEFO/webapp/assets/img/invisible.png' : '/SIGEFO/webapp/assets/img/visibilidad.png';
+    if (input.type === "password") {
+        input.type = "text";
+        eyeIcon.src = "/SIGEFO/webapp/assets/img/invisible.png";
+    } else {
+        input.type = "password";
+        eyeIcon.src = "/SIGEFO/webapp/assets/img/visibilidad.png";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
