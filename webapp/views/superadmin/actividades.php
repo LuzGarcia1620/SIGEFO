@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/ActividadFormativa.css"/>
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/>
 </head>
-
 <body>
 
 <?php
@@ -234,7 +233,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
 
 
     <!-- Modal 3 NUEVA ACTIVIDAD -->
-<div id="modal3" class="modal">
+<div id="modalNA3" class="modal">
     <div class="modal-content contenido">
         <div class="tarjeta">
             <div class="modal-footer-title">Nueva Actividad</div>
@@ -263,7 +262,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                 <div class="campo">
                     <select id="tipo" name="idTipo" required>
                         <option value="" disabled selected>Selecciona un tipo</option>
-                        <?php foreach ($tipos as $tipo): ?>
+                        <?php foreach ($types as $tipo): ?>
                             <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -340,7 +339,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                 </div>
                 <div class="button-container">
                     <div>
-                        <button class="blue-button" type="button" onclick="closeModal('modal3')">Regresar</button>
+                        <button class="blue-button" type="button" onclick="closeModal('modalNA3')">Regresar</button>
                     </div>
                     <div>
                         <button class="green-button" type="submit">Enviar</button>

@@ -12,8 +12,9 @@
   }
   
   .form-group select {
-    width: 33%;
-    margin: 0 auto;
+    width: 25%; /* Cambié el ancho de los selects para hacerlos más pequeños */
+    margin: 10px auto;
+    display: block; 
 }
 
   .card {
@@ -22,6 +23,10 @@
     margin-top: 50px;
     margin-bottom: 50px;
   }
+
+  .extra-margin-top {
+    margin-top: 100px; /* Ajusta el valor según necesites */
+}
   
   .upload-area {
     border: 2px dashed #6a6b76;

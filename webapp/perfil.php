@@ -26,13 +26,13 @@ $user = $userService->getOne($_SESSION['idUsuario'])
             <div class="col-lg-2">
                 <div class="navback">
                     <ul class="list-unstyled vertical-nav">
-                        <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
+                      
                         <?php if ($user['rol'] == 'SuperAdmin'): ?>
-                            <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
+                            <?php include __DIR__ . '/templates/menuSuperAdmin.php'; ?>
                         <?php elseif ($user['rol'] == 'Instructor'): ?>
-                            <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?>
+                            <?php include __DIR__ . '/templates/menuInstructor.php'; ?>
                         <?php endif; ?>
-                        <li><a href="login.php" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
+                        
                     </ul>
                 </div>
             </div>
