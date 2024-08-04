@@ -13,7 +13,7 @@
   
   .form-group select {
     width: 25%; /* Cambié el ancho de los selects para hacerlos más pequeños */
-    margin: 10px auto;
+    margin: 10 auto;
     display: block; 
 }
 

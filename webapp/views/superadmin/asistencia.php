@@ -29,14 +29,16 @@
             <div class="col-lg-10">
                 <div class="titulo">Asistencia</div>
 
+                <!-- este es el select a cambiar, pero dejale el js-->
                 <div class="form-group text-center">
-                    <select id="mainSelect" class="form-control mb-3">
+                    <select id="mainSelect" class="form-control ">
                         <option value="">Seleccionar la opción deseada</option>
                         <option value="subir">Subir lista</option>
                         <option value="ver">Ver lista</option>
                     </select>
+                    <br>
 
-                    <select id="actividadSelect" class="form-control mb-4">
+                    <select id="actividadSelect" class="form-control ">
                         <option>Seleccione la actividad</option>
                         <!-- Otras opciones si es necesario -->
                     </select>

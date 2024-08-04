@@ -37,7 +37,7 @@ $auth = $authController->handleRequest();
         <li><a href="#">Formación Docente</a>
             <ul id="submenu">
                 <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
-                <li><a href="">Actividades Formativas</a></li>
+                <li><a href="/SIGEFO/">Actividades Formativas</a></li>
                 <li><a href="">Galería</a></li>
                 <li><a href="">Descargar constancia</a></li>
             </ul>

@@ -12,11 +12,11 @@
 
 <body>
 
-<?php
-require __DIR__."/../../../src/controller/user/UserController.php";
-$userController = new UserController();
-$users = $userController->handleRequest();
-?>
+    <?php
+    require __DIR__ . "/../../../src/controller/user/UserController.php";
+    $userController = new UserController();
+    $users = $userController->handleRequest();
+    ?>
 
     <div>
         <?php include __DIR__ . '/../../templates/header.html'; ?>
@@ -25,85 +25,49 @@ $users = $userController->handleRequest();
         <div class="row">
             <!-- Navegación Vertical -->
             <div class="col-lg-2">
-          <div>
-          <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
-          </div>
+                <div>
+                    <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
+                </div>
             </div>
             <!-- Contenido Principal -->
-            <div class="col-lg-10 d-flex justify-content-center align-items-center" style="height: 50vh;">
-                <div class="containercons text-center">
+            <div class="col-lg-10 d-flex justify-content-center align-items-center" >
+                <div class="containercons">
+                    <div class="tittle">Consultas</div>
 
-                    <div class="titulo">Consultas</div>
-
-                    <div class="btn-group mb-3">
-                        <button id="yearBtn" class="btn btn-primary" onclick="showInput('year')">Por año</button>
-                        <button id="instructorBtn" class="btn btn-primary" onclick="showInput('instructor')">Por
-                            instructor</button>
-                        <button id="unitBtn" class="btn btn-primary" onclick="showInput('unit')">Unidad
-                            Académica</button>
-                        <button id="teacherBtn" class="btn btn-primary" onclick="showInput('teacher')">Por
-                            Docente</button>
-                        <button id="genderBtn" class="btn btn-primary" onclick="showInput('gender')">Por Género</button>
+                    <div class="radio-input">
+                        <label>
+                            <input type="radio" id="value-1" name="value-radio" value="year" onchange="showInput(this.value)" />
+                            <span class="name">Año</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" id="value-2" name="value-radio" value="instructor" onchange="showInput(this.value)" />
+                            <span class="name">Instructor</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" id="value-3" name="value-radio" value="unit" onchange="showInput(this.value)" />
+                            <span class="name">Unidad Académica</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" id="value-4" name="value-radio" value="teacher" onchange="showInput(this.value)" />
+                            <span class="name">Docente</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" id="value-5" name="value-radio" value="gender" onchange="showInput(this.value)" />
+                            <span class="name">Género</span>
+                        </label>
                     </div>
 
-                    <!-- Año -->
-                    <div class="d-flex justify-content-center align-items-center ">
-                        <div id="yearInput" class="input-container">
-                            <select class="form-control" style="width: 300px;">
-                                <option value="">Seleccione el año</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
+                    <!-- Select Input -->
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
+                        <div id="staticInputContainer" class="input-container select-margin">
+                            <select id="dynamicSelect" class="form-control" style="width: 300px;">
                             </select>
                         </div>
-
-                        <!-- Instructor -->
-                        <div id="instructorInput" class="input-container">
-                            <select class="form-control" style="width: 300px;">
-                                <option value="">Seleccione el instructor</option>
-                                <option value="Instructor1">Instructor 1</option>
-                                <option value="Instructor2">Instructor 2</option>
-                                <option value="Instructor3">Instructor 3</option>
-                            </select>
-                        </div>
-
-                        <!-- Unidad Academica -->
-                        <div id="unitInput" class="input-container">
-                            <select class="form-control" style="width: 300px;">
-                                <option value="">Seleccione la unidad académica</option>
-                                <option value="Unidad1">Unidad 1</option>
-                                <option value="Unidad2">Unidad 2</option>
-                                <option value="Unidad3">Unidad 3</option>
-                            </select>
-                        </div>
-
-                        <!-- docente -->
-                        <div id="teacherInput" class="input-container">
-                            <select class="form-control" style="width: 300px;">
-                                <option value="">Seleccione el docente</option>
-                                <option value="Docente1">Docente 1</option>
-                                <option value="Docente2">Docente 2</option>
-                                <option value="Docente3">Docente 3</option>
-                            </select>
-                        </div>
-
-                        <!-- genero -->
-                        <div id="genderInput" class="input-container">
-                            <select class="form-control" style="width: 300px;">
-                                <option value="">Seleccione el género</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                            </select>
-                        </div>
-
-                        <!-- Botón de búsqueda -->
-                        <div id="searchBtnContainer" class="ml-3">
-                            <button id="searchBtn" class="btn btn-primary searchBtn"
-                                onclick="showResults()">Buscar</button>
+                         <!-- Botón de búsqueda -->
+                         <div id="searchBtnContainer" class="ml-3">
+                            <button id="searchBtn" class="btn btn-primary searchBtn" onclick="showResults()">Buscar</button>
                         </div>
                     </div>
-
                     <div class="divider-line"></div>
                     <br>
 
@@ -146,51 +110,12 @@ $users = $userController->handleRequest();
         </div>
     </div>
 
-<!--Footer-->
-<div>
-    <?php include __DIR__ . '/../../templates/footer.html'; ?>
-</div>
+    <!--Footer-->
+    <div>
+        <?php include __DIR__ . '/../../templates/footer.html'; ?>
+    </div>
 
-    <script>
-    fetch("../../templates/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById("headerContainer").innerHTML = data;
-        });
-
-    function showInput(type) {
-        var inputContainers = document.querySelectorAll('.input-container');
-        inputContainers.forEach(function(container) {
-            container.style.display = 'none';
-        });
-
-        var buttons = document.querySelectorAll('.btn-group button');
-        buttons.forEach(function(button) {
-            button.classList.remove('btn-primary');
-            button.classList.add('btn-secondary');
-        });
-
-        var selectedInput = document.getElementById(type + 'Input');
-        var selectedButton = document.getElementById(type + 'Btn');
-        selectedInput.style.display = 'block';
-        selectedButton.classList.remove('btn-secondary');
-        selectedButton.classList.add('btn-primary');
-
-        document.getElementById("searchBtnContainer").style.display = 'block';
-    }
-
-    function showResults() {
-        document.getElementById("resultTable").style.display = 'block';
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var inputContainers = document.querySelectorAll('.input-container');
-        inputContainers.forEach(function(container) {
-            container.style.display = 'none';
-        });
-    });
-    </script>
-
+    <script src="/SIGEFO/webapp/assets/js/consultas.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

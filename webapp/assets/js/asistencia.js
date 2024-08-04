@@ -1,5 +1,5 @@
 
-            document.getElementById('mainSelect').addEventListener('change', function() {
+            document.getElementById('standard-select').addEventListener('change', function() {
                 const value = this.value;
                 const content = document.getElementById('content');
 
