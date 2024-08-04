@@ -57,16 +57,15 @@ if (isset($_SESSION['idInstructor'])) {
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
-</div>
-<div class="container-fluid ">
+    <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
             <!-- Menu -->
-            <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?>
+            <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?> 
         </div>
         <!-- Contenido Principal -->
         <div class="col-lg-10">
-            <div class="contenido mx-auto" style="max-width:750px;">
+            <div class="contenido mx-auto" style="max-width:800px;">
                 <h4 id="section-title">Datos Generales</h4>
                 <div class="line"></div>
                 <form class="form" id="formInstructor" action="/src/controller/formInstructor/FormController.php"
@@ -217,7 +216,7 @@ if (isset($_SESSION['idInstructor'])) {
                                 <option value="">Seleccione la clasificación</option>
                                 <?php foreach ($clasifications as $clasification): ?>
                                     <option value="<?php echo $clasification['id'] ?>">
-                                        <?php echo $clasification['nombre'] ?>
+                                        <?php echo $clasificacion['nombre'] ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -246,13 +245,17 @@ if (isset($_SESSION['idInstructor'])) {
                             <input type="number" id="cupo" name="cupo" required>
                             <label for="cupo">Cupo</label>
                         </div>
+                        <br>
                         <div class="input-field">
+                        <p>Seleccione la fecha: </p>
                             <input type="date" id="fecha" name="fecha" required>
-                            <label for="fecha">Fecha</label>
+                            
                         </div>
+                        <br>
                         <div class="input-field">
+                            <p>Seleccione la hora: </p>
                             <input type="time" id="hora" name="hora" required>
-                            <label for="hora">Hora</label>
+                            
                         </div>
                         <div class="button-group">
                             <button type="button" class="btn btn-secondary botones btn-left"

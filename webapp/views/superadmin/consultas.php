@@ -23,7 +23,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <!-- Navegación Vertical -->
+            <!-- menu -->
             <div class="col-lg-2">
                 <div>
                     <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>

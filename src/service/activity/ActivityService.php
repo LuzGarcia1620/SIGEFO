@@ -51,9 +51,11 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("INSERT INTO actividad (idInstructor, idTipo, nombre, duracion, horasPresencial, horasLinea, horasIndependiente,
-                                idClasificacion, idModalidad, dirigidoA, perfilIngreso, perfilEgreso, objetivo, temario, cupo, presentacion, fechaImp, horaImp)
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("INSERT INTO actividad (idInstructor, idTipo, nombre, 
+            duracion, horasPresencial, horasLinea, horasIndependiente,idClasificacion, 
+            idModalidad, dirigidoA, perfilIngreso, perfilEgreso, objetivo, temario, cupo, 
+            presentacion, fechaImp, horaImp) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bindValue(1, $beanActividad->getIdInstructor());
             $stmt->bindValue(2, $beanActividad->getIdTipo());
             $stmt->bindValue(3, $beanActividad->getNombre());
@@ -84,7 +86,8 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("UPDATE actividad SET idModalidad = ?, nombre = ?, dirigidoa = ?, objetivo = ?, idInstructor = ?, idTipo = ?, fechaImp = ?, 
+            $stmt = $conn->prepare("UPDATE actividad SET idModalidad = ?, nombre = ?, 
+            dirigidoa = ?, objetivo = ?, idInstructor = ?, idTipo = ?, fechaImp = ?, 
             duracion = ?, horaImp = ? WHERE idActividad = ?;");
             $stmt->bindValue(1, $beanActividad->getIdModalidad());
             $stmt->bindValue(2, $beanActividad->getNombre());

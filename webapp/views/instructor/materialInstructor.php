@@ -11,34 +11,24 @@
 </head>
 
 <body>
-<div>
-    <?php include __DIR__ . '/../../templates/header.html'; ?>
+    <div>
+        <?php include __DIR__ . '/../../templates/header.html'; ?>
     </div>
     <div class="container-fluid">
         <div class="row">
-
-        <!-- Navegación Vertical -->
-        <div class="col-lg-2">
-            <div class="navback">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a>
-                    </li>
-                    <li><a href="/SIGEFO/asistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
-                    </li>
-                    <li><a href="/SIGEFO/materialInstructor" class="btn btn-primary btn-block my-1 menu">Material</a>
-                    </li>
-                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                </ul>
+            <!-- Navegación Vertical -->
+            <div class="col-lg-2">
+                <div>
+                    <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?>
+                </div>
             </div>
-        </div>
 
             <!-- Contenido Principal -->
             <div class="col-lg-10">
                 <div class="titulo">Material</div>
                 <div class="line"></div>
 
-                <div class="card mx-auto" style="max-width: 500px;">
+                <div class="card mx-auto" style="max-width: 400px;">
                     <div class="card-header bg-white text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25"
                             height="25" viewBox="0 0 512 419.116">
@@ -77,14 +67,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
 
         <!-- Footer -->
         <div>
-    <?php include __DIR__ . '/../../templates/footer.html'; ?>
-    </div>
+            <?php include __DIR__ . '/../../templates/footer.html'; ?>
+        </div>
 
         <script>
         fetch("../../templates/header.html")

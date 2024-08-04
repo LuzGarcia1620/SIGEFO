@@ -27,7 +27,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                 <div class="navback">
                     <ul class="list-unstyled vertical-nav">
                       
-                        <?php if ($user['rol'] == 'SuperAdmin'): ?>
+                        <?php if ($user['rol'] == 'SuperAdmin'|| $user['rol'] == 'Admin'): ?>
                             <?php include __DIR__ . '/templates/menuSuperAdmin.php'; ?>
                         <?php elseif ($user['rol'] == 'Instructor'): ?>
                             <?php include __DIR__ . '/templates/menuInstructor.php'; ?>
