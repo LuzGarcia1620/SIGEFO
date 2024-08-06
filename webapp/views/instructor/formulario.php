@@ -214,8 +214,8 @@ if (isset($_SESSION['idInstructor'])) {
                         <div class="input-field">
                             <select id="clasificacion" name="clasificacion" required>
                                 <option value="">Seleccione la clasificación</option>
-                                <?php foreach ($clasifications as $clasification): ?>
-                                    <option value="<?php echo $clasification['id'] ?>">
+                                <?php foreach ($clasifications as $clasificacion): ?>
+                                    <option value="<?php echo $clasificacion['id'] ?>">
                                         <?php echo $clasificacion['nombre'] ?>
                                     </option>
                                 <?php endforeach; ?>

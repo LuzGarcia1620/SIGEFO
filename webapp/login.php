@@ -46,6 +46,8 @@ $auth = $authController->handleRequest();
         <li><a href="">Contacto</a></li>
     </ul>
 </nav>
+
+<!-- CONTENIDO PRINCIPAL-->
 <div id="container">
     <div class="login-card">
         <div id="left">

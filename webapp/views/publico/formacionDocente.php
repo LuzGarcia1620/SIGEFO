@@ -14,6 +14,18 @@
     <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
     </div>
+    <?php
+require __DIR__ . "/../../../src/controller/modality/ModalityController.php";
+require __DIR__ . "/../../../src/controller/activity/ActivityController.php";
+
+
+$ActivityController = new ActivityController();
+$actividades = $ActivityController->handleRequest();
+
+$modalityController = new ModalityController();
+$modalities = $modalityController->handleRequest();
+$modalities = isset($modalities) ? $modalities : array();
+?>
 
 <!-- NavBAR -->
 <nav class="dropdownmenu">
@@ -31,7 +43,7 @@
         <li><a href="#">Formación Docente</a>
             <ul id="submenu">
                 <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
-                <li><a href="">Actividades Formativas</a></li>
+                <li><a href="/SIGEFO/">Actividades Formativas</a></li>
                 <li><a href="">Galería</a></li>
                 <li><a href="">Descargar constancia</a></li>
             </ul>
@@ -68,9 +80,9 @@
                     La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección General de Educación Superior
                 </div>
                 <div class="card-body card-body-custom">
-                    <h5 class="card-title">Invita al</h5>
-                    <h2 class="card-text">Desarrollo de actividades dentro del aula</h2>
-                    <p class="card-text">Dirigido al Personal Académico de la UAEM</p>
+                    <h5 class="card-title">Invita al <?php echo isset($modalities) ? $modalidad['nombre'] : null ?>"</h5>
+                    <h2 class="card-text"><?php echo isset($activity) ? $actividad['nombre'] : null ?></h2>
+                    <p class="card-text"><?php echo isset($activity) ? $actividad['dirigidoa'] : null ?></p>
                 </div>
                 <div class="card-footer card-footer-custom">
                     <a href="SIGEFO/informacion" class="btn btn-custom">Ver más información</a>

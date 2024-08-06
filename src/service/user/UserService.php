@@ -15,7 +15,9 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT u.idusuario, u.usuario, u.nombre, u.paterno, u.materno, u.correo, r.nombre AS rol, u.status FROM usuario AS u JOIN rol AS r ON r.id = u.idrol;");
+            $stmt = $conn->prepare("SELECT u.idusuario, u.usuario, 
+            u.nombre, u.paterno, u.materno, u.correo, r.nombre AS rol, 
+            u.status FROM usuario AS u JOIN rol AS r ON r.id = u.idrol;");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -28,8 +30,10 @@ class UserService
     {
         try {
             $conn = $this->postgres->connect();
-            $stmt = $conn->prepare("SELECT u.idUsuario, u.nombre, u.paterno, u.materno, u.usuario, u.correo, u.password,
-             u.status, r.nombre AS rol FROM usuario as u JOIN rol as r ON u.idRol = r.id WHERE u.idUsuario = ?;");
+            $stmt = $conn->prepare("SELECT u.idUsuario, u.nombre, u.paterno, 
+            u.materno, u.usuario, u.correo, u.password,
+             u.status, r.nombre AS rol FROM usuario as u 
+             JOIN rol as r ON u.idRol = r.id WHERE u.idUsuario = ?;");
             $stmt->bindParam(1, $idUsuario);
             $stmt->execute();
 
@@ -44,7 +48,9 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("INSERT INTO usuario (usuario, password, nombre, paterno, materno, correo, idRol, status) VALUES (?, ?, ?, ?, ?, ?, ?, true);");
+            $stmt = $conn->prepare("INSERT INTO usuario (usuario, password, 
+            nombre, paterno, materno, correo, idRol, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, true);");
             $stmt->bindValue(1, $beanUser->getUsuario());
             $stmt->bindValue(2, $beanUser->getPassword());
             $stmt->bindValue(3, $beanUser->getNombre());
@@ -64,7 +70,9 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, nombre = ?, paterno = ?, materno = ?, correo = ?, password = ? WHERE idUsuario = ?;");
+            $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, 
+            nombre = ?, paterno = ?, materno = ?, correo = ?,
+             password = ? WHERE idUsuario = ?;");
             $stmt->bindValue(1, $beanUser->getUsuario());
             $stmt->bindValue(2, $beanUser->getNombre());
             $stmt->bindValue(3, $beanUser->getPaterno());
@@ -119,7 +127,9 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT us.nombre, us.paterno, us.materno, ins.idInstructor FROM usuario AS us JOIN instructor AS ins ON us.idUsuario = ins.idUsuario WHERE us.idRol = '3';");
+            $stmt = $conn->prepare("SELECT us.nombre, us.paterno, us.materno,
+             ins.idInstructor FROM usuario AS us JOIN instructor AS ins 
+             ON us.idUsuario = ins.idUsuario WHERE us.idRol = '3';");
             $stmt->execute();
 
             return $stmt->fetchAll();

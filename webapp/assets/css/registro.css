@@ -1,3 +1,64 @@
+/*MENU*/
+
+.dropdownmenu ul, .dropdownmenu li {
+    margin: 0;
+    padding: 0;
+  }
+  .dropdownmenu ul {
+    background: gray;
+    list-style: none;
+    width: 100%;
+    
+  }
+  .dropdownmenu li {
+    float: left;
+    position: relative;
+    width: auto;
+  }
+  .dropdownmenu a {
+    background: #d0d0d0;
+    color: #000000;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+  }
+  .dropdownmenu li:hover a {
+    background: #ffffff;
+    color: #000000;
+  }
+  #submenu {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 35px;
+    visibility: hidden;
+    z-index: 1;
+  
+  }
+  li:hover ul#submenu {
+    opacity: 1;
+    top: 40px;
+    visibility: visible;
+  }
+  #submenu li {
+    float: none;
+    width: 100%;
+  }
+  #submenu a:hover {
+    background: #001660;
+    color: #ffffff;
+  }
+  #submenu a {
+    background-color: #ffffff;
+  }
+
 .contenido {
     padding: 2rem;
     background: #fff;
@@ -31,16 +92,16 @@
     width: 100%; /* Ocupa todo el ancho disponible en pantallas más pequeñas */
     background: #fff;
     border-radius: 8px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     box-sizing: border-box;
     overflow: hidden;
     padding: 20px; /* Añade relleno */
-    margin: 15px; /* Margen para separación en dispositivos móviles */
+    margin: 15px; 
 }
 
 .regresar {
-    width: 155px; /* Ancho fijo en pantallas más grandes */
+    width: 155px; 
     height: 37px;
     background: #41538F;
     border-radius: 13px;
@@ -51,9 +112,14 @@
     text-align: center;
     text-decoration: none;
     line-height: 37px;
-    transition: width 0.3s, margin-left 0.3s; /* Animación suave en los cambios */
+    transition: width 0.3s, margin-left 0.3s;
 }
 
+.positionButton{
+    margin-right: 50%;
+    width: 155px;
+    height: 20px;
+}
 .continuar{
     width: 155px; /* Ancho fijo en pantallas más grandes */
     height: 37px;
@@ -76,8 +142,8 @@
 }
 
 .form-title {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     font-size: 22px;
     font-weight: 700;
     text-align: center;
@@ -88,6 +154,8 @@
     font-size: 15px;
     font-weight: 500;
     text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .login-card,

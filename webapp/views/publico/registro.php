@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/registro.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registro.css"/>
     <title>Registro</title>
 </head>
 <body>
@@ -25,46 +24,46 @@ $unidadController = new UnidadAcademicaController();
 $unidades = $unidadController->handleRequest();
 $unidades = isset($unidades) ? $unidades : array();
 
+$ActivityController = new ActivityController();
+$actividades = $ActivityController->handleRequest();
+
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./evaluaciondocente.php">Evaluación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./formaciondocente.php">Formación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./documentosconsulta.php">Documentos de Consulta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./contacto.php">Contacto</a>
-                </li>
+<!-- NavBAR -->
+<nav class="dropdownmenu">
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Evaluación Docente</a>
+            <ul id="submenu">
+                <li><a href="">Instrumento de evaluacion docente</a></li>
+                <li><a href="">Cronograma</a></li>
+                <li><a href="">Fechas de aplicación</a></li>
+                <li><a href="">Reporte de Resultados</a></li>
+                <li><a href="">Monitoreo</a></li>
             </ul>
-            <a class="navbar-brand ms-auto" href="./index.php">UAEM</a>
-        </div>
-    </div>
+        </li>
+        <li><a href="#">Formación Docente</a>
+            <ul id="submenu">
+                <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
+                <li><a href="/SIGEFO/">Actividades Formativas</a></li>
+                <li><a href="">Galería</a></li>
+                <li><a href="">Descargar constancia</a></li>
+            </ul>
+        </li>
+        <li><a href="">Documentos de Consulta</a></li>
+        <li><a href="">Contacto</a></li>
+    </ul>
 </nav>
-
-<a href="/SIGEFO/informacion" class="regresar">Regresar</a>
-<br>
+    <!-- Fin de la NavBar -->
+   <a href="/SIGEFO/informacion" class="regresar">Regresar</a>  
 
 <div class="container d-flex justify-content-center align-items-center form-section">
-    <div class="form-container p-4 shadow-sm rounded">
+ 
+<div class="form-container">
         <form id="email-form" method="POST" action="/src/controller/docente/DocenteController.php">
-            <p class="form-title">Desarrollo de actividades dentro del aula</p>
+            <p class="form-title"><?php echo isset($actividades) ? $actividad['nombre'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
                 <input type="correo" class="form-control" id="correo" name="correo" placeholder="Correo electrónico"
@@ -198,9 +197,11 @@ $unidades = isset($unidades) ? $unidades : array();
     </div>
 </div>
 
-<footer class="bg-custom-footer py-2">
+
+
+<div>
     <?php include __DIR__ . '/../../templates/footerPublico.html'; ?>
-</footer>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
