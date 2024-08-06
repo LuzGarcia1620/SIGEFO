@@ -11,22 +11,17 @@
 require __DIR__ . "/../../../src/controller/docente/DocenteController.php";
 require __DIR__ . "/../../../src/controller/profile/ProfileController.php";
 require __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
+require __DIR__ . "/../../../src/controller/activity/ActivityController.php";
 
 $docenteController = new DocenteController();
-$docente = $docenteController->handleRequest();
-$docente = isset($docente) ? $docente : array();
-
 $profileController = new ProfileController();
-$profiles = $profileController->handleRequest();
-$profiles = isset($profiles) ? $profiles : array();
-
 $unidadController = new UnidadAcademicaController();
+$activityController = new ActivityController();
+
+$docente = isset($_POST['correo']) ? $docenteController->getByEmail($_POST['correo']) : null;
+$profiles = $profileController->handleRequest();
 $unidades = $unidadController->handleRequest();
-$unidades = isset($unidades) ? $unidades : array();
-
-$ActivityController = new ActivityController();
-$actividades = $ActivityController->handleRequest();
-
+$actividades = $activityController->handleRequest();
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
@@ -56,18 +51,16 @@ $actividades = $ActivityController->handleRequest();
         <li><a href="">Contacto</a></li>
     </ul>
 </nav>
-    <!-- Fin de la NavBar -->
-   <a href="/SIGEFO/informacion" class="regresar">Regresar</a>  
+<!-- Fin de la NavBar -->
+<a href="/SIGEFO/informacion" class="regresar">Regresar</a>
 
 <div class="container d-flex justify-content-center align-items-center form-section">
- 
-<div class="form-container">
-        <form id="email-form" method="POST" action="/src/controller/docente/DocenteController.php">
-            <p class="form-title"><?php echo isset($actividades) ? $actividad['nombre'] : null ?></p>
+    <div class="form-container">
+        <form id="email-form" method="POST" action="">
+            <p class="form-title"><?php echo isset($actividades) ? $actividades['nombre'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
-                <input type="correo" class="form-control" id="correo" name="correo" placeholder="Correo electrónico"
-                       required>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
                 <input type="hidden" name="action" value="validateEmail">
             </div>
             <button type="submit" class="btn btn-primary w-100">Continuar</button>
@@ -75,129 +68,67 @@ $actividades = $ActivityController->handleRequest();
     </div>
 </div>
 
-<div class="form-section" style="display: none;">
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$docente): ?>
+<div class="form-section">
     <div class="container">
         <div class="heading">Registro</div>
-        <form class="form" action="">
+        <form class="form" method="POST" action="/src/controller/docente/DocenteController.php">
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="name"
-                        value="<?php echo isset($docente) ? $docente['nombre'] : null ?>"
-                />
-                <label for="name">Nombre(s)</label>
+                <input required autocomplete="off" type="text" name="nombre" id="nombre" value="" />
+                <label for="nombre">Nombre(s)</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="apellidoPaterno"
-                        value="<?php echo isset($docente) ? $docente['paterno'] : null ?>"
-                />
-                <label for="username">Apellido Paterno</label>
+                <input required autocomplete="off" type="text" name="paterno" id="apellidoPaterno" value="" />
+                <label for="apellidoPaterno">Apellido Paterno</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="apellidoMaterno"
-                        value="<?php echo isset($docente) ? $docente['materno'] : null ?>"
-                />
-                <label for="username">Apellido Materno</label>
+                <input required autocomplete="off" type="text" name="materno" id="apellidoMaterno" value="" />
+                <label for="apellidoMaterno">Apellido Materno</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="sexo"
-                        value="<?php echo isset($docente) ? $docente['sexo'] : null ?>"
-                />
-                <label for="username">Sexo</label>
+                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="" />
+                <label for="sexo">Sexo</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="number"
-                        name="number"
-                        id="edad"
-                        value="<?php echo isset($docente) ? $docente['edad'] : null ?>"
-                />
-                <label for="username">Edad</label>
+                <input required autocomplete="off" type="number" name="edad" id="edad" value="" />
+                <label for="edad">Edad</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="email"
-                        name="email"
-                        id="email"
-                        value="<?php echo isset($docente) ? $docente['correo'] : null ?>"
-                />
-                <label for="email">Correo Electronico</label>
+                <input required autocomplete="off" type="email" name="correo" id="correo" value="" />
+                <label for="correo">Correo Electrónico</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="grado"
-                        value="<?php echo isset($docente) ? $docente['grado'] : null ?>"
-                />
+                <input required autocomplete="off" type="text" name="grado" id="grado" value="" />
                 <label for="grado">Grado</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="text"
-                        id="disciplina"
-                        value="<?php echo isset($docente) ? $docente['disciplina'] : null ?>"
-                />
+                <input required autocomplete="off" type="text" name="disciplina" id="disciplina" value="" />
                 <label for="disciplina">Disciplina</label>
             </div>
             <div class="input-field">
                 <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected>value="<?php echo isset($docente) ? $docente['unidad'] : null ?>"</option>
+                    <option value="" disabled selected>Unidad Académica</option>
                     <?php foreach ($unidades as $unidad): ?>
-                        <option value="<?php echo $unidad['id'] ?>">
-                            <?php echo $unidad['nombre'] ?>
-                        </option>
+                        <option value="<?php echo $unidad['id'] ?>"><?php echo $unidad['nombre'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>value="<?php echo isset($docente) ? $docente['perfil'] : null ?>"</option>
+                    <option value="" disabled selected>Perfil</option>
                     <?php foreach ($profiles as $profile): ?>
-                        <option value="<?php echo $profile['id'] ?>">
-                            <?php echo $profile['nombre'] ?>
-                        </option>
+                        <option value="<?php echo $profile['id'] ?>"><?php echo $profile['nombre'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            En los últimos 3 años, ¿Ha tomado alguna actividad formativa: curso, taller, curso-taller, conferencia,
-            seminarios organizado por el Departamento de Formación Docente?
-
+            <p>En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
             <div class="btn-container">
-                <button class="btn">Submit</button>
+                <button type="submit" class="btn">Submit</button>
             </div>
         </form>
     </div>
 </div>
-
-
+<?php endif; ?>
 
 <div>
     <?php include __DIR__ . '/../../templates/footerPublico.html'; ?>
@@ -207,5 +138,57 @@ $actividades = $ActivityController->handleRequest();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/../webapp/assets/js/registro.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#email-form').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire({
+                        title: 'OjoDocente',
+                        text: "Ud ya está registrado",
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirigir al formulario de inscripción (cargar datos del docente)
+                            $('.form-section').show();
+                            $('#email-form').hide();
+                        }
+                    });
+                } 
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    title: 'No se encontraron sus datos',
+                    text: "¿Desea registrarse?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, deseo registrarme'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Mostrar el formulario de registro vacío
+                        $('.form-section').show();
+                        $('#email-form').hide();
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>
