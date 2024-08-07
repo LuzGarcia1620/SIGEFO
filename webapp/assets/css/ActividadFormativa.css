@@ -90,7 +90,7 @@ p {
 }
 
 .activity {
-  width: 107px;
+  width: 300px; /* Ajuste del ancho de la columna Actividad */
   height: 26px;
 }
 
@@ -105,8 +105,8 @@ p {
   background: #D9D9D9;
 }
 
-.conte{
-background-color: #001660 ;
+.conte {
+  background-color: #001660 ;
 }
 
 .divider {
@@ -206,12 +206,12 @@ background-color: #001660 ;
 
 table {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px; /* Ajuste del ancho de la tabla */
   margin-top: 20px;
 }
 
-.tabla{
-  margin-left: 25%;
+.tabla {
+  margin-left: 23%;
   width: 100%;
 }
 
@@ -219,19 +219,21 @@ table {
   background-color: #003366; /* Azul */
   color: white;
   text-align: center;
-  width: auto;
+  width: 40%; /* Ajuste del ancho de la columna Actividad */
 }
 
 .table-bordered th.status {
   background-color: #008000; /* Verde */
   color: white;
   text-align: center;
+  width: 30%; /* Ajuste del ancho de la columna Status */
 }
 
 .table-bordered th.management {
   background-color: #003366; /* Azul */
   color: white;
   text-align: center;
+  width: 30%; /* Ajuste del ancho de la columna Gestión */
 }
 
 .table-bordered td {
@@ -244,22 +246,109 @@ table {
   margin: 0 5px;
 }
 
-
-.modal-body-content {
-  color: black;
-  font-size: 16px;
-  font-family: Aleo, serif;
-  font-weight: 400;
-  word-wrap: break-word;
+/* Estilos para el modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-body-title {
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.modal-header .close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-header .close:hover,
+.modal-header .close:focus {
   color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.modal-body h3 {
   font-size: 20px;
-  font-family: Aleo, serif;
-  font-weight: 700;
-  word-wrap: break-word;
+  margin-bottom: 15px;
 }
+
+.modal-body p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modal-body p strong {
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 10px;
+}
+
+.modal-footer .btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #0056b3;
+}
+
 
 .button-container {
   display: flex;
@@ -374,7 +463,7 @@ table {
   border-radius: 100px;
 }
 
-.contenido{
+.contenido {
   border: solid 1px #8d8d8d;
   padding: 20px;
   border-radius: 20px;
@@ -437,4 +526,3 @@ table {
 .form .close {
   display: none;
 }
-
