@@ -212,14 +212,38 @@ table {
 
 .tabla{
   margin-left: 25%;
+  width: 100%;
 }
 
-th,
-td {
-  padding: 10px;
+.table-bordered th.activity {
+  background-color: #003366; /* Azul */
+  color: white;
   text-align: center;
-  justify-content: center;
+  width: auto;
 }
+
+.table-bordered th.status {
+  background-color: #008000; /* Verde */
+  color: white;
+  text-align: center;
+}
+
+.table-bordered th.management {
+  background-color: #003366; /* Azul */
+  color: white;
+  text-align: center;
+}
+
+.table-bordered td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img-container img {
+  cursor: pointer;
+  margin: 0 5px;
+}
+
 
 .modal-body-content {
   color: black;
