@@ -21,7 +21,7 @@
       .menu {
         height: 50px;
         justify-content: center;
-        background-color: #dee0e5;
+        background-color: #3A5A96;
       }
     </style>
   </head>
