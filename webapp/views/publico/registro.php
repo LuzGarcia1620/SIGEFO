@@ -9,13 +9,13 @@
 </head>
 <body>
 <?php
-require __DIR__ . "/../../../src/controller/docente/DocenteController.php";
-require __DIR__ . "/../../../src/controller/profile/ProfileController.php";
-require __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
+require_once __DIR__ . "/../../../src/controller/docente/DocenteController.php";
+require_once __DIR__ . "/../../../src/controller/profile/ProfileController.php";
+require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
+require_once __DIR__ . "/../../../src/service/docente/DocenteService.php";
 
 $docenteController = new DocenteController();
 $docente = $docenteController->handleRequest();
-$docente = isset($docente) ? $docente : array();
 
 $profileController = new ProfileController();
 $profiles = $profileController->handleRequest();
@@ -25,10 +25,16 @@ $unidadController = new UnidadAcademicaController();
 $unidades = $unidadController->handleRequest();
 $unidades = isset($unidades) ? $unidades : array();
 
+$email = isset($_GET['correo']);
+
+$docenteService = new DocenteService();
+$docente = $docenteService->validateEmail($email);
+
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -63,15 +69,16 @@ $unidades = isset($unidades) ? $unidades : array();
 
 <div class="container d-flex justify-content-center align-items-center form-section">
     <div class="form-container p-4 shadow-sm rounded">
-        <form id="email-form" method="POST" action="/src/controller/docente/DocenteController.php">
+        <form id="email-form" method="GET" action="/SIGEFO/registro" target="_self">
             <p class="form-title">Desarrollo de actividades dentro del aula</p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
                 <input type="correo" class="form-control" id="correo" name="correo" placeholder="Correo electrónico"
                        required>
-                <input type="hidden" name="action" value="validateEmail">
+                <!--<input type="hidden" name="action" value="validateEmail">-->
             </div>
             <button type="submit" class="btn btn-primary w-100">Continuar</button>
+
         </form>
     </div>
 </div>
@@ -85,7 +92,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="nombre"
                         id="name"
                         value="<?php echo isset($docente) ? $docente['nombre'] : null ?>"
                 />
@@ -96,7 +103,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="paterno"
                         id="apellidoPaterno"
                         value="<?php echo isset($docente) ? $docente['paterno'] : null ?>"
                 />
@@ -107,7 +114,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="materno"
                         id="apellidoMaterno"
                         value="<?php echo isset($docente) ? $docente['materno'] : null ?>"
                 />
@@ -118,7 +125,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="sexo"
                         id="sexo"
                         value="<?php echo isset($docente) ? $docente['sexo'] : null ?>"
                 />
@@ -129,7 +136,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="number"
-                        name="number"
+                        name="edad"
                         id="edad"
                         value="<?php echo isset($docente) ? $docente['edad'] : null ?>"
                 />
@@ -151,7 +158,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="grado"
                         id="grado"
                         value="<?php echo isset($docente) ? $docente['grado'] : null ?>"
                 />
@@ -162,7 +169,7 @@ $unidades = isset($unidades) ? $unidades : array();
                         required=""
                         autocomplete="off"
                         type="text"
-                        name="text"
+                        name="disciplina"
                         id="disciplina"
                         value="<?php echo isset($docente) ? $docente['disciplina'] : null ?>"
                 />
@@ -170,7 +177,7 @@ $unidades = isset($unidades) ? $unidades : array();
             </div>
             <div class="input-field">
                 <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected>value="<?php echo isset($docente) ? $docente['unidad'] : null ?>"</option>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null ?></option>
                     <?php foreach ($unidades as $unidad): ?>
                         <option value="<?php echo $unidad['id'] ?>">
                             <?php echo $unidad['nombre'] ?>
@@ -180,7 +187,7 @@ $unidades = isset($unidades) ? $unidades : array();
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>value="<?php echo isset($docente) ? $docente['perfil'] : null ?>"</option>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['perfil'] : null ?></option>
                     <?php foreach ($profiles as $profile): ?>
                         <option value="<?php echo $profile['id'] ?>">
                             <?php echo $profile['nombre'] ?>

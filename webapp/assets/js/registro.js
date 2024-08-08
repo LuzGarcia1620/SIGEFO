@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const formEmail = document.getElementById('email-form');
     const formRegisterModal = document.getElementById('');
 
-    $('#email-form').on('submit', (e) => {
+    /*$('#email-form').on('submit', (e) => {
         e.preventDefault();
-        const formData = new FormData(formEmail);
+
+        /*const formData = $('#email-form').serialize();
 
         $.ajax({
-            url: '',
-            type: 'POST',
+            url: '/SIGEFO/registrob',
+            type: 'GET',
             data: formData,
             contentType: false,
-            processData: false,
+            processData: true,
             success: function (response, status, xhr) {
                 if (xhr.status === 200) {
                     Swal.fire({
@@ -23,24 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         //cancelButtonColor: '#d33',
                         confirmButtonText: 'OK'
                     }).then((result) => {
+
                         if (result.isConfirmed)
+                            //
                             nextStep();
+
                     });
+                    //location.href = `registro?${formData}`
                     //location.reload();
-                } /*else {
-                    Swal.fire({
-                        title: 'No se encontraron sus datos',
-                        text: "¿Desea Registrarse?",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Sí, Deseo Registrarme'
-                    }).then((result) => {
-                        if (result.isConfirmed)
-                            nextStep();
-                    });
-                }*/
+                }
             },
             error: function (xhr, status, error) {
                 Swal.fire({
@@ -57,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         })
-    })
+    })*/
 })
 
 function openModal(modalId) {

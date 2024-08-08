@@ -31,7 +31,7 @@ class DocenteController
                 case 'change':
                     break;
 
-                case 'validateEmail':
+                /*case 'validateEmail':
                     try {
                         $service = $this->docenteService;
 
@@ -40,6 +40,7 @@ class DocenteController
                         $result = $service->validateEmail($email);
 
                         if ($result) {
+                            var_dump($result);
                             header('HTTP/1.0 200 OK');
                             return $result;
                         } else {
@@ -49,7 +50,7 @@ class DocenteController
                     } catch (Exception $e) {
                         error_log($e);
                     }
-                    break;
+                    break;*/
 
                 default:
                     error_log("Unsupported request method");
@@ -58,9 +59,24 @@ class DocenteController
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            //$docentes = $this->docenteService->getAll();
+            if (isset($_GET['correo'])) {
+                try {
+                    $service = $this->docenteService;
 
-            //return $docentes ? $docentes : array();
+                    $email = $_GET["correo"];
+
+                    $result = $service->validateEmail($email);
+
+                    if ($result) {
+                        header('HTTP/1.0 200 OK');
+                        return $result;
+                    } else {
+                        header('HTTP/1.0 400 Bad Request');
+                    }
+                } catch (Exception $e) {
+                    error_log($e);
+                }
+            }
         }
     }
 }
