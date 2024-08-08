@@ -133,8 +133,8 @@ class ActivityController
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            if (isset($_GET['id'])) {
-                $id = intval($_GET['id']);
+            if (isset($_GET['actividad'])) {
+                $id = intval($_GET['actividad']);
                 $activity = $this->activityService->getById($id);
 
                 return $activity;

@@ -56,20 +56,19 @@ $activity = $activityController->handleRequest();
         <div class="card p-3 shadow-md">
             <div class="row g-0">
                 <div class="col-md-5">
-                    <img src="/SIGEFO/webapp/assets/img/curso.png" class="img-fluid rounded-start" alt="Img">
+                    <!--<img src="/SIGEFO/webapp/assets/img/curso.png" class="img-fluid rounded-start" alt="Img">-->
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        <h6 class="card-title"><?= htmlspecialchars($activity['nombreActividad']) ?></h6>
-                        <p>Dirigido a: <?= htmlspecialchars($activity['dirigidoA']) ?></p>
-                        <p>Objetivo: <?= htmlspecialchars($activity['objetivo']) ?></p>
-                        <p>Instructor: <?= htmlspecialchars($activity['instructor']) ?></p>
-                        <p>Modalidad: <?= htmlspecialchars($activity['modalidad']) ?></p>
-                        <p>Fecha: <?= htmlspecialchars($activity['fechaImp']) ?></p>
-                        <p>Horario: <?= htmlspecialchars($activity['horaImp']) ?></p>
+                        <h6 class="card-title"><?php echo $activity['nombreactividad'] ?></h6>
+                        <p>Dirigido a: <?php echo $activity['dirigidoa'] ?></p>
+                        <p>Objetivo: <?php echo $activity['objetivo'] ?></p>
+                        <p>Instructor: <?php echo $activity['nombre'] . " " . $activity['paterno'] . " " . $activity['materno'] ?></p>
+                        <p>Modalidad: <?php echo $activity['modalidad'] ?></p>
+                        <p>Fecha: <?php echo $activity['fechaimp'] ?></p>
+                        <p>Horario: <?php echo $activity['horaimp'] ?></p>
                         <div class="text-end">
-                            <a href="/SIGEFO/registro.php?id=<?= $activity['idActividad'] ?>"
-                                class="btn btn-primary">¡Inscríbete aquí!</a>
+                            <a class="btn btn-primary">¡Inscríbete aquí!</a>
                         </div>
                     </div>
                 </div>

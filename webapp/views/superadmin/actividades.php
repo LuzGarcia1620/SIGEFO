@@ -31,6 +31,7 @@ $modalities = isset($modalities) ? $modalities : array();
 
 $userService = new UserService();
 $instructores = $userService->getAllInstructors();
+$instructores = isset($instructores) ? $instructores : array();
 
 $typeController = new TypeController();
 $types = $typeController->handleRequest();
@@ -74,9 +75,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($actividades
-
-                                   as $actividad): ?>
+                            <?php foreach ($actividades as $actividad): ?>
                             <tr>
                                 <td><?php echo $actividad['nombreactividad']; ?></td>
                                 <td><?php echo $actividad['status']; ?></td>
@@ -129,7 +128,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                                 value="<?php echo $actividad['idactividad'] ?>" />
                                             <input type="hidden" id="action" name="action" value="sendToPublic"
                                                 required>
-                                            <button class="btn btn-primary">Enviar</button>
+                                            <button class="btn btn-primary btnSendAc">Enviar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -244,7 +243,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                 <div class="tarjeta">
                     <div class="modal-footer-title">Nueva Actividad</div>
                     <div class="divider-line"></div>
-                    <form class="form" method="POST" action="/src/controller/activity/ActivityController.php">
+                    <form class="form" id="formSuperAdmin" method="POST" action="/src/controller/activity/ActivityController.php">
                         <input type="hidden" name="action" value="save">
                         <div class="campo">
                             <select id="modalidad" name="modalidad" required onchange="toggleOtraModalidad(this)">
@@ -277,7 +276,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             <select id="Instructor" name="idInstructor" required>
                                 <option value="" disabled selected>Selecciona un instructor</option>
                                 <?php foreach ($instructores as $instructor): ?>
-                                <option value="<?php echo $instructor['idInstructor']; ?>">
+                                <option value="<?php echo $instructor['idinstructor']; ?>">
                                     <?php echo $instructor['nombre']; ?></option>
                                 <?php endforeach; ?>
                             </select>

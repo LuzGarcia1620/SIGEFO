@@ -56,24 +56,29 @@
                 <p>¡Aún no tenemos actividades disponibles!</p>
             </div>
             <?php else: ?>
-            <?php foreach ($activities as $activity): ?>
-            <?php if ($activity['status']): ?>
-            <div class="col-md-6 d-flex justify-content-center">
-                <div class="card card-custom">
-                    <div class="card-header card-header-custom">
-                        La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección
-                        General de Educación Superior
-                    </div>
-                    <div class="card-body card-body-custom">
-                        <h5 class="card-title"><?= htmlspecialchars($activity['modalidad']) ?></h5>
-                        <h2 class="card-text"><?= htmlspecialchars($activity['nombreActividad']) ?></h2>
-                        <p class="card-text"><?= htmlspecialchars($activity['dirigidoA']) ?></p>
-                    </div>
-                    
-                </div>
-            </div>
-            <?php endif; ?>
-            <?php endforeach; ?>
+                <?php foreach ($activities as $activity): ?>
+                    <?php if ($activity['status']): ?>
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="card card-custom">
+                                <div class="card-header card-header-custom">
+                                    La Universidad Autónoma del Estado de Morelos, la Secretaría Académica a través de la Dirección
+                                    General de Educación Superior
+                                </div>
+                                <div class="card-body card-body-custom">
+                                    <h5 class="card-title"><?php echo $activity['modalidad']?></h5>
+                                    <h2 class="card-text"><?php echo $activity['nombreactividad'] ?></h2>
+                                    <p class="card-text"><?php echo $activity['dirigidoa'] ?></p>
+                                    <form method="get" action="/SIGEFO/informacion">
+                                       <input type="hidden" name="actividad" value="<?php echo $activity['idactividad'] ?>">
+                                        <button type="submit" class="inscriptionbtn"><a >¡Inscríbete aquí!</a></button>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
     </div>

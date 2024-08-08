@@ -16,13 +16,14 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA, 
-                                        ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion, ac.fechaImp, 
-                                        ac.horaImp FROM actividad AS ac
-                                        JOIN instructor AS i ON ac.idInstructor = i.idInstructor
-                                        JOIN usuario AS us ON i.idUsuario = us.idUsuario
-                                        JOIN modalidad AS m ON ac.idModalidad = m.id
-                                        JOIN tipo AS ti ON ac.idTipo = ti.id;");
+            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA,
+                                                ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion,
+                                                ac.fechaImp, ac.horaImp
+                                            FROM actividad AS ac
+                                            LEFT JOIN instructor AS i ON ac.idInstructor = i.idInstructor
+                                            LEFT JOIN usuario AS us ON i.idUsuario = us.idUsuario
+                                            LEFT JOIN modalidad AS m ON ac.idModalidad = m.id
+                                            LEFT JOIN tipo AS ti ON ac.idTipo = ti.id;");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -36,7 +37,14 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("");
+            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA,
+                                                ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion,
+                                                ac.fechaImp, ac.horaImp
+                                            FROM actividad AS ac
+                                            LEFT JOIN instructor AS i ON ac.idInstructor = i.idInstructor
+                                            LEFT JOIN usuario AS us ON i.idUsuario = us.idUsuario
+                                            LEFT JOIN modalidad AS m ON ac.idModalidad = m.id
+                                            LEFT JOIN tipo AS ti ON ac.idTipo = ti.id WHERE ac.idActividad = ?;");
             $stmt->bindValue(1, $idActividad);
             $stmt->execute();
 
