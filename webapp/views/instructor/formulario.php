@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Formulario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/form.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/form.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/>
 </head>
 
 <body>
@@ -57,24 +57,11 @@ if (isset($_SESSION['idInstructor'])) {
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
-</div>
-<div class="container-fluid">
+    <div class="container-fluid">
     <div class="row">
-        <!-- Navegación Vertical -->
         <div class="col-lg-2">
-            <div class="navback">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/SIGEFO/formulario" class="btn btn-primary btn-block my-1 menu">Formulario</a>
-                    </li>
-                    <li><a href="/SIGEFO/cotejo" class="btn btn-primary btn-block my-1 menu">Asistencia</a>
-                    </li>
-                    <li><a href="/SIGEFO/material" class="btn btn-primary btn-block my-1 menu">Material</a>
-                    </li>
-                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu"
-                           onclick="<?php session_destroy(); ?>">Salir</a></li>
-                </ul>
-            </div>
+            <!-- Menu -->
+            <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?> 
         </div>
         <!-- Contenido Principal -->
         <div class="col-lg-10">
@@ -85,24 +72,24 @@ if (isset($_SESSION['idInstructor'])) {
                       method="POST">
                     <!-- Sección 1 -->
                     <div class="form-section">
-                        <div class="input-field"> <!--No se ocupa para el PA-->
+                        <div class="input-field"> 
                             <input type="text" id="nombre" name="nombre" required
                                    value="<?php echo isset($user) ? $user['nombre'] : null ?>">
                             <label for="nombre">Nombre(s)</label>
                         </div>
-                        <div class="input-field"><!--No se ocupa para el PA-->
+                        <div class="input-field">
                             <input type="text" id="apellidoPaterno" name="apellidoPaterno" required
                                    value="<?php echo isset($user) ? $user['paterno'] : null ?>">
                             <label for="apellidoPaterno">Apellido Paterno</label>
                         </div>
-                        <div class="input-field"><!--No se ocupa para el PA-->
+                        <div class="input-field">
                             <input type="text" id="apellidoMaterno" name="apellidoMaterno" required
                                    value="<?php echo isset($user) ? $user['materno'] : null ?>">
                             <label for="apellidoMaterno">Apellido Materno</label>
                         </div>
-                        <div class="input-field"><!--No se ocupa para el PA-->
+                        <div class="input-field">
                             <input type="email" id="correo" name="correo" required
-                                   value="<?php echo isset($user) ? $user['correo'] : "Correo Electrónico" ?>">
+                                   value="<?php echo isset($user) ? $user['correo'] : "" ?>">
                             <label for="correo">Correo Electrónico</label>
                         </div>
                         <div class="input-field">
@@ -227,9 +214,9 @@ if (isset($_SESSION['idInstructor'])) {
                         <div class="input-field">
                             <select id="clasificacion" name="clasificacion" required>
                                 <option value="">Seleccione la clasificación</option>
-                                <?php foreach ($clasifications as $clasification): ?>
-                                    <option value="<?php echo $clasification['id'] ?>">
-                                        <?php echo $clasification['nombre'] ?>
+                                <?php foreach ($clasifications as $clasificacion): ?>
+                                    <option value="<?php echo $clasificacion['id'] ?>">
+                                        <?php echo $clasificacion['nombre'] ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -258,13 +245,17 @@ if (isset($_SESSION['idInstructor'])) {
                             <input type="number" id="cupo" name="cupo" required>
                             <label for="cupo">Cupo</label>
                         </div>
+                        <br>
                         <div class="input-field">
+                        <p>Seleccione la fecha: </p>
                             <input type="date" id="fecha" name="fecha" required>
-                            <label for="fecha">Fecha</label>
+                            
                         </div>
+                        <br>
                         <div class="input-field">
+                            <p>Seleccione la hora: </p>
                             <input type="time" id="hora" name="hora" required>
-                            <label for="hora">Hora</label>
+                            
                         </div>
                         <div class="button-group">
                             <button type="button" class="btn btn-secondary botones btn-left"
@@ -322,7 +313,7 @@ if (isset($_SESSION['idInstructor'])) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/../webapp/assets/js/form.js"></script>
+<script src="/SIGEFO/webapp/assets/js/form.js"></script>
 </body>
 
 </html>

@@ -8,17 +8,17 @@ class BeanInscripcion
     private $idActividad;
     private $fecha;
     private $idPerfil;
-    private $trabajos;
+    private $tresanios;
     private $status;
 
-    public function __construct($idInscripcion, $idDocente, $idActividad, $fecha, $idPerfil, $trabajos, $status)
+    public function __construct($idInscripcion, $idDocente, $idActividad, $fecha, $idPerfil, $tresanios, $status)
     {
         $this->idInscripcion = $idInscripcion;
         $this->idDocente = $idDocente;
         $this->idActividad = $idActividad;
         $this->fecha = $fecha;
         $this->idPerfil = $idPerfil;
-        $this->trabajos = $trabajos;
+        $this->tresanios = $tresanios;
         $this->status = $status;
     }
 
@@ -42,86 +42,26 @@ class BeanInscripcion
         $this->idDocente = $idDocente;
     }
 
-    public function getPaterno()
+    public function getIdActividad($idActividad)
     {
-        return $this->paterno;
+        return $this->idActividad;
     }
 
-    public function setPaterno($paterno)
+    public function setIdActividad($idActividad)
     {
-        $this->paterno = $paterno;
+        $this->idActividad = $idActividad;
     }
 
-    public function getMaterno()
+    public function getFecha($Fecha)
     {
-        return $this->materno;
+        return $this->fecha;
     }
 
-    public function setMaterno($materno)
+    public function setFecha($fecha)
     {
-        $this->materno = $materno;
+        $this->fecha = $fecha;
     }
-
-    public function getSexo()
-    {
-        return $this->sexo;
-    }
-
-    public function setSexo($sexo)
-    {
-        $this->sexo = $sexo;
-    }
-
-    public function getEdad()
-    {
-        return $this->edad;
-    }
-
-    public function setEdad($edad)
-    {
-        $this->edad = $edad;
-    }
-
-    public function getCorreo()
-    {
-        return $this->correo;
-    }
-
-    public function setCorreo($correo)
-    {
-        $this->correo = $correo;
-    }
-
-    public function getGrado()
-    {
-        return $this->grado;
-    }
-
-    public function setGrado($grado)
-    {
-        $this->grado = $grado;
-    }
-
-    public function getDisciplina()
-    {
-        return $this->disciplina;
-    }
-
-    public function setDisciplina($disciplina)
-    {
-        $this->disciplina = $disciplina;
-    }
-
-    public function getIdUnidadAcademica()
-    {
-        return $this->idUnidadAcademica;
-    }
-
-    public function setIdUnidadAcademica($idUnidadAcademica)
-    {
-        $this->idUnidadAcademica = $idUnidadAcademica;
-    }
-
+    
     public function getIdPerfil()
     {
         return $this->idPerfil;
@@ -131,5 +71,26 @@ class BeanInscripcion
     {
         $this->idPerfil = $idPerfil;
     }
+    public function getTresanios($tresanios)
+    {
+        return $this->tresanios;
+    }
+
+    public function setTresanios($resanios)
+    {
+        $this->tresanios = $sexoTresanios;
+    }
+
+    public function getStatus($status)
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+
 }
 ?>

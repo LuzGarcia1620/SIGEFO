@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/../webapp/assets/css/usuarios.css">
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css">
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/usuarios.css">
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css">
 </head>
 
 <body>
+
 <?php
 require __DIR__ . "/../../../src/controller/user/UserController.php";
 require __DIR__ . "/../../../src/controller/rol/RolController.php";
@@ -23,23 +24,14 @@ $roles = $rolController->handleRequest();
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
-</div>
-<div class="container-fluid">
+
+    <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2">
-            <div class="navback">
-                <ul class="list-unstyled vertical-nav">
-                    <li><a href="/SIGEFO/perfil" class="btn btn-block my-1 menu">Perfil</a></li>
-                    <li><a href="/SIGEFO/actividades" class="btn btn-primary btn-block my-1 menu">Actividad Formativa</a></li>
-                    <li><a href="/SIGEFO/usuarios" class="btn btn-primary btn-block my-1 menu">Usuarios</a></li>
-                    <li><a href="/SIGEFO/consultas" class="btn btn-primary btn-block my-1 menu">Consultas</a></li>
-                    <li><a href="/SIGEFO/controlasistencia" class="btn btn-primary btn-block my-1 menu">Asistencia</a></li>
-                    <li><a href="/SIGEFO/login" class="btn btn-primary btn-block my-1 menu">Salir</a></li>
-                </ul>
+            <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
         </div>
-        </div>
-
-        <div class="col-lg-10 min mv-10">
+        <!-- Contenido Principal -->
+        <div class="col-lg-10">
             <br>
             <div class="botones">
                 <div class="titulo">Usuarios</div>
@@ -48,13 +40,13 @@ $roles = $rolController->handleRequest();
                         <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
                             <g>
                                 <path
-                                        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
                                 </path>
                             </g>
                         </svg>
                         <input id="buscarInput" placeholder="Buscar" type="text" class="input">
                     </div>
-                    <img src="/../webapp/assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn"
+                    <img src="/SIGEFO/webapp/assets/img/anadir.png" alt="Agregar Usuarios" id="agregarUserBtn"
                          class="img-fluid" style="cursor: pointer; width: 70px;">
                 </div>
             </div>
@@ -102,6 +94,7 @@ $roles = $rolController->handleRequest();
             </div>
         </div>
     </div>
+</div>
 
     <!-- Modal para agregar usuarios -->
     <div class="modal fade" id="agregarUsuariosModal" tabindex="-1" role="dialog"
@@ -121,13 +114,11 @@ $roles = $rolController->handleRequest();
                             <label for="nombre">Nombre(s)</label>
                         </div>
                         <div class="campo">
-                            <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control"
-                                   required>
+                            <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control"required>
                             <label for="apellidoPaterno">Apellido Paterno</label>
                         </div>
                         <div class="campo">
-                            <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control"
-                                   required>
+                            <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control"required>
                             <label for="apellidoMaterno">Apellido Materno</label>
                         </div>
                         <div class="campo">
@@ -198,6 +189,10 @@ $roles = $rolController->handleRequest();
                             <input type="email" id="correoEditar" name="correoEditar" class="form-control" required>
                             <label for="correoEditar">Correo Electrónico</label>
                         </div>
+                        <div class="campo">
+                            <input type="password" id="password" name="password" class="form-control" required>
+                            <label for="passwordEditar">Contraseña</label>
+                        </div>
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" id="idUsuarioU" name="idUsuario">
                         <div class="modal-footer">
@@ -220,15 +215,8 @@ $roles = $rolController->handleRequest();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/../webapp/assets/js/usuarios.js"></script>
+    <script src="/SIGEFO/webapp/assets/js/usuarios.js"></script>
 
-    <script>
-        /*fetch("../../templates/header.html")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("headerContainer").innerHTML = data;
-            });*/
-    </script>
 </div>
 </body>
 

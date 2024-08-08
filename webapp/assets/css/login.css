@@ -6,6 +6,7 @@
   background: gray;
   list-style: none;
   width: 100%;
+  
 }
 .dropdownmenu li {
   float: left;
@@ -13,11 +14,11 @@
   width: auto;
 }
 .dropdownmenu a {
-  background: #001660;
-  color: #FFFFFF;
+  background: #d0d0d0;
+  color: #000000;
   display: block;
-  font: bold 12px/20px sans-serif;
-  padding: 10px 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px 30px;
   text-align: center;
   text-decoration: none;
   -webkit-transition: all .25s ease;
@@ -27,8 +28,8 @@
   transition: all .25s ease;
 }
 .dropdownmenu li:hover a {
-  background: #ffffff;
-  color: #000000;
+  background: #3A5A96;
+  color: #ffffff;
 }
 #submenu {
   left: 0;
@@ -49,20 +50,30 @@ li:hover ul#submenu {
   width: 100%;
 }
 #submenu a:hover {
-  background: #001660;
-  color: #ffffff;
+  background: #ececec;
+  color: #000000;
+  border: 2px solid rgb(0, 0, 0);
 }
 #submenu a {
-  background-color: #ffffff;
+  background-color: #3A5A96;
 }
 
 #container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70%;
+    height: 70%; 
     background-color: #f0f0f0;
 }
+
+/*.contenido{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima para cubrir toda la pantalla 
+    background-color: #f0f0f0;
+}
+*/
 
 .login-card {
     background-color: white;
@@ -72,7 +83,7 @@ li:hover ul#submenu {
     display: flex;
     max-width: 90%;
     width: 100%;
-    height: 80%;
+    height: 90%;
 }
 
 #left {
@@ -130,19 +141,19 @@ li:hover ul#submenu {
     transition: background-color 0.3s;
     margin-top: 20px;
     margin-bottom: 20px;
-
 }
 
 #btn_login {
-    font-size: 17px;
+    font-size: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;
     border-radius: 15px;
     background-color: #001660;
-    color: white ;
-    height: 150px;
-    width: 200px;
+    color: white;
+    height: 45px; /* Ajusta la altura del botón */
+    width: 100%; /* Ajusta el ancho del botón */
+    
 }
 
 .btn:hover {
@@ -152,18 +163,16 @@ li:hover ul#submenu {
 /* Estilos para el botón de mostrar/ocultar contraseña */
 .password-btn {
     position: absolute;
-    top: 50%;
     right: 10px;
     transform: translateY(-50%);
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 25px; /* Ajusta el tamaño del botón */
-    height: 25px; /* Ajusta el tamaño del botón */
+    width: 25px;
+    height: 25px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
 }
 
 .password-btn img {
@@ -183,9 +192,9 @@ footer p {
 .input-field {
     position: relative;
     padding: 10px;
-  }
-  
-  .input-field label {
+}
+
+.input-field label {
     position: absolute;
     color: #8d8d8d;
     pointer-events: none;
@@ -193,25 +202,25 @@ footer p {
     left: 15px;
     transform: translateY(0.6rem);
     transition: all 0.3s ease;
-  }
-  
-  .input-field input {
+}
+
+.input-field input {
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 8px;
     border: solid 1px #8d8d8d;
     letter-spacing: 1px;
     width: 100%;
-  }
-  
-  .input-field input:focus,
-  .input-field input:valid {
+}
+
+.input-field input:focus,
+.input-field input:valid {
     outline: none;
     border: solid 1px #0034de;
-  }
-  
-  .input-field input:focus ~ label,
-  .input-field input:valid ~ label {
+}
+
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
     transform: translateY(-51%) translateX(-10px) scale(0.8);
     background-color: #fff;
     padding: 0px 5px;
@@ -220,64 +229,28 @@ footer p {
     letter-spacing: 1px;
     border: none;
     border-radius: 100px;
-  }
-
-  button {
-  --primary-color: #645bff;
-  --secondary-color: #fff;
-  --hover-color: #111;
-  --arrow-width: 10px;
-  --arrow-stroke: 2px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 20px;
-  color: var(--secondary-color);
-  padding: 1em 1.8em;
-  background: var(--primary-color);
-  display: flex;
-  transition: 0.2s background;
-  align-items: center;
-  gap: 0.6em;
-  font-weight: bold;
 }
 
-button .arrow-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@media (max-width: 768px) {
+    .login-card {
+        flex-direction: column; /* Cambiar a columna en pantallas más pequeñas */
+        height: auto;
+    }
 
-button .arrow {
-  margin-top: 1px;
-  width: var(--arrow-width);
-  background: var(--primary-color);
-  height: var(--arrow-stroke);
-  position: relative;
-  transition: 0.2s;
-}
+    #left, #right {
+        width: 100%;
+        border-radius: 0; /* Quitar bordes redondeados en pantallas pequeñas */
+    }
 
-button .arrow::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  border: solid var(--secondary-color);
-  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-  display: inline-block;
-  top: -3px;
-  right: 3px;
-  transition: 0.2s;
-  padding: 3px;
-  transform: rotate(-45deg);
-}
+    #left {
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-button:hover {
-  background-color: var(--hover-color);
-}
-
-button:hover .arrow {
-  background: var(--secondary-color);
-}
-
-button:hover .arrow:before {
-  right: 0;
+    #right {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
 }

@@ -54,7 +54,7 @@ body {
 }
 
 /* Cambia el color del enlace al pasar el cursor sobre él */
-.bg-custom-footer a:hover {
+.sm-custom-footer a:hover {
   color: #cccccc;
 }
 
@@ -140,7 +140,6 @@ nav {
 }
 
 /*===== NAVEGACIÓN VERTICAL =====*/
-
 .navback{
   margin-top: 30px;
 }

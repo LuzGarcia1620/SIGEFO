@@ -57,7 +57,8 @@ class UserController
                             $_POST['nombreEditar'],
                             $_POST['apellidoPaternoEditar'],
                             $_POST['apellidoMaternoEditar'],
-                            $_POST['correoEditar']
+                            $_POST['correoEditar'],
+                            $_POST['passwordEditar']
                         );
 
                         $idUsuario = $_POST['idUsuario'];

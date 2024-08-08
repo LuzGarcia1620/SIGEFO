@@ -3,215 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css"/>
-    <link rel="stylesheet" href="/../webapp/assets/css/registro.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registro.css"/>
     <title>Registro</title>
 </head>
 <body>
 <?php
-require_once __DIR__ . "/../../../src/controller/docente/DocenteController.php";
-require_once __DIR__ . "/../../../src/controller/profile/ProfileController.php";
-require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
-require_once __DIR__ . "/../../../src/service/docente/DocenteService.php";
+require __DIR__ . "/../../../src/controller/docente/DocenteController.php";
+require __DIR__ . "/../../../src/controller/profile/ProfileController.php";
+require __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
+require __DIR__ . "/../../../src/controller/activity/ActivityController.php";
 
 $docenteController = new DocenteController();
-$docente = $docenteController->handleRequest();
-
 $profileController = new ProfileController();
-$profiles = $profileController->handleRequest();
-$profiles = isset($profiles) ? $profiles : array();
-
 $unidadController = new UnidadAcademicaController();
+$activityController = new ActivityController();
+
+$docente = isset($_POST['correo']) ? $docenteController->getByEmail($_POST['correo']) : null;
+$profiles = $profileController->handleRequest();
 $unidades = $unidadController->handleRequest();
-$unidades = isset($unidades) ? $unidades : array();
-
-$email = isset($_GET['correo']);
-
-$docenteService = new DocenteService();
-$docente = $docenteService->validateEmail($email);
-
+$actividades = $activityController->handleRequest();
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
 </div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./evaluaciondocente.php">Evaluación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./formaciondocente.php">Formación Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./documentosconsulta.php">Documentos de Consulta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./contacto.php">Contacto</a>
-                </li>
+<!-- NavBAR -->
+<nav class="dropdownmenu">
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Evaluación Docente</a>
+            <ul id="submenu">
+                <li><a href="">Instrumento de evaluacion docente</a></li>
+                <li><a href="">Cronograma</a></li>
+                <li><a href="">Fechas de aplicación</a></li>
+                <li><a href="">Reporte de Resultados</a></li>
+                <li><a href="">Monitoreo</a></li>
             </ul>
-            <a class="navbar-brand ms-auto" href="./index.php">UAEM</a>
-        </div>
-    </div>
+        </li>
+        <li><a href="#">Formación Docente</a>
+            <ul id="submenu">
+                <li><a href="/SIGEFO/login">Acceso a Plataforma</a></li>
+                <li><a href="/SIGEFO/">Actividades Formativas</a></li>
+                <li><a href="">Galería</a></li>
+                <li><a href="">Descargar constancia</a></li>
+            </ul>
+        </li>
+        <li><a href="">Documentos de Consulta</a></li>
+        <li><a href="">Contacto</a></li>
+    </ul>
 </nav>
-
+<!-- Fin de la NavBar -->
 <a href="/SIGEFO/informacion" class="regresar">Regresar</a>
-<br>
 
 <div class="container d-flex justify-content-center align-items-center form-section">
-    <div class="form-container p-4 shadow-sm rounded">
-        <form id="email-form" method="GET" action="/SIGEFO/registro" target="_self">
-            <p class="form-title">Desarrollo de actividades dentro del aula</p>
+    <div class="form-container">
+        <form id="email-form" method="POST" action="">
+            <p class="form-title"><?php echo isset($actividades) ? $actividades['nombre'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
-                <input type="correo" class="form-control" id="correo" name="correo" placeholder="Correo electrónico"
-                       required>
-                <!--<input type="hidden" name="action" value="validateEmail">-->
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
+                <input type="hidden" name="action" value="validateEmail">
             </div>
             <button type="submit" class="btn btn-primary w-100">Continuar</button>
-
         </form>
     </div>
 </div>
 
-<div class="form-section" style="display: none;">
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$docente): ?>
+<div class="form-section">
     <div class="container">
         <div class="heading">Registro</div>
-        <form class="form" action="">
+        <form class="form" method="POST" action="/src/controller/docente/DocenteController.php">
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="nombre"
-                        id="name"
-                        value="<?php echo isset($docente) ? $docente['nombre'] : null ?>"
-                />
-                <label for="name">Nombre(s)</label>
+                <input required autocomplete="off" type="text" name="nombre" id="nombre" value="" />
+                <label for="nombre">Nombre(s)</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="paterno"
-                        id="apellidoPaterno"
-                        value="<?php echo isset($docente) ? $docente['paterno'] : null ?>"
-                />
-                <label for="username">Apellido Paterno</label>
+                <input required autocomplete="off" type="text" name="paterno" id="apellidoPaterno" value="" />
+                <label for="apellidoPaterno">Apellido Paterno</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="materno"
-                        id="apellidoMaterno"
-                        value="<?php echo isset($docente) ? $docente['materno'] : null ?>"
-                />
-                <label for="username">Apellido Materno</label>
+                <input required autocomplete="off" type="text" name="materno" id="apellidoMaterno" value="" />
+                <label for="apellidoMaterno">Apellido Materno</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="sexo"
-                        id="sexo"
-                        value="<?php echo isset($docente) ? $docente['sexo'] : null ?>"
-                />
-                <label for="username">Sexo</label>
+                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="" />
+                <label for="sexo">Sexo</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="number"
-                        name="edad"
-                        id="edad"
-                        value="<?php echo isset($docente) ? $docente['edad'] : null ?>"
-                />
-                <label for="username">Edad</label>
+                <input required autocomplete="off" type="number" name="edad" id="edad" value="" />
+                <label for="edad">Edad</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="email"
-                        name="email"
-                        id="email"
-                        value="<?php echo isset($docente) ? $docente['correo'] : null ?>"
-                />
-                <label for="email">Correo Electronico</label>
+                <input required autocomplete="off" type="email" name="correo" id="correo" value="" />
+                <label for="correo">Correo Electrónico</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="grado"
-                        id="grado"
-                        value="<?php echo isset($docente) ? $docente['grado'] : null ?>"
-                />
+                <input required autocomplete="off" type="text" name="grado" id="grado" value="" />
                 <label for="grado">Grado</label>
             </div>
             <div class="input-field">
-                <input
-                        required=""
-                        autocomplete="off"
-                        type="text"
-                        name="disciplina"
-                        id="disciplina"
-                        value="<?php echo isset($docente) ? $docente['disciplina'] : null ?>"
-                />
+                <input required autocomplete="off" type="text" name="disciplina" id="disciplina" value="" />
                 <label for="disciplina">Disciplina</label>
             </div>
             <div class="input-field">
                 <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null ?></option>
+                    <option value="" disabled selected>Unidad Académica</option>
                     <?php foreach ($unidades as $unidad): ?>
-                        <option value="<?php echo $unidad['id'] ?>">
-                            <?php echo $unidad['nombre'] ?>
-                        </option>
+                        <option value="<?php echo $unidad['id'] ?>"><?php echo $unidad['nombre'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected><?php echo isset($docente) ? $docente['perfil'] : null ?></option>
+                    <option value="" disabled selected>Perfil</option>
                     <?php foreach ($profiles as $profile): ?>
-                        <option value="<?php echo $profile['id'] ?>">
-                            <?php echo $profile['nombre'] ?>
-                        </option>
+                        <option value="<?php echo $profile['id'] ?>"><?php echo $profile['nombre'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            En los últimos 3 años, ¿Ha tomado alguna actividad formativa: curso, taller, curso-taller, conferencia,
-            seminarios organizado por el Departamento de Formación Docente?
-
+            <p>En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
             <div class="btn-container">
-                <button class="btn">Submit</button>
+                <button type="submit" class="btn">Submit</button>
             </div>
         </form>
     </div>
 </div>
+<?php endif; ?>
 
-<footer class="bg-custom-footer py-2">
+<div>
     <?php include __DIR__ . '/../../templates/footerPublico.html'; ?>
-</footer>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/../webapp/assets/js/registro.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#email-form').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire({
+                        title: 'OjoDocente',
+                        text: "Ud ya está registrado",
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirigir al formulario de inscripción (cargar datos del docente)
+                            $('.form-section').show();
+                            $('#email-form').hide();
+                        }
+                    });
+                } 
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    title: 'No se encontraron sus datos',
+                    text: "¿Desea registrarse?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, deseo registrarme'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Mostrar el formulario de registro vacío
+                        $('.form-section').show();
+                        $('#email-form').hide();
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

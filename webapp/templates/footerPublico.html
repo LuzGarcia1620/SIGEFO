@@ -1,38 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Footer</title>
-    <link rel="stylesheet" href="/../webapp/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/../webapp/assets/css/styles.css">
-    <link rel="stylesheet" href="/../webapp/assets/css/custom.css">
-</head>
-<body>
-    <footer class="bg-custom-footer py-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-center mb-3 mb-md-0 follow-us">
-                    <h5 class="text-center text-md-end">¡Síguenos en nuestras redes sociales!</h5>
-                    <div class="d-flex justify-content-center justify-content-md-end follow-us">
-                        <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"><img src="/../webapp/assets/img/correo.png" alt="Correo" class="img-fluid"></a>
-                        <a href="https://www.facebook.com/uaemformaciondocente" class="text-white me-2"><img src="/../webapp/assets/img/facebook.png" alt="Facebook" class="img-fluid"></a>
-                        <a href="https://www.youtube.com/channel/UCvc3SSAArfY-DsWXXZ4mwhg" class="text-white"><img src="/../webapp/assets/img/youtube.png" alt="YouTube" class="img-fluid"></a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 text-center text-md-center">
-                    <div class="mb-3">
-                        <h5>Universidad Autónoma del Estado de Morelos</h5>
-                        <p>Departamento de Formación Docente</p>
-                        <p><img src="/../webapp/assets/img/mapas-y-banderas.png" alt="ubicacion" class="img-fluid" style="height: 17px;"> Av. Universidad 1001, Chamilpa, Cuernavaca, Morelos, México</p>
-                        <p><img src="/../webapp/assets/img/llamada-telefonica.png" alt="YouTube" class="img-fluid" style="height: 17px;"> (777) 329 70 00 Ext. 3249, 3352 y 3935</p>
-                        <p><img src="/../webapp/assets/img/correo-electronico.png" alt="YouTube" class="img-fluid" style="height: 17px;"> eval_docente@uaem.mx</p>
-                    </div>
-                </div>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/bootstrap.min.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        flex-grow: 1;
+      }
+
+      /*===== FOOTER =====*/
+      .sm-custom-footer {
+        background: linear-gradient(90deg, #000000 20%, #3a5a96 80%);
+        color: white;
+        padding: 10px 0;
+        font-size: 0.9em;
+      }
+
+      .sm-custom-footer a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .sm-custom-footer a:hover {
+        color: #cccccc;
+      }
+
+      .follow-us img {
+        height: 60px;
+        margin-right: 10px;
+      }
+
+      /* Cambia el color del enlace al pasar el cursor sobre él */
+      .sm-custom-footer a:hover {
+        color: #cccccc;
+      }
+
+      /* Contenedor del pie de página fijado en la parte inferior de la página */
+      #footerContainer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+      }
+
+      .footer {
+        background-color: rgb(24, 24, 150);
+        color: white;
+        text-align: center;
+        width: 100%;
+        height: 70px;
+        bottom: 0;
+      }
+
+      .follow-us {
+        justify-content: center;
+      }
+
+      .sm-custom-footer .text-center {
+        text-align: center;
+      }
+
+      .imgRedes{
+        width: 50px;
+        height: 50px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <footer class="sm-custom-footer py-2">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <h5>¡Síguenos en nuestras redes sociales!</h5>
+            <div class="d-flex justify-content-center">
+              <a href="mailto:eval_docente@uaem.mx" class="text-white me-2"
+                ><img
+                  src="/SIGEFO/webapp/assets/img/correo.png"
+                  alt="Correo"
+                  class="imgRedes"
+              /></a>
+              <a
+                href="https://www.facebook.com/uaemformaciondocente"
+                class="text-white me-2"
+                ><img
+                  src="/SIGEFO/webapp/assets/img/facebook.png"
+                  alt="Facebook"
+                  class="imgRedes"
+              /></a>
+              <a
+                href="https://www.youtube.com/channel/UCvc3SSAArfY-DsWXXZ4mwhg"
+                class="text-white"
+                ><img
+                  src="/SIGEFO/webapp/assets/img/youtube.png"
+                  alt="YouTube"
+                  class="imgRedes"
+              /></a>
             </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div>
+              <h5>Universidad Autónoma del Estado de Morelos</h5>
+              <p>Departamento de Formación Docente</p>
+              <p>
+                <img
+                  src="/SIGEFO/webapp/assets/img/mapas-y-banderas.png"
+                  alt="ubicacion"
+                  class="img-fluid"
+                  style="height: 17px"
+                />
+                Av. Universidad 1001, Chamilpa, Cuernavaca, Morelos, México
+              </p>
+              <p>
+                <img
+                  src="/SIGEFO/webapp/assets/img/llamada-telefonica.png"
+                  alt="YouTube"
+                  class="img-fluid"
+                  style="height: 17px"
+                />
+                (777) 329 70 00 Ext. 3249, 3352 y 3935
+              </p>
+              <p>
+                <img
+                  src="/SIGEFO/webapp/assets/img/correo-electronico.png"
+                  alt="YouTube"
+                  class="img-fluid"
+                  style="height: 17px"
+                />
+                eval_docente@uaem.mx
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
-    
-    <script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
-</body>
+
+    <script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

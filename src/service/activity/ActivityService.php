@@ -16,7 +16,9 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA, ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion, ac.fechaImp, ac.horaImp FROM actividad AS ac
+            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA, 
+                                        ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion, ac.fechaImp, 
+                                        ac.horaImp FROM actividad AS ac
                                         JOIN instructor AS i ON ac.idInstructor = i.idInstructor
                                         JOIN usuario AS us ON i.idUsuario = us.idUsuario
                                         JOIN modalidad AS m ON ac.idModalidad = m.id
@@ -49,9 +51,11 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("INSERT INTO actividad (idInstructor, idTipo, nombre, duracion, horasPresencial, horasLinea, horasIndependiente,
-                                idClasificacion, idModalidad, dirigidoA, perfilIngreso, perfilEgreso, objetivo, temario, cupo, presentacion, fechaImp, horaImp)
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt = $conn->prepare("INSERT INTO actividad (idInstructor, idTipo, nombre, 
+            duracion, horasPresencial, horasLinea, horasIndependiente,idClasificacion, 
+            idModalidad, dirigidoA, perfilIngreso, perfilEgreso, objetivo, temario, cupo, 
+            presentacion, fechaImp, horaImp) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bindValue(1, $beanActividad->getIdInstructor());
             $stmt->bindValue(2, $beanActividad->getIdTipo());
             $stmt->bindValue(3, $beanActividad->getNombre());
@@ -82,7 +86,9 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("UPDATE actividad SET idModalidad = ?, nombre = ?, dirigidoa = ?, objetivo = ?, idInstructor = ?, idTipo = ?, fechaImp = ?, duracion = ?, horaImp = ? WHERE idActividad = ?;");
+            $stmt = $conn->prepare("UPDATE actividad SET idModalidad = ?, nombre = ?, 
+            dirigidoa = ?, objetivo = ?, idInstructor = ?, idTipo = ?, fechaImp = ?, 
+            duracion = ?, horaImp = ? WHERE idActividad = ?;");
             $stmt->bindValue(1, $beanActividad->getIdModalidad());
             $stmt->bindValue(2, $beanActividad->getNombre());
             $stmt->bindValue(3, $beanActividad->getDirigidoA());
