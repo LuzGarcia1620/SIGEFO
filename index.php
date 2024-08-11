@@ -9,6 +9,7 @@ $router->addRoute('/SIGEFO/perfil', 'webapp/perfil.php');
 /*Publico*/
 $router->addRoute('/SIGEFO/informacion', 'webapp/views/publico/info.php');
 $router->addRoute('/SIGEFO/registro', 'webapp/views/publico/registro.php');
+$router->addRoute('/SIGEFO/registroActividad', 'webapp/views/publico/registroActividad.php');
 /*SuperAdmin*/
 $router->addRoute('/SIGEFO/actividades', 'webapp/views/superadmin/actividades.php');
 $router->addRoute('/SIGEFO/usuarios', 'webapp/views/superadmin/Usuarios.php');

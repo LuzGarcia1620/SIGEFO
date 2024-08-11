@@ -58,7 +58,7 @@ $actividades = $activityController->handleRequest();
 <div class="container d-flex justify-content-center align-items-center form-section">
     <div class="form-container">
         <form id="email-form" method="POST" action="">
-            <p class="form-title"><?php echo isset($actividades) ? $actividades['nombreactividad'] : null ?></p>
+            <p class="form-title">Registrese en <?php echo isset($actividades) ? $actividades['nombreactividad'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
@@ -69,67 +69,7 @@ $actividades = $activityController->handleRequest();
     </div>
 </div>
 
-<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$docente): ?>
-<div class="form-section">
-    <div class="container">
-        <div class="heading">Registro</div>
-        <form class="form" method="POST" action="/src/controller/docente/DocenteController.php">
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="nombre" id="nombre" value="" />
-                <label for="nombre">Nombre(s)</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="paterno" id="apellidoPaterno" value="" />
-                <label for="apellidoPaterno">Apellido Paterno</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="materno" id="apellidoMaterno" value="" />
-                <label for="apellidoMaterno">Apellido Materno</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="" />
-                <label for="sexo">Sexo</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="number" name="edad" id="edad" value="" />
-                <label for="edad">Edad</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="email" name="correo" id="correo" value="" />
-                <label for="correo">Correo Electrónico</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="grado" id="grado" value="" />
-                <label for="grado">Grado</label>
-            </div>
-            <div class="input-field">
-                <input required autocomplete="off" type="text" name="disciplina" id="disciplina" value="" />
-                <label for="disciplina">Disciplina</label>
-            </div>
-            <div class="input-field">
-                <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected>Unidad Académica</option>
-                    <?php foreach ($unidades as $unidad): ?>
-                        <option value="<?php echo $unidad['id'] ?>"><?php echo $unidad['nombre'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="input-field">
-                <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>Perfil</option>
-                    <?php foreach ($profiles as $profile): ?>
-                        <option value="<?php echo $profile['id'] ?>"><?php echo $profile['nombre'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <p>En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
-            <div class="btn-container">
-                <button type="submit" class="btn">Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
-<?php endif; ?>
+
 
 <div>
     <?php include __DIR__ . '/../../templates/footerPublico.html'; ?>
