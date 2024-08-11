@@ -1,5 +1,5 @@
 <?php
-require __DIR__."/../../service/activity/ActivityService.php";
+require_once __DIR__."/../../service/activity/ActivityService.php";
 require_once __DIR__."/../../model/activity/BeanActivity.php";
 
 class ActivityController

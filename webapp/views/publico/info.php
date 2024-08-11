@@ -68,7 +68,10 @@ $activity = $activityController->handleRequest();
                         <p>Fecha: <?php echo $activity['fechaimp'] ?></p>
                         <p>Horario: <?php echo $activity['horaimp'] ?></p>
                         <div class="text-end">
-                            <a class="btn btn-primary">¡Inscríbete aquí!</a>
+                            <form method="get" action="/SIGEFO/registro">
+                                <input type="hidden" name="actividad" value="<?php echo $activity['idactividad'] ?>">
+                                <button type="submit" class="inscriptionbtn"><a >¡Inscríbete aquí!</a></button>
+                            </form>
                         </div>
                     </div>
                 </div>

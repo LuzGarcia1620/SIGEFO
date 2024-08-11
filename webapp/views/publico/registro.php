@@ -18,7 +18,7 @@ $profileController = new ProfileController();
 $unidadController = new UnidadAcademicaController();
 $activityController = new ActivityController();
 
-$docente = isset($_POST['correo']) ? $docenteController->getByEmail($_POST['correo']) : null;
+//$docente = isset($_POST['correo']) ? $docenteController->getByEmail($_POST['correo']) : null;
 $profiles = $profileController->handleRequest();
 $unidades = $unidadController->handleRequest();
 $actividades = $activityController->handleRequest();
@@ -57,7 +57,7 @@ $actividades = $activityController->handleRequest();
 <div class="container d-flex justify-content-center align-items-center form-section">
     <div class="form-container">
         <form id="email-form" method="POST" action="">
-            <p class="form-title"><?php echo isset($actividades) ? $actividades['nombre'] : null ?></p>
+            <p class="form-title"><?php echo isset($actividades) ? $actividades['nombreactividad'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
             <div class="mb-3">
                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>

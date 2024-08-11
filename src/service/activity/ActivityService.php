@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . "/../../../src/config/PostgreSQL.php";
-require __DIR__ . "/../../../src/model/activity/BeanActivity.php";
+require_once __DIR__ . "/../../../src/config/PostgreSQL.php";
+require_once __DIR__ . "/../../../src/model/activity/BeanActivity.php";
 
 class ActivityService
 {

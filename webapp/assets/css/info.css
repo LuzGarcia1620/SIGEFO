@@ -118,3 +118,18 @@ li:hover ul#submenu {
     font-size: 0.9rem; /* Ajusta el tamaño de la fuente para que el botón sea más pequeño */
     margin-top: 60px;
 }
+
+.inscriptionbtn {
+    background-color: #41538F;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
