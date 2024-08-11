@@ -23,6 +23,7 @@
                 </div>
             </div>
 
+            
             <!-- Contenido Principal -->
             <div class="col-lg-10">
                 <div class="titulo">Material</div>
