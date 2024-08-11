@@ -117,32 +117,6 @@ p {
   border: 1px #B6B6B6 solid;
 }
 
-.text-small {
-  color: black;
-  font-size: 13px;
-  font-family: Aleo, serif;
-  font-weight: 400;
-  word-wrap: break-word;
-}
-
-.text-medium {
-  color: black;
-  font-size: 18px;
-  font-family: Inter, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  word-wrap: break-word;
-}
-
-.text-large {
-  color: black;
-  font-size: 14px;
-  font-family: Inter, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  word-wrap: break-word;
-}
-
 .img-container {
   width: 192px;
   height: 40px;
@@ -208,42 +182,55 @@ table {
   width: 100%;
   max-width: 800px; /* Ajuste del ancho de la tabla */
   margin-top: 20px;
+  border-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .tabla {
-  margin-left: 23%;
+  margin-left: 20%;
   width: 100%;
+  border-radius: 5px;
 }
 
 .table-bordered th.activity {
-  background-color: #003366; /* Azul */
+  background-color: #002E60; 
   color: white;
   text-align: center;
-  width: 40%; /* Ajuste del ancho de la columna Actividad */
+  width: 40%; 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .table-bordered th.status {
-  background-color: #008000; /* Verde */
+  background-color: #009475; 
   color: white;
   text-align: center;
-  width: 30%; /* Ajuste del ancho de la columna Status */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 30%; 
 }
 
 .table-bordered th.management {
-  background-color: #003366; /* Azul */
+  background-color: #002E60; 
   color: white;
   text-align: center;
-  width: 30%; /* Ajuste del ancho de la columna Gestión */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 30%; 
 }
 
 .table-bordered td {
   text-align: center;
   vertical-align: middle;
+  border-radius: 5px;
 }
 
 .img-container img {
   cursor: pointer;
   margin: 0 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Estilos para el modal */
