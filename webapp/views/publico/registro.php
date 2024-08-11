@@ -14,8 +14,6 @@ require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademica
 require_once __DIR__ . "/../../../src/controller/activity/ActivityController.php";
 
 $activityController = new ActivityController();
-$activity = $activityController->getActivityById($_GET['actividad']);
-
 $docenteController = new DocenteController();
 $profileController = new ProfileController();
 $unidadController = new UnidadAcademicaController();
