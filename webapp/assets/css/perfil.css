@@ -1,27 +1,53 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 .container-fluid {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+.row {
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos al principio */
+}
+
+.sidebar {
+    background-color: #d3d4d6;
+    padding-top: 20px;
+    width: 100%; /* Asegura que el ancho sea completo */
+    position: sticky;
+    top: 0; /* Fija la posición al tope del viewport */
+    justify-content: center;
+}
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 10px 20px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 1.25rem;
+    border: 1px solid #bfc0c2;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    height: 70px;
+}
+
+.sidebar a:hover {
+    background-color: #3A5A96;
+    color: white;
+}
+
 .main-content {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alinea los elementos al principio */
+    padding: 20px; /* Ajusta el padding según sea necesario */
 }
 
 .custom-card {
-    margin-top: 30px; /* Reducir el margen superior para subir la tarjeta */
+    margin-top: 30px;
     width: 100%;
     max-width: 600px;
     background-color: white;
-    /* Remove box-shadow and border to avoid card appearance */
     box-shadow: none;
     border: none;
     padding: 2rem;
@@ -50,31 +76,7 @@ html, body {
     border-color: #007bff;
 }
 
-.sidebar {
-    background-color: #d3d4d6;
-    padding-top: 20px;
-    margin-top: 20px;
-    width: 50px;
-    margin-right: 20px;
-}
 
-.sidebar a {
-    display: block;
-    color: black;
-    padding: 10px 20px;
-    text-align: left;
-    text-decoration: none;
-    font-size: 1.25rem;
-    border: 1px solid #bfc0c2;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    height: 70px;
-}
-
-.sidebar a:hover {
-    background-color: #007bff;
-    color: white;
-}
 
 .line {
     width: 100%;

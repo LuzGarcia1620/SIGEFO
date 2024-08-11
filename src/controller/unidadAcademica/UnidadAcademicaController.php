@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . "/../../service/unidadAcademica/UnidadAcademicaService.php";
-require __DIR__ . "/../../model/unidadAcademica/BeanUnidadAcademica.php";
+require_once __DIR__ . "/../../service/unidadAcademica/UnidadAcademicaService.php";
+require_once __DIR__ . "/../../model/unidadAcademica/BeanUnidadAcademica.php";
 
 class UnidadAcademicaController
 {

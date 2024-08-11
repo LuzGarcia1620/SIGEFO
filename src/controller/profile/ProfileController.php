@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . "/../../service/profile/ProfileService.php";
-require __DIR__ . "/../../model/profile/BeanProfile.php";
+require_once __DIR__ . "/../../service/profile/ProfileService.php";
+require_once __DIR__ . "/../../model/profile/BeanProfile.php";
 
 class ProfileController
 {

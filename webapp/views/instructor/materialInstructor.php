@@ -7,7 +7,7 @@
     <title>Material</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/asistencia.css" />
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
+   <!--  <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/usuarios.css" />-->
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Navegación Vertical -->
-            <div class="col-lg-2">
+            <div class="col-md-2 d-none d-md-block bg-light">
                 <div>
                     <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?>
                 </div>
@@ -26,6 +26,7 @@
             
             <!-- Contenido Principal -->
             <div class="col-lg-10">
+            <div class="custom-card">
                 <div class="titulo">Material</div>
                 <div class="line"></div>
 

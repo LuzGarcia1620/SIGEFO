@@ -49,7 +49,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
     <div class="container-fluid d-flex flex-column min-vh-100">
         <div class="row flex-grow-1">
             <!-- Navegación Vertical -->
-            <div class="col-md-2">
+            <div class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div>
                     <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
                 </div>
@@ -169,7 +169,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                             </div>
                                             <div class="campo">
                                                 <textarea placeholder="" id="objetivo" name="objetivo" rows="3"
-                                                    cols="60" required><?php echo $actividad['objetivo'] ?></textarea>
+                                                    cols="71" required><?php echo $actividad['objetivo'] ?></textarea>
                                                 <label for="objetivo"></label>
                                             </div>
                                             <div class="campo">
@@ -177,6 +177,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                                     <option value="" disabled selected>
                                                         <?php echo $actividad['nombre'] . ' ' . $actividad['paterno'] . ' ' . $actividad['materno'] ?>
                                                     </option>
+                                                    <br>
                                                     <?php foreach ($instructores as $instructor): ?>
                                                     <option value="<?php echo $instructor['idinstructor'] ?>">
                                                         <?php echo $instructor['nombre'] . ' ' . $instructor['paterno'] . ' ' . $instructor['materno'] ?>
@@ -184,6 +185,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
+                                            <br>
                                             <select id="tipo" name="idTipo" required>
                                                 <option value="" disabled selected><?php echo $actividad['tipo'] ?>
                                                 </option>

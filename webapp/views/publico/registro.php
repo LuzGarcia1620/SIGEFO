@@ -8,10 +8,13 @@
 </head>
 <body>
 <?php
-require __DIR__ . "/../../../src/controller/docente/DocenteController.php";
-require __DIR__ . "/../../../src/controller/profile/ProfileController.php";
-require __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
-require __DIR__ . "/../../../src/controller/activity/ActivityController.php";
+require_once __DIR__ . "/../../../src/controller/docente/DocenteController.php";
+require_once __DIR__ . "/../../../src/controller/profile/ProfileController.php";
+require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
+require_once __DIR__ . "/../../../src/controller/activity/ActivityController.php";
+
+$activityController = new ActivityController();
+$activity = $activityController->getActivityById($_GET['actividad']);
 
 $docenteController = new DocenteController();
 $profileController = new ProfileController();
@@ -136,8 +139,8 @@ $actividades = $activityController->handleRequest();
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/../webapp/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/../webapp/assets/js/registro.js"></script>
+<script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/SIGEFO/webapp/assets/js/registro.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -155,7 +158,7 @@ $(document).ready(function() {
                 if (xhr.status === 200) {
                     Swal.fire({
                         title: 'OjoDocente',
-                        text: "Ud ya está registrado",
+                        text: "Usted ya está registrado",
                         icon: 'warning',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',

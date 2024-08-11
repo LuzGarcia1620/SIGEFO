@@ -24,13 +24,13 @@
     <div class="container-fluid">
         <div class="row">
             <!-- menu -->
-            <div class="col-lg-2">
+            <div class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div>
                     <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
                 </div>
             </div>
             <!-- Contenido Principal -->
-            <div class="col-lg-10 d-flex justify-content-center align-items-center" >
+            <div class="col-lg-10" >
                 <div class="containercons">
                     <div class="tittle">Consultas</div>
 
