@@ -111,8 +111,19 @@ $profiles = $profileController->handleRequest();
                     <?php endforeach; ?>
                 </select>
             </div>
-            <p>En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
+            <div class="input-field">
+                <select id="3anios" name="3anios" required>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null?></option>
+                    <?php foreach ($unidades as $unidad): ?>
+                        <option value="<?php echo $unidad['id'] ?>">
+                            <?php echo $unidad['nombre'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <label for="3anios">En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</label>
+            </div>
             <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
+            <input type="hidden" name="action" id="action" value="<?php echo isset($docente) ? 'update' : 'save'?>"/>
             <div class="btn-container">
                 <button type="submit" class="btn">Submit</button>
             </div>
