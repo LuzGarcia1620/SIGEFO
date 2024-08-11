@@ -13,16 +13,14 @@ require_once __DIR__ . "/../../../src/controller/profile/ProfileController.php";
 require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
 require_once __DIR__ . "/../../../src/controller/activity/ActivityController.php";
 
-$activityController = new ActivityController();
 $docenteController = new DocenteController();
 $profileController = new ProfileController();
 $unidadController = new UnidadAcademicaController();
 $activityController = new ActivityController();
 
-//$docente = isset($_POST['correo']) ? $docenteController->getByEmail($_POST['correo']) : null;
 $profiles = $profileController->handleRequest();
 $unidades = $unidadController->handleRequest();
-$actividades = $activityController->handleRequest();
+$actividad = $activityController->handleRequest();
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
@@ -57,15 +55,15 @@ $actividades = $activityController->handleRequest();
 
 <div class="container d-flex justify-content-center align-items-center form-section">
     <div class="form-container">
-        <form id="email-form" method="POST" action="">
-            <p class="form-title">Registrese en <?php echo isset($actividades) ? $actividades['nombreactividad'] : null ?></p>
+            <p class="form-title">Registrese en <?php echo isset($actividad) ? $actividad['nombreactividad'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>
+            <form method="get" action="/SIGEFO/registroActividad">
             <div class="mb-3">
                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
-                <input type="hidden" name="action" value="validateEmail">
             </div>
-            <button type="submit" class="btn btn-primary w-100">Continuar</button>
-        </form>
+                <input type="hidden" name="actividad" value="<?php echo $actividad['idactividad'] ?>">
+                <button type="submit" class="btn btn-primary w-100"><a >¡Inscríbete aquí!</a></button>
+            </form>
     </div>
 </div>
 
@@ -81,7 +79,7 @@ $actividades = $activityController->handleRequest();
 <script src="/SIGEFO/webapp/assets/js/registro.js"></script>
 
 <script>
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#email-form').on('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
@@ -129,7 +127,7 @@ $(document).ready(function() {
             }
         });
     });
-});
+});*/
 </script>
 </body>
 </html>

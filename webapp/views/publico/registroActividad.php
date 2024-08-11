@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registroActividad.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registro.css"/>
     <title>Registro</title>
 </head>
 <body>
+<?php
+require_once __DIR__ . "/../../../src/controller/docente/DocenteController.php";
+require_once __DIR__ . "/../../../src/controller/profile/ProfileController.php";
+require_once __DIR__ . "/../../../src/controller/unidadAcademica/UnidadAcademicaController.php";
 
+$docenteController = new DocenteController();
+$profileController = new ProfileController();
+$unidadController = new UnidadAcademicaController();
+
+$idActividad = $_GET["actividad"];
+
+$docente = $docenteController->handleRequest();
+$unidades = $unidadController->handleRequest();
+$profiles = $profileController->handleRequest();
+
+?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
 </div>
@@ -39,68 +55,70 @@
 <!-- Fin de la NavBar -->
 <a href="/SIGEFO/registro" class="regresar">Regresar</a>
 
-<!-- Inicio contenido principal -->
-<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$docente): ?>
 <div class="form-section">
     <div class="container">
         <div class="heading">Registro</div>
         <form class="form" method="POST" action="/src/controller/docente/DocenteController.php">
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="nombre" id="nombre" value="" />
+                <input required autocomplete="off" type="text" name="nombre" id="nombre" value="<?php echo isset($docente) ? $docente['nombre'] : null?>" />
                 <label for="nombre">Nombre(s)</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="paterno" id="apellidoPaterno" value="" />
+                <input required autocomplete="off" type="text" name="paterno" id="apellidoPaterno" value="<?php echo isset($docente) ? $docente['paterno'] : null?>" />
                 <label for="apellidoPaterno">Apellido Paterno</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="materno" id="apellidoMaterno" value="" />
+                <input required autocomplete="off" type="text" name="materno" id="apellidoMaterno" value="<?php echo isset($docente) ? $docente['materno'] : null?>" />
                 <label for="apellidoMaterno">Apellido Materno</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="" />
+                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="<?php echo isset($docente) ? $docente['sexo'] : null?>" />
                 <label for="sexo">Sexo</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="number" name="edad" id="edad" value="" />
+                <input required autocomplete="off" type="number" name="edad" id="edad" value="<?php echo isset($docente) ? $docente['edad'] : null?>" />
                 <label for="edad">Edad</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="email" name="correo" id="correo" value="" />
+                <input required autocomplete="off" type="email" name="correo" id="correo" value="<?php echo isset($docente) ? $docente['correo'] : null?>" />
                 <label for="correo">Correo Electrónico</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="grado" id="grado" value="" />
+                <input required autocomplete="off" type="text" name="grado" id="grado" value="<?php echo isset($docente) ? $docente['grado'] : null?>" />
                 <label for="grado">Grado</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="disciplina" id="disciplina" value="" />
+                <input required autocomplete="off" type="text" name="disciplina" id="disciplina" value="<?php echo isset($docente) ? $docente['disciplina'] : null?>" />
                 <label for="disciplina">Disciplina</label>
             </div>
             <div class="input-field">
                 <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected>Unidad Académica</option>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null?></option>
                     <?php foreach ($unidades as $unidad): ?>
-                        <option value="<?php echo $unidad['id'] ?>"><?php echo $unidad['nombre'] ?></option>
+                        <option value="<?php echo $unidad['id'] ?>">
+                            <?php echo $unidad['nombre'] ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>Perfil</option>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['perfil'] : null?></option>
                     <?php foreach ($profiles as $profile): ?>
-                        <option value="<?php echo $profile['id'] ?>"><?php echo $profile['nombre'] ?></option>
+                        <option value="<?php echo $profile['id'] ?>">
+                            <?php echo $profile['nombre'] ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <p>En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
+            <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
             <div class="btn-container">
                 <button type="submit" class="btn">Submit</button>
             </div>
         </form>
     </div>
 </div>
-<?php endif; ?>
 
 <!-- Fin de la NavBar -->
 
@@ -111,7 +129,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/SIGEFO/webapp/assets/js/registro.js"></script>
+<script src="/SIGEFO/webapp/assets/js/registroactividad.js"></script>
 
 </body>
 </html>
