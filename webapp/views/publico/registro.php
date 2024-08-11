@@ -62,7 +62,7 @@ $actividad = $activityController->handleRequest();
                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
             </div>
                 <input type="hidden" name="actividad" value="<?php echo $actividad['idactividad'] ?>">
-                <button type="submit" class="btn btn-primary w-100"><a >¡Inscríbete aquí!</a></button>
+                <button type="submit" class="btn btn-primary w-100"><a >Registrarse</a></button>
             </form>
     </div>
 </div>

@@ -1,7 +1,7 @@
 if ($('#flag').val() === "1") {
     Swal.fire({
-        title: 'Ojo Docente',
-        text: "Sus datos ya se encuentran almacenados, haga click en registrarse para inscirbirse a esta actividad o puede editar sus datos",
+        title: '¡Atención!',
+        text: "Sus datos ya se encuentran almacenados, haga clic en registrarse para inscribirse a esta actividad y también puede editar sus datos ",
         icon: 'warning',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
