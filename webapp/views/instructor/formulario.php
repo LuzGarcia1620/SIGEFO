@@ -7,7 +7,7 @@
     <title>Formulario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/form.css"/>
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/>
+   <!-- <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css"/> -->
 </head>
 
 <body>
@@ -59,7 +59,7 @@ if (isset($_SESSION['idInstructor'])) {
     <?php include __DIR__ . '/../../templates/header.html'; ?>
     <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-2 bg-light">
             <!-- Menu -->
             <?php include __DIR__ . '/../../templates/menuInstructor.php'; ?> 
         </div>

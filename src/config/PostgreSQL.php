@@ -1,4 +1,5 @@
 <?php
+
 class PostgreSQL
 {
     private $host = "localhost";

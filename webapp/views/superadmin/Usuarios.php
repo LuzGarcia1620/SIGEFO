@@ -27,7 +27,7 @@ $roles = $rolController->handleRequest();
 
     <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-md-2 d-none d-md-block bg-light sidebar">
             <?php include __DIR__ . '/../../templates/menuSuperAdmin.php'; ?>
         </div>
         <!-- Contenido Principal -->

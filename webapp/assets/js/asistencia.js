@@ -1,10 +1,22 @@
+document.querySelector(".seleccionado").addEventListener("click", function () {
+  this.nextElementSibling.classList.toggle("mostrar");
+});
 
-            document.getElementById('standard-select').addEventListener('change', function() {
-                const value = this.value;
-                const content = document.getElementById('content');
+document.querySelectorAll(".opciones div").forEach((item) => {
+  item.addEventListener("click", function () {
+    document.querySelector(".seleccionado").textContent = this.textContent;
+    document.querySelector(".opciones").classList.remove("mostrar");
+  });
+});
 
-                if (value === 'subir') {
-                    content.innerHTML = `
+document
+  .getElementById("standard-select")
+  .addEventListener("change", function () {
+    const value = this.value;
+    const content = document.getElementById("content");
+
+    if (value === "subir") {
+      content.innerHTML = `
                         <div class="card mx-auto extra-margin-top" style="max-width: 500px;">
                             <div class="card-header bg-white text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 512 419.116">
@@ -37,8 +49,8 @@
                             </div>
                         </div>
                     `;
-                } else if (value === 'ver') {
-                    content.innerHTML = `
+    } else if (value === "ver") {
+      content.innerHTML = `
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -55,7 +67,7 @@
                             </tbody>
                         </table>
                     `;
-                } else {
-                    content.innerHTML = '';
-                }
-            });
+    } else {
+      content.innerHTML = "";
+    }
+  });

@@ -56,19 +56,29 @@ $activity = $activityController->handleRequest();
         <div class="card p-3 shadow-md">
             <div class="row g-0">
                 <div class="col-md-5">
-                    <!--<img src="/SIGEFO/webapp/assets/img/curso.png" class="img-fluid rounded-start" alt="Img">-->
+                    <img src="/SIGEFO/webapp/assets/img/curso.png" class="img-fluid rounded-start" alt="Img">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        <h6 class="card-title"><?php echo $activity['nombreactividad'] ?></h6>
-                        <p>Dirigido a: <?php echo $activity['dirigidoa'] ?></p>
+                        <h1 class="card-title"><?php echo $activity['nombreactividad'] ?></h1>
+                        <br>
+                        <p>Dirigido a <?php echo $activity['dirigidoa'] ?></p>
+                        <br>
                         <p>Objetivo: <?php echo $activity['objetivo'] ?></p>
+                        <br>
                         <p>Instructor: <?php echo $activity['nombre'] . " " . $activity['paterno'] . " " . $activity['materno'] ?></p>
+                        <br>
                         <p>Modalidad: <?php echo $activity['modalidad'] ?></p>
-                        <p>Fecha: <?php echo $activity['fechaimp'] ?></p>
-                        <p>Horario: <?php echo $activity['horaimp'] ?></p>
+                        <br>
+                        <p>Fecha de inicio: <?php echo $activity['fechaimp'] ?></p>
+                        <br>
+                        <p>Horario: <?php echo $activity['horaimp'] ?> am</p>
+                        <br>
                         <div class="text-end">
-                            <a class="btn btn-primary">¡Inscríbete aquí!</a>
+                        <form method="get" action="/SIGEFO/registro">
+                                       <input type="hidden" name="actividad" value="<?php echo $activity['idactividad'] ?>">
+                                        <button type="submit" class="inscriptionbtn"><a >¡Registrate aquí!</a></button>
+                                    </form>
                         </div>
                     </div>
                 </div>
@@ -83,20 +93,6 @@ $activity = $activityController->handleRequest();
 
     <!-- Scripts -->
     <script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-    /*fetch('../../templates/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('headerContainer').innerHTML = data;
-        });
-    fetch('../../templates/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footerContainer').innerHTML = data;
-        });*/
-    </script>
-
 </body>
 
 </html>

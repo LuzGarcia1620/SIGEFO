@@ -12,10 +12,10 @@
 
 <body>
 
-<div>
+    <div class="container-fluid">
+        <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
     </div>
-    <div class="container-fluid">
         <div class="row">
 
             <!-- Navegación Vertical -->
@@ -30,15 +30,14 @@
                 <div class="titulo">Asistencia</div>
 
                 <!-- este es el select a cambiar, pero dejale el js-->
-                <div class="form-group text-center">
-                    <select id="mainSelect" class="form-control ">
+                <div class=" text-center">
+                    <select id="mainSelect" >
                         <option value="">Seleccionar la opción deseada</option>
-                        <option value="subir">Subir lista</option>
                         <option value="ver">Ver lista</option>
                     </select>
                     <br>
 
-                    <select id="actividadSelect" class="form-control ">
+                    <select id="actividadSelect">
                         <option>Seleccione la actividad</option>
                         <!-- Otras opciones si es necesario -->
                     </select>
