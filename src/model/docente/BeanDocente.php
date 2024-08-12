@@ -12,12 +12,44 @@ class BeanDocente
     private $correo;
     private $grado;
     private $disciplina;
+    private $tresanios;
     private $idUnidadAcademica;
     private $idPerfil;
 
     public function __construct()
     {
 
+    }
+
+    public function saveDocente($nombre, $paterno, $materno, $sexo, $edad, $correo, $grado, $disciplina, $tresanios, $idunidad, $idperfil)
+    {
+        $this->nombre = $nombre;
+        $this->paterno = $paterno;
+        $this->materno = $materno;
+        $this->sexo = $sexo;
+        $this->edad = $edad;
+        $this->correo =$correo;
+        $this->gradp = $grado;
+        $this->disciplina = $disciplina;
+        $this->grado = $tresanios;
+        $this->idUnidadAcademica = $idunidad;
+        $this->idPerfil = $idperfil;
+    }
+
+    public function updateDocente($iddocente, $nombre, $paterno, $materno, $sexo, $edad, $correo, $grado, $disciplina, $tresanios, $idunidad, $idperfil)
+    {
+        $this->idDocente = $iddocente;
+        $this->nombre = $nombre;
+        $this->paterno = $paterno;
+        $this->materno = $materno;
+        $this->sexo = $sexo;
+        $this->edad = $edad;
+        $this->correo =$correo;
+        $this->gradp = $grado;
+        $this->disciplina = $disciplina;
+        $this->grado = $tresanios;
+        $this->idUnidadAcademica = $idunidad;
+        $this->idPerfil = $idperfil;
     }
 
     public function getIdDocente()
@@ -108,6 +140,15 @@ class BeanDocente
     public function setDisciplina($disciplina)
     {
         $this->disciplina = $disciplina;
+    }
+
+    public function getTresanios()
+    {
+        return $this->tresanios;
+    }
+    public function setTresanios($tresanios)
+    {
+        $this->tresanios = $tresanios;
     }
 
     public function getIdUnidadAcademica()

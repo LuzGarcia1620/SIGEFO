@@ -58,7 +58,7 @@ $profiles = $profileController->handleRequest();
 <div class="form-section">
     <div class="container">
         <div class="heading">Registro</div>
-        <form class="form" method="POST" action="/src/controller/docente/DocenteController.php">
+        <form class="form" method="POST" id="formDocenteSave" action="/src/controller/docente/DocenteController.php">
             <div class="input-field">
                 <input required autocomplete="off" type="text" name="nombre" id="nombre" value="<?php echo isset($docente) ? $docente['nombre'] : null?>" />
                 <label for="nombre">Nombre(s)</label>
@@ -112,20 +112,19 @@ $profiles = $profileController->handleRequest();
                 </select>
             </div>
             <div class="input-field">
-                <select id="3anios" name="3anios" required>
-                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null?></option>
-                    <?php foreach ($unidades as $unidad): ?>
-                        <option value="<?php echo $unidad['id'] ?>">
-                            <?php echo $unidad['nombre'] ?>
-                        </option>
-                    <?php endforeach; ?>
+                <select id="tresanios" name="tresanios" required>
+                    <option value="" disabled selected><?php echo isset($docente) ? $docente['tresanios'] : null?></option>
+                    <option value="true">Si, he tomado actividades anteriormente</option>
+                    <option value="true">No, nada</option>
                 </select>
-                <label for="3anios">En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</label>
+                <label for="tresanios">En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</label>
             </div>
             <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
             <input type="hidden" name="action" id="action" value="<?php echo isset($docente) ? 'update' : 'save'?>"/>
+            <input type="hidden" name="idactividad" id="idactividad" value="<?php echo $idActividad ?>"/>
+            <input type="hidden" name="iddocente" id="iddocente" value="<?php echo isset($docente) ? $docente['iddocente'] : null ?>"/>
             <div class="btn-container">
-                <button type="submit" class="btn">Submit</button>
+                <button type="submit" class="btn">Enviar</button>
             </div>
         </form>
     </div>
