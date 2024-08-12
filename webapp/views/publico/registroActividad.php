@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registro.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/registroActividad.css"/>
     <title>Registro</title>
 </head>
 <body>
@@ -56,8 +56,10 @@ $profiles = $profileController->handleRequest();
 <a href="/SIGEFO/registro" class="regresar">Regresar</a>
 
 <div class="form-section">
-    <div class="container">
-        <div class="heading">Registro</div>
+    <div class="form-container">
+    <div class="titulo">Registro</div>
+                <div class="divider-line"></div>
+
         <form class="form" method="POST" id="formDocenteSave" action="/src/controller/docente/DocenteController.php">
             <div class="input-field">
                 <input required autocomplete="off" type="text" name="nombre" id="nombre" value="<?php echo isset($docente) ? $docente['nombre'] : null?>" />

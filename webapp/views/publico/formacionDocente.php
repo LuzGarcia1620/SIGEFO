@@ -53,7 +53,10 @@
             <div class="row">
                 <?php if (empty($activities)): ?>
                 <div class="col-12">
-                    <p>¡Aún no tenemos actividades disponibles!</p>
+                    <div class= "actividadesanuncio">
+                        <p>¡Aún no tenemos actividades disponibles!</p> 
+                    </div>
+                   
                 </div>
                 <?php else: ?>
                 <?php foreach ($activities as $activity): ?>
