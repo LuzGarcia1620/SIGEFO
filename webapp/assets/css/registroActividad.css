@@ -60,4 +60,99 @@
   }
   /*FinMenu*/
 
+  .titulo {
+    font-size: 50px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-left: 35%;
+  }
   
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background: #c9c9c9;
+    margin: 20px 0;
+  }
+
+  /*inputs para el formulario*/
+  .input-field {
+    position: relative;
+    margin-top: 8px;
+    width: 100%;
+  }
+  
+  .input-field label {
+    position: absolute;
+    color: #8d8d8d;
+    pointer-events: none;
+    background-color: transparent;
+    left: 15px;
+    transform: translateY(0.6rem);
+    transition: all 0.3s ease;
+  }
+  
+  .input-field input,
+  .input-field select {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: solid 1px #8d8d8d;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+  
+  .input-field input:focus,
+  .input-field input:valid,
+  .input-field select:focus,
+  .input-field select:valid {
+    outline: none;
+    border: solid 1px #001660;
+  }
+  
+  .input-field input:focus ~ label,
+  .input-field input:valid ~ label,
+  .input-field select:focus ~ label,
+  .input-field select:valid ~ label {
+    transform: translateY(-51%) translateX(-10px) scale(0.8);
+    background-color: #fff;
+    padding: 0px 5px;
+    color: #0034de;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 100px;
+  }
+
+  .form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #f3f4f6; /* Fondo suave */
+}
+
+/* Formulario con animación */
+.form-container {
+    max-width: 600px; /* Ancho máximo del formulario */
+    width: 100%; /* Ancho completo en pantallas pequeñas */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 20px;
+    margin: 15px;
+    transform: translateY(-30px); /* Inicia más arriba para la animación */
+    opacity: 0; /* Inicia invisible */
+    animation: fadeInUp 0.5s ease-out forwards; /* Aparece suavemente */
+}
+
+/* Animación */
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

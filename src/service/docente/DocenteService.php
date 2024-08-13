@@ -24,4 +24,35 @@ class DocenteService
             error_log("Error in Validate Email" . $e->getMessage());
         }
     }
+
+    public function saveDocente(BeanDocente $beanDocente, $idActividad)
+    {
+        $conn = $this->postgres->connect();
+
+        try{
+            $conn->beginTransaction();
+
+            $stmt = $conn->prepare("SELECT saveDocenteWithInscription (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt->bindValue(1, $beanDocente->getNombre());
+            $stmt->bindValue(2, $beanDocente->getPaterno());
+            $stmt->bindValue(3, $beanDocente->getMaterno());
+            $stmt->bindValue(4, $beanDocente->getSexo());
+            $stmt->bindValue(5, $beanDocente->getEdad());
+            $stmt->bindValue(6, $beanDocente->getCorreo());
+            $stmt->bindValue(7, $beanDocente->getGrado());
+            $stmt->bindValue(8, $beanDocente->getDisciplina());
+            $stmt->bindValue(9, $beanDocente->getTresanios());
+            $stmt->bindValue(10, $beanDocente->getIdUnidadAcademica());
+            $stmt->bindValue(11, $beanDocente->getIdPerfil());
+            $stmt->bindParam(12, $idActividad);
+
+            $result = $stmt->execute();
+
+            $conn->commit();
+
+            return $result;
+        }catch (Exception $e) {
+            error_log("Error in Save Docente" . $e->getMessage());
+        }
+    }
 }

@@ -56,6 +56,31 @@ li:hover ul#submenu {
     background-color: #ffffff;
 }
 
+.actividadesanuncio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    margin-top: 150px;
+    color: #333; /* Cambia el color si es necesario */
+    font-family: 'Arial', sans-serif; /* Cambia a la fuente que prefieras */
+    opacity: 0;
+    animation: fadeInSlideUp 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /*boton de regresar*/
 .regresar {
     width: 155px; /* Ancho fijo en pantallas más grandes */

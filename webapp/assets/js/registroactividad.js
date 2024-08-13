@@ -22,3 +22,31 @@ if ($('#flag').val() === "1") {
         }
     })
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const formDocenteSave = document.getElementById('formDocenteSave');
+
+    $('#formDocenteSave').on('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(formDocenteSave);
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response, status, xhr) {
+                if (xhr.status === 200) {
+                    Swal.fire('Éxito', 'Docente se registro exitosamente.', 'success');
+                    window.location.href = '/SIGEFO/';
+                } else {
+                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire('Error', 'Error en la solicitud.', 'error');
+            }
+        });
+    })
+})
