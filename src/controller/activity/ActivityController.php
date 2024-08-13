@@ -140,9 +140,13 @@ class ActivityController
                 return $activity;
             } else {
                 $actividades = $this->activityService->getAll();
+                $anio = $this->activityService->getYear();
 
-                return $actividades ? $actividades : array();
+                $result = array();
+                $result['actividades'] = $actividades ? $actividades : array();
+                $result['anios'] = $anio ? $anio : array();
 
+                return $result;
             }
         }
     }

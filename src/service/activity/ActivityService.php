@@ -142,4 +142,50 @@ class ActivityService
             return false;
         }
     }
+
+    public function getYear()
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT EXTRACT(YEAR FROM fechaImp) AS anio FROM actividad;");
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Get year failed: " . $e->getMessage());
+        }
+    }
+
+    public function queryForYear($year)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT
+                    a.nombre AS nombre_actividad,
+                    CONCAT(u.nombre, ' ', u.paterno, ' ', u.materno) AS nombre_instructor,
+                    a.fechaImp AS fecha,
+                    a.duracion,
+                    c.nombre AS categoria,
+                    t.tipo AS tipo,
+                    COUNT(i.idInscripcion) AS num_participantes
+                FROM ACTIVIDAD a
+                JOIN INSTRUCTOR ins ON a.idInstructor = ins.idInstructor
+                JOIN USUARIO u ON ins.idUsuario = u.idUsuario
+                JOIN CLASIFICACION c ON a.idClasificacion = c.id
+                JOIN TIPO t ON a.idTipo = t.id
+                LEFT JOIN INSCRIPCION i ON a.idActividad = i.idActividad
+                WHERE EXTRACT(YEAR FROM a.fechaImp) = ?
+                GROUP BY a.nombre, u.nombre, u.paterno, u.materno, a.fechaImp, a.duracion, c.nombre, t.tipo
+                ORDER BY a.fechaImp;");
+
+            $stmt->bindValue(1, $year);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Get Activities For Year failed: " . $e->getMessage());
+        }
+    }
 }
