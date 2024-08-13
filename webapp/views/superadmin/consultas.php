@@ -165,6 +165,7 @@ function showInput(type) {
             ];
             break;
     }
+    
     select.innerHTML = options.join('');
     document.getElementById("searchBtnContainer").style.display = 'block';
 }
