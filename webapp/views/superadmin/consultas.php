@@ -63,6 +63,7 @@
                             <select id="dynamicSelect" class="form-control" style="width: 300px;">
                             </select>
                         </div>
+
                          <!-- Botón de búsqueda -->
                          <div id="searchBtnContainer" class="ml-3">
                             <button id="searchBtn" class="btn btn-primary searchBtn" onclick="showResults()">Buscar</button>
@@ -115,10 +116,14 @@
         <?php include __DIR__ . '/../../templates/footer.html'; ?>
     </div>
 
-    <script src="/SIGEFO/webapp/assets/js/consultas.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- jQuery, Popper.js, Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Tu script personalizado -->
+<script src="/SIGEFO/webapp/assets/js/consultas.js"></script>
+
 </body>
 
 </html>

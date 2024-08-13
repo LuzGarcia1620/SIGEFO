@@ -5,27 +5,23 @@ require_once __DIR__ . "/../../../src/model/activity/BeanActivity.php";
 class ActivityService
 {
     private $postgres;
-
     public function __construct()
     {
         $this->postgres = new PostgreSQL();
     }
-
     public function getAll()
     {
         try {
             $conn = $this->postgres->connect();
-
-            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, ti.tipo, ac.status, ac.dirigidoA,
-                                                ac.objetivo, us.nombre, us.paterno, us.materno, m.nombre AS modalidad, ac.duracion,
-                                                ac.fechaImp, ac.horaImp
-                                            FROM actividad AS ac
-                                            LEFT JOIN instructor AS i ON ac.idInstructor = i.idInstructor
-                                            LEFT JOIN usuario AS us ON i.idUsuario = us.idUsuario
-                                            LEFT JOIN modalidad AS m ON ac.idModalidad = m.id
-                                            LEFT JOIN tipo AS ti ON ac.idTipo = ti.id;");
+            $stmt = $conn->prepare("SELECT ac.idActividad, ac.nombre AS nombreActividad, 
+                                    ti.tipo, ac.status, ac.dirigidoA, ac.objetivo, 
+                                    us.nombre, us.paterno, us.materno, m.nombre AS modalidad, 
+                                    ac.duracion, ac.fechaImp, ac.horaImp FROM actividad AS ac
+                                    LEFT JOIN instructor AS i ON ac.idInstructor = i.idInstructor
+                                    LEFT JOIN usuario AS us ON i.idUsuario = us.idUsuario
+                                    LEFT JOIN modalidad AS m ON ac.idModalidad = m.id
+                                    LEFT JOIN tipo AS ti ON ac.idTipo = ti.id;");
             $stmt->execute();
-
             return $stmt->fetchAll();
         } catch (Exception $e) {
             error_log($e);

@@ -1,4 +1,7 @@
-// script.js
+document.addEventListener('DOMContentLoaded', function() {
+
+});
+
 function showInput(type) {
     const select = document.getElementById('dynamicSelect');
     let options = [];
@@ -51,5 +54,3 @@ function showInput(type) {
 function showResults() {
     document.getElementById("resultTable").style.display = 'block'; // Muestra la tabla de resultados
 }
-
-

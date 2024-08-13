@@ -1,3 +1,7 @@
+.col-lg-10 {
+  width: 85%; /* Ajusta el ancho para darle más espacio a la tabla */
+}
+
 .titulo {
   font-size: 50px;
   font-weight: bold;
@@ -14,6 +18,16 @@
   margin: 20px 0;
 }
 
+/* Ajuste del margen entre el campo de fecha y el botón */
+.d-flex .form-control {
+  max-width: 200px; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+.d-flex .btn {
+  margin-left: 20px; /* Espaciado entre el campo de fecha y el botón */
+  margin-top: 25px;
+}
+
 table {
   width: 100%;
   max-width: 800px; /* Ajuste del ancho de la tabla */
@@ -24,8 +38,7 @@ table {
 }
 
 .tabla {
-  margin-left: 20%;
-  width: 100%;
+  margin-left: 5%;
   border-radius: 5px;
 }
 

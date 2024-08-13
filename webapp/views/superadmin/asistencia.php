@@ -27,22 +27,20 @@
 
                 <!-- Formulario para agregar fecha de asistencia -->
                 <form id="agregar-fecha-form" class="mb-3">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-2">
                             <label for="fechaAsistencia" class="sr-only">Fecha de Asistencia</label>
-                            <br>
-                            <input type="date" class="calendar mb-2" id="fechaAsistencia" placeholder="Fecha de Asistencia" required>
+                            <input type="date" class="calendar mb-2 form-control" id="fechaAsistencia" placeholder="Fecha de Asistencia" required>
                         </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-2">Agregar Fecha</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Agregar Fecha</button>
                     </div>
-                </form>
-
-                <!-- Botón para agregar trabajos -->
+                     <!-- Botón para agregar trabajos -->
                 <button id="agregar-trabajo-btn" type="button" class="btn btn-success mb-3">Agregar Trabajo</button>
                 <div class="divider-line"></div>
                 <br>
+                </form>
+
+               
 
                 <!-- Tabla de Asistencias y Trabajos -->
                 <div class="tabla">
@@ -83,6 +81,7 @@
             </div>
         </div>
     </div>
+
     <!--Footer-->
     <div>
         <?php include __DIR__ . '/../../templates/footer.html'; ?>

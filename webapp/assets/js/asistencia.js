@@ -9,6 +9,8 @@ document.getElementById('agregar-fecha-form').addEventListener('submit', functio
         th.style.backgroundColor = '#002E60';
         th.style.color = 'white';
         th.innerText = fechaAsistencia;
+        th.style.borderTopLeftRadius = '10px';
+        th.style.borderTopRightRadius = '10px';
 
         // Verifica si existe un encabezado de columna `trabajo`
         const trabajoHeader = document.querySelector('.trabajo') || document.querySelector('th.evaluacion');
@@ -32,7 +34,8 @@ document.getElementById('agregar-trabajo-btn').addEventListener('click', functio
     th.style.backgroundColor = '#009475';
     th.style.color = 'white';
     th.innerText = 'Trabajo';
-    th.width= '30%';
+    th.style.borderTopLeftRadius = '10px';
+    th.style.borderTopRightRadius = '10px';
 
     const referenceHeader = document.querySelector('.evaluacion') || document.querySelector('th:last-child');
     referenceHeader.parentNode.insertBefore(th, referenceHeader);
