@@ -143,6 +143,7 @@ $profiles = $profileController->handleRequest();
 <script src="/SIGEFO/webapp/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/SIGEFO/webapp/assets/js/registroactividad.js"></script>
 
+
 </body>
 </html>
 

@@ -124,6 +124,56 @@
 <!-- Tu script personalizado -->
 <script src="/SIGEFO/webapp/assets/js/consultas.js"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+});
+
+function showInput(type) {
+    const select = document.getElementById('dynamicSelect');
+    let options = [];
+    switch (type) {
+        case 'year':
+            options = [
+                '<option value="">Seleccione el año</option>',
+                
+            ];
+            break;
+        case 'instructor':
+            options = [
+                '<option value="">Seleccione el instructor</option>',
+                
+            ];
+            break;
+        case 'unit':
+            options = [
+                '<option value="">Seleccione la unidad académica</option>',
+                
+            ];
+            break;
+        case 'teacher':
+            options = [
+                '<option value="">Seleccione el docente</option>',
+                
+            ];
+            break;
+        case 'gender':
+            options = [
+                '<option value="">Seleccione el género</option>',
+                '<option value="masculino">Masculino</option>',
+                '<option value="femenino">Femenino</option>'
+            ];
+            break;
+    }
+    select.innerHTML = options.join('');
+    document.getElementById("searchBtnContainer").style.display = 'block';
+}
+
+function showResults() {
+    document.getElementById("resultTable").style.display = 'block'; // Muestra la tabla de resultados
+}
+
+</script>
 </body>
 
 </html>
