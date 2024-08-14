@@ -59,7 +59,6 @@ body {
     opacity: 1;
 }
 
-
 .radio-input input {
     display: none;
 }
@@ -193,3 +192,50 @@ footer.footer {
     text-align: center;
     padding: 10px 0;
 }
+
+.searchBtn{
+    padding: 10px 20px;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    border-radius: 10px;
+    border: solid 1px #001660;
+    border-bottom: solid 1px #33537a;
+    background: linear-gradient(135deg, #001660, #013375);
+    color: #fff;
+    font-weight: bolder;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #014a9c,
+      inset 0px -4px 5px #001660;
+  }
+  
+  .searchBtn:hover {
+    color: #000000;
+    background-color: #014a9c;
+    transform: scale(0.995);
+  }
+
+.form-margin {
+  margin-top: 50px;
+}
+
+.buscar{
+    max-width: 190px;
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: .15rem .5rem;
+    min-height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+  }
+  
+  buscar:focus {
+    border-bottom: 2px solid #001660;
+    border-radius: 4px 4px 2px 2px;
+  }
+  
+  buscar:hover {
+    outline: 1px solid #013375;
+  }

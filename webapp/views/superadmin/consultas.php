@@ -88,7 +88,7 @@ $activitiesForDoc = new DocenteService();
                 <!-- Select Inputs -->
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
                     <div id="selectYear" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el año</option>
                                 <?php foreach ($activities['anios'] as $anio):?>
@@ -99,13 +99,13 @@ $activitiesForDoc = new DocenteService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchYearBtn" class="btn btn-primary searchBtn" onclick="<?php $acYear = $activitiesFound->queryForYear($selectedYear);?>">Buscar Por Año</button>
+                                <button id="searchYearBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acYear = $activitiesFound->queryForYear($selectedYear);?>">Buscar Por Año</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectInstructor" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Instructor</option>
                                 <?php foreach ($instructors as $instructor):?>
@@ -116,13 +116,13 @@ $activitiesForDoc = new DocenteService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchInsBtn" class="btn btn-primary searchBtn" onclick="<?php $acForIns = $activitiesForIns->queryGetActivityForInstructor($insForAc);?>">Buscar Por Instructor</button>
+                                <button id="searchInsBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acForIns = $activitiesForIns->queryGetActivityForInstructor($insForAc);?>">Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectUnit" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Unidad Academica</option>
                                 <?php foreach ($unidades as $unidad):?>
@@ -133,13 +133,13 @@ $activitiesForDoc = new DocenteService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchUnitBtn" class="btn btn-primary searchBtn" onclick="<?php $acUnit = $activitiesForUnit->queryForUnit($selectedUnidad);?>">Buscar Por Unidad Academica</button>
+                                <button id="searchUnitBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acUnit = $activitiesForUnit->queryForUnit($selectedUnidad);?>">Buscar Por Unidad Academica</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectTeacher" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Docente</option>
                                 <?php foreach ($docentes as $docente):?>
@@ -150,13 +150,13 @@ $activitiesForDoc = new DocenteService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchDocBtn" class="btn btn-primary searchBtn" onclick="<?php $acDoc = $activitiesForDoc->queryActivitiesForDocente($selectedDocente);?>">Buscar Por Instructor</button>
+                                <button id="searchDocBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acDoc = $activitiesForDoc->queryActivitiesForDocente($selectedDocente);?>">Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectGender" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione la Actividad</option>
                                 <?php foreach ($activities['actividades'] as $actividad):?>
@@ -167,7 +167,7 @@ $activitiesForDoc = new DocenteService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchGenderBtn" class="btn btn-primary searchBtn" onclick="<?php $acGender = $activitiesFound->queryForGender($selectedActividad);?>">Buscar Por Genero</button>
+                                <button id="searchGenderBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acGender = $activitiesFound->queryForGender($selectedActividad);?>">Buscar Por Genero</button>
                             </div>
                         </form>
                     </div>
@@ -176,7 +176,7 @@ $activitiesForDoc = new DocenteService();
                 <div class="divider-line"></div>
                 <br>
 
-                <input placeholder="Buscar" type="search" class="input">
+                <input placeholder="Buscar" type="search" class="buscar">
                 <br>
 
                 <!-- Tablas de resultados (solo se muestran para ejemplo, oculta o elimina según necesidad) -->

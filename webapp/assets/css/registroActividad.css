@@ -125,18 +125,10 @@
     border-radius: 100px;
   }
 
-  .form-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    background-color: #f3f4f6; /* Fondo suave */
-}
-
 /* Formulario con animación */
 .form-container {
-    max-width: 600px; /* Ancho máximo del formulario */
-    width: 100%; /* Ancho completo en pantallas pequeñas */
+    max-width: 600px; 
+    width: 80%; 
     background: #fff;
     border-radius: 8px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -147,6 +139,8 @@
     transform: translateY(-30px); /* Inicia más arriba para la animación */
     opacity: 0; /* Inicia invisible */
     animation: fadeInUp 0.5s ease-out forwards; /* Aparece suavemente */
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 /* Animación */

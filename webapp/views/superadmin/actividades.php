@@ -366,7 +366,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="/../webapp/assets/js/actividades.js"></script>
+        <script src="/SIGEFO/webapp/assets/js/actividades.js"></script>
 
 </body>
 
