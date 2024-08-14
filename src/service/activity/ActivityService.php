@@ -184,4 +184,34 @@ class ActivityService
             error_log("Get Activities For Year failed: " . $e->getMessage());
         }
     }
+
+    public function queryForGender($actividad)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT
+                    a.nombre AS actividad,
+                    SUM(CASE WHEN d.sexo = 'M' THEN 1 ELSE 0 END) AS total_hombres,
+                    SUM(CASE WHEN d.sexo = 'F' THEN 1 ELSE 0 END) AS total_mujeres,
+                    COUNT(i.idInscripcion) AS total_participantes
+                FROM
+                    ACTIVIDAD a
+                JOIN
+                    INSCRIPCION i ON a.idActividad = i.idActividad
+                JOIN
+                    DOCENTE d ON i.idDocente = d.idDocente
+                WHERE
+                    a.idActividad = ?
+                GROUP BY
+                    a.nombre;");
+
+            $stmt->bindValue(1, $actividad);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Get Activities For Gender failed: " . $e->getMessage());
+        }
+    }
 }
