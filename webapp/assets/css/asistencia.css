@@ -18,10 +18,154 @@
   margin: 20px 0;
 }
 
+/*Modal*/
+.modal {
+  display: none;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  margin-top: 90px;
+  position: relative; /* Asegura que el contenido del modal se posicione correctamente */
+}
+
+.close {
+  color: #aaa;
+  position: absolute; /* Para posicionar la "X" de forma absoluta */
+  right: 20px; /* Ajusta la distancia desde la derecha */
+  top: 15px; /* Ajusta la distancia desde la parte superior */
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.modal-footer-title {
+  color: black;
+  font-size: 29px;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+  margin-top: 20px;
+}
+
+.tarjeta {
+  width: 100%; /* Ajustar el ancho al 100% del contenedor */
+}
+
+/*inputs del form*/
+.campo {
+  position: relative;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.campo label {
+  position: absolute;
+  color: #8d8d8d;
+  pointer-events: none;
+  background-color: transparent;
+  left: 15px;
+  transform: translateY(0.6rem);
+  transition: all 0.3s ease;
+}
+
+.campo input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: solid 1px #8d8d8d;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.campo input:focus,
+.campo input:valid {
+  outline: none;
+  border: solid 1px #001660;
+}
+
+.campo input:focus ~ label,
+.campo input:valid ~ label {
+  transform: translateY(-51%) translateX(-10px) scale(0.8);
+  background-color: #fff;
+  padding: 0px 5px;
+  color: #0034de;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 100px;
+}
+
 /* Ajuste del margen entre el campo de fecha y el botón */
 .d-flex .form-control {
   max-width: 200px; /* Puedes ajustar el ancho según tus necesidades */
 }
+
+.form {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form .btn-contenido {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  border-radius: 10px;
+  border: solid 1px #001660;
+  border-bottom: solid 1px #33537a;
+  background: linear-gradient(135deg, #001660, #013375);
+  color: #fff;
+  font-weight: bolder;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #014a9c,
+    inset 0px -4px 5px #001660;
+}
+
+.form .btn:active {
+  box-shadow: inset 0px 4px 5px #0070f0, inset 0px -4px 5px #002cbb;
+  transform: scale(0.995);
+}
+
+.form .passicon {
+  cursor: pointer;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
+
+.form .close {
+  display: none;
+}
+
 
 .d-flex .btn {
   margin-left: 20px; /* Espaciado entre el campo de fecha y el botón */
@@ -128,3 +272,10 @@ table {
 
 }
 
+/*botondel modal*/
+.button-container {
+  display: flex;                /* Usa flexbox para alinear los elementos */
+  justify-content: flex-end;   /* Alinea los botones a la derecha */
+  align-items: center;         /* Alinea verticalmente a la misma altura */
+  gap: 10px;                   /* Espacio entre los botones, ajusta según sea necesario */
+}

@@ -47,3 +47,24 @@ document.getElementById('agregar-trabajo-btn').addEventListener('click', functio
         row.insertBefore(td, row.querySelector('.evaluacion') || row.querySelector('td:last-child'));
     });
 });
+
+function openModal() {
+    const modal = document.getElementById('modaleditar');
+    if (modal) {
+        modal.style.display = "block";
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('modaleditar');
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("modaleditar");
+    if (event.target == modal) {
+        closeModal();
+    }
+}
