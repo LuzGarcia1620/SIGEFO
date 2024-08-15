@@ -115,8 +115,10 @@
                     <input type="text" id="nombre" name="nombre" value="<?php echo $actividad['nombreactividad'] ?>" required>
                     <label for="nombre">Nombre del participante</label>
                 </div>
+                <br>
                 <p>Cuenta Moodle</p>
                 <div class="campo">
+                    
                     <input type="text" id="usermoodle" name="usermoodle" value="<?php echo $actividad['dirigidoa'] ?>" required>
                     <label for="usermoodle">Usuario</label>
                 </div>
@@ -124,8 +126,15 @@
                     <input type="text" id="passmoodle" name="passmoodle" value="<?php echo $actividad['dirigidoa'] ?>" required>
                     <label for="passmoodle">Contraseña</label>
                 </div>
+                <br>
                 <div class="campo">
-                    <input type="text" id="evaluacion" name="evaluacion" value="<?php echo $actividad['dirigidoa'] ?>" required>
+                <select id="evaluacion" name="evaluacion" class="form-control" required>
+                                    <option value="">Seleccione la evaluación</option>
+                                    <option value="">Aprobado</option>
+                                    <option value="">No aprobado</option>
+                            </select>
+                            <label for="rol">Rol</label>
+                            <input type="text" id="evaluacion" name="evaluacion" value="<?php echo $actividad['dirigidoa'] ?>" required>
                     <label for="evaluacion">Evaluación</label>
                 </div>
                 <div class="campo">
