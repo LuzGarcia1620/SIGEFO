@@ -60,13 +60,14 @@ $activity = $activityController->handleRequest();
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        <h6 class="card-title"><?php echo $activity['nombreactividad'] ?></h6>
-                        <p>Dirigido a: <?php echo $activity['dirigidoa'] ?></p>
-                        <p>Objetivo: <?php echo $activity['objetivo'] ?></p>
-                        <p>Instructor: <?php echo $activity['nombre'] . " " . $activity['paterno'] . " " . $activity['materno'] ?></p>
-                        <p>Modalidad: <?php echo $activity['modalidad'] ?></p>
-                        <p>Fecha: <?php echo $activity['fechaimp'] ?></p>
-                        <p>Horario: <?php echo $activity['horaimp'] ?></p>
+                        <h1 ><?php echo $activity['nombreactividad'] ?></h1>
+                        <br>
+                        <h6>Dirigido a: <?php echo $activity['dirigidoa'] ?></h6>
+                        <h6>Objetivo: <?php echo $activity['objetivo'] ?></h6>
+                        <h6>Instructor: <?php echo $activity['nombre'] . " " . $activity['paterno'] . " " . $activity['materno'] ?></h6>
+                        <h6>Modalidad: <?php echo $activity['modalidad'] ?></h6>
+                        <h6>Fecha: <?php echo $activity['fechaimp'] ?></h6>
+                        <h6>Horario: <?php echo $activity['horaimp'] ?></h6>
                         <div class="text-end">
                             <form method="get" action="/SIGEFO/registro">
                                 <input type="hidden" name="actividad" value="<?php echo $activity['idactividad'] ?>">

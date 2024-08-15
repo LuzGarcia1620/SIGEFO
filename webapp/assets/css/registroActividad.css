@@ -1,5 +1,20 @@
-/*MENU*/
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
 
+main {
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+/*MENU*/
 .dropdownmenu ul, .dropdownmenu li {
     margin: 0;
     padding: 0;
@@ -63,10 +78,8 @@
   .titulo {
     font-size: 50px;
     font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    margin-left: 35%;
+    text-align: center;
+    margin-bottom: 20px;
   }
   
   .divider-line {
@@ -125,28 +138,34 @@
     border-radius: 100px;
   }
 
-/* Formulario con animación */
-.form-container {
-    max-width: 600px; 
-    width: 80%; 
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 20px;
-    margin: 15px;
-    transform: translateY(-30px); /* Inicia más arriba para la animación */
-    opacity: 0; /* Inicia invisible */
-    animation: fadeInUp 0.5s ease-out forwards; /* Aparece suavemente */
-    margin-top: 50px;
-    margin-bottom: 100px;
+/* Centrar el formulario en la página */
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Animación */
+.form-container {
+  max-width: 800px; /* Aumentado para asegurar que haya espacio para todos los campos */
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 40px;
+  margin: 15px;
+  transform: translateY(-30px);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
 @keyframes fadeInUp {
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
 }

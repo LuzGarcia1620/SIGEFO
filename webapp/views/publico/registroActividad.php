@@ -55,7 +55,7 @@ $profiles = $profileController->handleRequest();
 <!-- Fin de la NavBar -->
 <a href="/SIGEFO/registro" class="regresar">Regresar</a>
 
-<div class="form-section">
+<main>
     <div class="form-container">
         <div class="titulo">Registro</div>
                 <div class="divider-line"></div>
@@ -105,7 +105,7 @@ $profiles = $profileController->handleRequest();
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>S<?php echo isset($docente) ? $docente['perfil'] : null?></option>
+                    <option value="" disabled selected>Seleccione su perfil de docente<?php echo isset($docente) ? $docente['perfil'] : null?></option>
                     <?php foreach ($profiles as $profile): ?>
                         <option value="<?php echo $profile['id'] ?>">
                             <?php echo $profile['nombre'] ?>
@@ -118,19 +118,21 @@ $profiles = $profileController->handleRequest();
                 <select id="tresanios" name="tresanios" required>
                     <option value="" disabled selected><?php echo isset($docente) ? $docente['tresanios'] : null?></option>
                     <option value="true">Si, he tomado actividades anteriormente</option>
-                    <option value="true">No, nada</option>
+                    <option value="true">No, es la primera vez</option>
                 </select>
             </div>
             <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
             <input type="hidden" name="action" id="action" value="<?php echo isset($docente) ? 'update' : 'save'?>"/>
             <input type="hidden" name="idactividad" id="idactividad" value="<?php echo $idActividad ?>"/>
             <input type="hidden" name="iddocente" id="iddocente" value="<?php echo isset($docente) ? $docente['iddocente'] : null ?>"/>
+            <br>
             <div class="btn-container">
                 <button type="submit" class="btn">Enviar</button>
             </div>
         </form>
     </div>
 </div>
+</main>
 
 <!-- Fin de la NavBar -->
 
