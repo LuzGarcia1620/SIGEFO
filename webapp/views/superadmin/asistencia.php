@@ -18,6 +18,10 @@
         $actividades = $activityController->handleRequest();
         $actividades = isset($actividades) ? $actividades : array();
 
+        $activityController = new ActivityController();
+        $docentes = $activityController->handleRequest();
+        $docentes = isset($docentes) ? $docentes : array();
+
         $activityService = new ActivityService();
     ?>
     <div>
@@ -51,48 +55,56 @@
                 <button class="btn btn-warning">Editar</button>
                 <div class="divider-line"></div>
                 <br>
-                <form >
+                <form method="get" action="/SIGEFO/controlasistencia">
                     <div class="input-field">
-                        <select id="actividad" name="actividad" required>
+                        <select id="actividad" name="control" required>
                             <option value="" disabled selected>Seleccione una Actividad</option>
                             <?php foreach ($actividades['actividades'] as $actividad):?>
-                                <?php $idAc = $actividad['idactividad'] ?>
-                                <option value="<?php echo $idAc ?>">
+                                <option value="<?php echo $actividad['idactividad'] ?>">
                                     <?php echo $actividad['nombreactividad'] ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <button id="" type="button" class="btn btn-primary mb-2" onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
-                    <?php var_dump($list);?>
+                    <button id="" type="submit" class="btn btn-primary mb-2" >Ver Asistencias</button>
                 </form>
 
                 <!-- Tabla de Asistencias y Trabajos -->
                 <div class="tabla">
                     <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="name">Nombre Participante</th>
-                                <th class="moodleuser">Usuario Moodle</th>
-                                <th class="moodlepass">Contraseña Moodle</th>
-                                <th class="evaluacion">Evaluación</th>
-                                <th class="coment">Comentarios</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaAsistenciaBody">
-                        <?php if (isset($list)):?>
-                            <?php foreach ($list as $docente):?>
+                        <?php if (isset($docentes['docentes'])):?>
+                            <?php if ($docentes['docentes'] == null):?>
                                 <tr>
-                                    <td><?php echo $docente['nombredocente']?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    No hay datos para la actividad
                                 </tr>
+                            <?php else:?>
+                                <thead>
+                                <tr>
+                                    <th class="name">Nombre Participante</th>
+                                    <th class="moodleuser">Usuario Moodle</th>
+                                    <th class="moodlepass">Contraseña Moodle</th>
+                                    <th class="evaluacion">Evaluación</th>
+                                    <th class="coment">Comentarios</th>
+                                </tr>
+                                </thead>
+                            <?php endif;?>
+                            <?php foreach ($docentes['docentes'] as $docente):?>
+                                <tbody id="tablaAsistenciaBody">
+                                    <tr>
+                                        <td><?php echo isset($docente['nombredocente']) ? $docente['nombredocente'] : null?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
                             <?php endforeach;?>
+                        <?php else:?>
+                            <tr>
+                                Seleccione una Actividad para ver la lista de Docentes Inscritos
+                            </tr>
                         <?php endif;?>
-                        </tbody>
                     </table>
                 </div>
             </div>

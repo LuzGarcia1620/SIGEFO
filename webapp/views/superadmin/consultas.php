@@ -29,7 +29,10 @@ require_once __DIR__ . "/../../../src/service/docente/DocenteService.php";
 $activityController = new ActivityController();
 $activities = $activityController->handleRequest();
 
-$activitiesFound = new ActivityService();
+$activityController = new ActivityController();
+$activitiesForYear = $activityController->handleRequest();
+
+/*$activitiesFound = new ActivityService();
 
 $unidadController = new UnidadAcademicaController();
 $unidades = $unidadController->handleRequest();
@@ -44,7 +47,7 @@ $activitiesForIns = new InstructorService();
 $docenteController = new DocenteController();
 $docentes = $docenteController->handleRequest();
 
-$activitiesForDoc = new DocenteService();
+$activitiesForDoc = new DocenteService();*/
 ?>
 <div>
     <?php include __DIR__ . '/../../templates/header.html'; ?>
@@ -88,19 +91,20 @@ $activitiesForDoc = new DocenteService();
                 <!-- Select Inputs -->
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
                     <div id="selectYear" class="hidden-select">
-                        <form class="d-flex align-items-center">
-                            <select class="form-control" style="width: 300px;">
+                        <form method="get" action="/SIGEFO/consultas" id="formYear" class="d-flex align-items-center">
+                            <select style="width: 300px;" name="anio" id="anio" class="form-control">
                                 <option value="" disabled selected>Seleccione el año</option>
                                 <?php foreach ($activities['anios'] as $anio):?>
-                                    <option value="<?php $selectedYear = $anio['anio']?>">
+                                    <option value="<?php echo $anio['anio']?>">
                                         <?php echo $anio['anio']?>
                                     </option>
                                 <?php endforeach;?>
                             </select>
                             <!-- Botón de búsqueda -->
-                            <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchYearBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acYear = $activitiesFound->queryForYear($selectedYear);?>">Buscar Por Año</button>
-                            </div>
+                            <button type="submit" id="searchYearBtn" class="btn btn-primary searchBtn form-margin">Buscar Por Año</button>
+                            <!--<div id="searchBtnContainer" class="ml-3">
+                                <button type="submit" id="searchYearBtn" class="btn btn-primary searchBtn form-margin">Buscar Por Año</button>
+                            </div>-->
                         </form>
                     </div>
 
@@ -195,8 +199,8 @@ $activitiesForDoc = new DocenteService();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($acYear)):?>
-                            <?php foreach ($acYear as $ac):?>
+                        <?php if (isset($activitiesForYear)):?>
+                            <?php foreach ($activitiesForYear as $ac):?>
                             <tr>
                                 <td><?php echo $ac['nombre_actividad']?></td>
                                 <td><?php echo $ac['nombre_instructor']?></td>
@@ -329,17 +333,17 @@ $activitiesForDoc = new DocenteService();
 </div>
 
 <script>
-    document.getElementById("searchYearBtn").addEventListener("click", function(event) {
+    document.getElementById("formYear").addEventListener("submit", function(event) {
         event.preventDefault(); // Evita que el formulario se envíe
         document.getElementById("resultTableYear").style.display = "block";
-        document.getElementById("resultTableUnit").style.display = "none";
+        /*document.getElementById("resultTableUnit").style.display = "none";
         document.getElementById("resultTableInstructor").style.display = "none";
         document.getElementById("resultTableGender").style.display = "none";
-        document.getElementById("resultTableDocente").style.display = "none";
+        document.getElementById("resultTableDocente").style.display = "none";*/
         // Ocultar otras tablas según sea necesario
     });
 
-    document.getElementById("searchUnitBtn").addEventListener("click", function(event) {
+    /*document.getElementById("searchUnitBtn").addEventListener("click", function(event) {
         event.preventDefault(); // Evita que el formulario se envíe
         document.getElementById("resultTableYear").style.display = "none";
         document.getElementById("resultTableUnit").style.display = "block";
@@ -374,7 +378,7 @@ $activitiesForDoc = new DocenteService();
         document.getElementById("resultTableInstructor").style.display = "none";
         document.getElementById("resultTableGender").style.display = "none";
         document.getElementById("resultTableDocente").style.display = "block";
-    })
+    })*/
 </script>
 </body>
 </html>
