@@ -120,7 +120,6 @@ $profiles = $profileController->handleRequest();
                     <option value="true">Si, he tomado actividades anteriormente</option>
                     <option value="true">No, nada</option>
                 </select>
-                
             </div>
             <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
             <input type="hidden" name="action" id="action" value="<?php echo isset($docente) ? 'update' : 'save'?>"/>

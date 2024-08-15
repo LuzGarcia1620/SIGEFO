@@ -6,9 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asistencia</title>
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/asistencia.css" />
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />
     </head>
 
     <body>
+    <?php
+        require_once __DIR__ . "/../../../src/controller/activity/ActivityController.php";
+        require_once __DIR__ . "/../../../src/service/activity/ActivityService.php";
+
+        $activityController = new ActivityController();
+        $actividades = $activityController->handleRequest();
+        $actividades = isset($actividades) ? $actividades : array();
+
+        $activityService = new ActivityService();
+    ?>
     <div>
         <?php include __DIR__ . '/../../templates/header.html'; ?>
     </div>
@@ -34,13 +45,27 @@
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Agregar Fecha</button>
                     </div>
+                </form>
                      <!-- Botón para agregar trabajos -->
                 <button id="agregar-trabajo-btn" type="button" class="btn btn-success mb-3">Agregar Trabajo</button>
+                <button class="btn btn-warning">Editar</button>
                 <div class="divider-line"></div>
                 <br>
+                <form >
+                    <div class="input-field">
+                        <select id="actividad" name="actividad" required>
+                            <option value="" disabled selected>Seleccione una Actividad</option>
+                            <?php foreach ($actividades['actividades'] as $actividad):?>
+                                <?php $idAc = $actividad['idactividad'] ?>
+                                <option value="<?php echo $idAc ?>">
+                                    <?php echo $actividad['nombreactividad'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <button id="" type="button" class="btn btn-primary mb-2" onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
+                    <?php var_dump($list);?>
                 </form>
-
-               
 
                 <!-- Tabla de Asistencias y Trabajos -->
                 <div class="tabla">
@@ -50,31 +75,23 @@
                                 <th class="name">Nombre Participante</th>
                                 <th class="moodleuser">Usuario Moodle</th>
                                 <th class="moodlepass">Contraseña Moodle</th>
-                                <!-- Encabezados dinámicos para las fechas de asistencia se añadirán aquí -->
                                 <th class="evaluacion">Evaluación</th>
                                 <th class="coment">Comentarios</th>
-                                <th class="edit">Edición</th>
                             </tr>
                         </thead>
                         <tbody id="tablaAsistenciaBody">
-                            <tr>
-                                <td>Juan Pérez</td>
-                                <td>jperez</td>
-                                <td>123456</td>
-                                <!-- Celdas dinámicas para marcar asistencia se añadirán aquí -->
-                                <td>90%</td>
-                                <td>Excelente</td>
-                                <td><button class="btn btn-warning">Editar</button></td>
-                            </tr>
-                            <!-- Más filas de ejemplo -->
-                            <tr>
-                                <td>Maria López</td>
-                                <td>mlopez</td>
-                                <td>abcdef</td>
-                                <td>85%</td>
-                                <td>Buena participación</td>
-                                <td><button class="btn btn-warning">Editar</button></td>
-                            </tr>
+                        <?php if (isset($list)):?>
+                            <?php foreach ($list as $docente):?>
+                                <tr>
+                                    <td><?php echo $docente['nombredocente']?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <?php endforeach;?>
+                        <?php endif;?>
                         </tbody>
                     </table>
                 </div>

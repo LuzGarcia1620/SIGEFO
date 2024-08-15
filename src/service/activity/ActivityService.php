@@ -214,4 +214,24 @@ class ActivityService
             error_log("Get Activities For Gender failed: " . $e->getMessage());
         }
     }
+
+    public function getListForActivity($idActividad)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT ins.idDocente, ins.idActividad, CONCAT(doc.nombre, ' ', doc.paterno, ' ', doc.materno) AS nombreDocente
+                FROM inscripcion AS ins
+                LEFT JOIN docente AS doc
+                ON ins.idDocente = doc.idDocente
+                WHERE idActividad = ?;");
+
+            $stmt->bindParam(1, $idActividad);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log("Get List For Activities failed: " . $e->getMessage());
+        }
+    }
 }
