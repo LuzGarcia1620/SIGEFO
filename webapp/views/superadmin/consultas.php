@@ -77,7 +77,7 @@ $activitiesForUnit = new UnidadAcademicaService();
                 <!-- Select Inputs -->
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
                     <div id="selectYear" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el año</option>
                                 <?php foreach ($activities['anios'] as $anio):?>
@@ -88,26 +88,26 @@ $activitiesForUnit = new UnidadAcademicaService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchYearBtn" class="btn btn-primary searchBtn" onclick="<?php $acYear = $activitiesFound->queryForYear($selectedYear);?>">Buscar Por Año</button>
+                                <button id="searchYearBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acYear = $activitiesFound->queryForYear($selectedYear);?>">Buscar Por Año</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectInstructor" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="">Seleccione el Instructor</option>
                                 <!-- Agrega más opciones aquí -->
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchBtn" class="btn btn-primary searchBtn" >Buscar Por Instructor</button>
+                                <button id="searchBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectUnit" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Unidad Academica</option>
                                 <?php foreach ($unidades as $unidad):?>
@@ -118,38 +118,37 @@ $activitiesForUnit = new UnidadAcademicaService();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchUnitBtn" class="btn btn-primary searchBtn" onclick="<?php $acUnit = $activitiesForUnit->queryForUnit($selectedUnidad);?>">Buscar Por Unidad Academica</button>
+                                <button id="searchUnitBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acUnit = $activitiesForUnit->queryForUnit($selectedUnidad);?>">Buscar Por Unidad Academica</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectTeacher" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="">Seleccione el Docente</option>
                                 <!-- Agrega más opciones aquí -->
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchBtn" class="btn btn-primary searchBtn">Buscar Por Instructor</button>
+                                <button id="searchBtn" class="btn btn-primary searchBtn form-margin">Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectGender" class="hidden-select">
-                        <form>
+                        <form class="d-flex align-items-center">
                             <select class="form-control" style="width: 300px;">
                                 <option value="">Seleccione el Genero</option>
                                 <!-- Agrega más opciones aquí -->
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchBtn" class="btn btn-primary searchBtn">Buscar Por Genero</button>
+                                <button id="searchBtn" class="btn btn-primary searchBtn form-margin">Buscar Por Genero</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
                 <div class="divider-line"></div>
                 <br>
 

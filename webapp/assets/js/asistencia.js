@@ -19,7 +19,7 @@ document.getElementById('agregar-fecha-form').addEventListener('submit', functio
         const rows = document.querySelectorAll('#tablaAsistenciaBody tr');
         rows.forEach(row => {
             const td = document.createElement('td');
-            td.innerHTML = '<input type="checkbox">';
+            td.style.border = 'none'; // Estilo opcional para asegurarse de que no afecte la apariencia
             row.insertBefore(td, row.querySelector('.trabajo') || row.querySelector('.evaluacion'));
         });
 
@@ -42,9 +42,8 @@ document.getElementById('agregar-trabajo-btn').addEventListener('click', functio
 
     const rows = document.querySelectorAll('#tablaAsistenciaBody tr');
     rows.forEach(row => {
-        const lastTrabajoCell = row.querySelectorAll('.trabajo');
         const td = document.createElement('td');
-        td.innerHTML = '<input type="text" class="form-control" placeholder="Calificación">';
+        td.style.border = 'none'; // Estilo opcional para asegurarse de que no afecte la apariencia
         row.insertBefore(td, row.querySelector('.evaluacion') || row.querySelector('td:last-child'));
     });
 });

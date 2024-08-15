@@ -2,6 +2,18 @@
   width: 85%; /* Ajusta el ancho para darle más espacio a la tabla */
 }
 
+.table th, .table td {
+  min-width: 100px; /* Ajusta el ancho mínimo para mantener la tabla estable */
+}
+
+.table td.edit {
+  position: sticky;
+  right: 0;
+  background-color: #f8f9fa; /* Color de fondo opcional */
+  z-index: 1; /* Asegura que esté por encima de otras celdas */
+}
+
+
 .titulo {
   font-size: 50px;
   font-weight: bold;
@@ -127,4 +139,3 @@ table {
   text-align: left;
 
 }
-
