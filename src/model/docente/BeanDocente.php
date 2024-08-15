@@ -29,9 +29,9 @@ class BeanDocente
         $this->sexo = $sexo;
         $this->edad = $edad;
         $this->correo =$correo;
-        $this->gradp = $grado;
+        $this->grado = $grado;
         $this->disciplina = $disciplina;
-        $this->grado = $tresanios;
+        $this->tresanios = $tresanios;
         $this->idUnidadAcademica = $idunidad;
         $this->idPerfil = $idperfil;
     }
