@@ -154,6 +154,11 @@ class ActivityController
                 $actividades = $this->activityService->queryForYear($anio);
 
                 return $actividades;
+            } else if (isset($_GET['act'])) {
+                $act = ($_GET['act']);
+                $actividades = $this->activityService->queryForGender($act);
+
+                return $actividades;
             } else {
                 $actividades = $this->activityService->getAll();
                 $anio = $this->activityService->getYear();
