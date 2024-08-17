@@ -54,7 +54,7 @@ $roles = $rolController->handleRequest();
             <div>
                 <div class="divider-line"></div>
                 <div class="card-container d-flex justify-content-around flex-wrap">
-                    <?php foreach ($users['usuarios'] as $user): ?>
+                    <?php foreach ($users['usuarios'] as  $user): ?>
                         <div class="card my-2" style="width: 18rem;" data-id="<?php echo $user['idusuario']; ?>" data-status="<?php echo $user['status']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -189,10 +189,7 @@ $roles = $rolController->handleRequest();
                             <input type="email" id="correoEditar" name="correoEditar" class="form-control" required>
                             <label for="correoEditar">Correo Electrónico</label>
                         </div>
-                        <div class="campo">
-                            <input type="password" id="password" name="password" class="form-control" required>
-                            <label for="passwordEditar">Contraseña</label>
-                        </div>
+                        
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" id="idUsuarioU" name="idUsuario">
                         <div class="modal-footer">

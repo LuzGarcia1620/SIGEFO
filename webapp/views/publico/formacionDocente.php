@@ -51,14 +51,14 @@
 
         <div class="container">
             <div class="row">
-                <?php if (empty($activities)): ?>
+                <?php if (empty($activities['actividades'])): ?>
                 <div class="col-12">
-                    <div class= "actividadesanuncio">
-                        <p>¡Aún no tenemos actividades disponibles!</p> 
+                    <div class="actividadesanuncio">
+                        <p>¡Aún no tenemos actividades disponibles!</p>
                     </div>
-                   
                 </div>
                 <?php else: ?>
+
                 <?php foreach ($activities['actividades'] as $activity): ?>
                 <?php if ($activity['status']): ?>
                 <div class="col-md-6 d-flex justify-content-center">
@@ -76,9 +76,7 @@
                                 <input type="hidden" name="actividad" value="<?php echo $activity['idactividad'] ?>">
                                 <button type="submit" class="inscriptionbtn"><a>Ver más Información</a></button>
                             </form>
-
                         </div>
-
                     </div>
                 </div>
                 <?php endif; ?>

@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('.btnUpdateAc').on('click', (e) => {
         e.preventDefault();
-
         Swal.fire({
             title: 'Confirmación Actualización',
             text: "¿Esta seguro de actualizar el registro?",
