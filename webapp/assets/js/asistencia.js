@@ -2,7 +2,7 @@ document.getElementById('agregar-fecha-form').addEventListener('submit', functio
     e.preventDefault();
 
     const fechaAsistencia = document.getElementById('fechaAsistencia').value;
-    
+
     if (fechaAsistencia) {
         const th = document.createElement('th');
         th.className = 'asistencia';
@@ -12,7 +12,7 @@ document.getElementById('agregar-fecha-form').addEventListener('submit', functio
         th.style.borderTopLeftRadius = '10px';
         th.style.borderTopRightRadius = '10px';
 
-        // Verifica si existe un encabezado de columna `trabajo`
+        // Verifica si existe un encabezado de columna trabajo
         const trabajoHeader = document.querySelector('.trabajo') || document.querySelector('th.evaluacion');
         trabajoHeader.parentNode.insertBefore(th, trabajoHeader);
 
@@ -47,3 +47,24 @@ document.getElementById('agregar-trabajo-btn').addEventListener('click', functio
         row.insertBefore(td, row.querySelector('.evaluacion') || row.querySelector('td:last-child'));
     });
 });
+
+function openModal() {
+    const modal = document.getElementById('modaleditar');
+    if (modal) {
+        modal.style.display = "block";
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('modaleditar');
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("modaleditar");
+    if (event.target == modal) {
+        closeModal();
+    }
+}
