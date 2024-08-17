@@ -18,6 +18,10 @@
         $actividades = $activityController->handleRequest();
         $actividades = isset($actividades) ? $actividades : array();
 
+        $activityController = new ActivityController();
+        $docentes = $activityController->handleRequest();
+        $docentes = isset($docentes) ? $docentes : array();
+
         $activityService = new ActivityService();
     ?>
     <div>
@@ -53,20 +57,19 @@
                 
                 <div class="divider-line"></div>
                 <br>
-                <form>
+                <formmethod="get" action="/SIGEFO/controlasistencia">
                     <div class="input-field">
-                        <select id="actividad" name="actividad" required>
+                        <select id="actividad" name="control" required>
                             <option value="" disabled selected>Seleccione una Actividad</option>
                             <?php foreach ($actividades['actividades'] as $actividad):?>
-                            <?php $idAc = $actividad['idactividad'] ?>
-                            <option value="<?php echo $idAc ?>">
-                                <?php echo $actividad['nombreactividad'] ?>
-                            </option>
+                                <?php $idAc = $actividad['idactividad'] ?>
+                                <option value="<?php echo $idAc ?>">
+                                    <?php echo $actividad['nombreactividad'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <button id="" type="button" class="btn btn-primary mb-2"
-                        onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
+                    <button id="" type="button" class="btn btn-primary mb-2" onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
                     <?php var_dump($list);?>
                 </form>
 
@@ -83,18 +86,18 @@
                             </tr>
                         </thead>
                         <tbody id="tablaAsistenciaBody">
-                            <?php if (isset($list)):?>
+                        <?php if (isset($list)):?>
                             <?php foreach ($list as $docente):?>
-                            <tr>
-                                <td><?php echo $docente['nombredocente']?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo $docente['nombredocente']?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             <?php endforeach;?>
-                            <?php endif;?>
+                        <?php endif;?>
                         </tbody>
                     </table>
                 </div>

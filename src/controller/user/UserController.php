@@ -121,8 +121,13 @@ class UserController
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $users = $this->userService->getAll();
+            $instructores = $this->userService->getAllInstructors();
 
-            return $users ? $users : array();
+            $result = array();
+            $result['usuarios'] = $users ? $users : array();
+            $result['instructores'] = $instructores ? $instructores : array();
+
+            return $result;
         }
     }
 

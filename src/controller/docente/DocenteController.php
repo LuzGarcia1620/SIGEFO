@@ -86,7 +86,12 @@ class DocenteController
                 } catch (Exception $e) {
                     error_log($e);
                 }
-            } else {
+            } else if (isset($_GET['docente'])) {
+                $id = intval($_GET['docente']);
+                $activity = $this->docenteService->queryActivitiesForDocente($id);
+
+                return $activity;
+            }else {
                 $docentes = $this->docenteService->getAll();
 
                 return $docentes ? $docentes : array();

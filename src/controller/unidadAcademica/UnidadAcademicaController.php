@@ -25,6 +25,11 @@ class UnidadAcademicaController
                 $unidadAcademica = $this->unidadAcademicaService->getById($id);
 
                 return $unidadAcademica;
+            } else if (isset($_GET['unidad'])) {
+                $id = intval($_GET['unidad']);
+                $activity = $this->unidadAcademicaService->queryForUnit($id);
+
+                return $activity;
             } else {
                 $unidadAcademicas = $this->unidadAcademicaService->getAll();
 

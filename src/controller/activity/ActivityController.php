@@ -138,6 +138,27 @@ class ActivityController
                 $activity = $this->activityService->getById($id);
 
                 return $activity;
+            } else if (isset($_GET['control'])) {
+                $id = intval($_GET['control']);
+                $docentes = $this->activityService->getListForActivity($id);
+
+                $actividades = $this->activityService->getAll();
+
+                $result = array();
+                $result['actividades'] = $actividades ? $actividades : array();
+                $result['docentes'] = $docentes ? $docentes : array();
+
+                return $result;
+            } else if (isset($_GET['anio'])) {
+                $anio = ($_GET['anio']);
+                $actividades = $this->activityService->queryForYear($anio);
+
+                return $actividades;
+            } else if (isset($_GET['act'])) {
+                $act = ($_GET['act']);
+                $actividades = $this->activityService->queryForGender($act);
+
+                return $actividades;
             } else {
                 $actividades = $this->activityService->getAll();
                 $anio = $this->activityService->getYear();
