@@ -15,7 +15,6 @@ $user = $userService->getOne($_SESSION['idUsuario'])
     <title>Perfil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/perfil.css" />
-    <!--<link rel="stylesheet" href="/SIGEFO/webapp/assets/css/styles.css" />-->
 </head>
 
 <body>

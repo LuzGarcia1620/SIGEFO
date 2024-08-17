@@ -173,7 +173,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                                 <label for="objetivo"></label>
                                             </div>
                                             <div class="campo">
-                                                <select id="Instructor" name="Instructor" required>
+                                                <select id="Instructor" name="instructor" required>
                                                     <option value="" disabled selected>
                                                         <?php echo $actividad['nombre'] . ' ' . $actividad['paterno'] . ' ' . $actividad['materno'] ?>
                                                     </option>
@@ -223,7 +223,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                                 <div>
                                                     <button class="green-button btnUpdateAc" id="btnUpdateAc"
                                                         type="button">
-                                                        Enviar
+                                                        Actualizar
                                                     </button>
                                                 </div>
                                             </div>
@@ -338,11 +338,11 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             <p id="wordCountDisplay">Palabras: 0 / 500</p>
                         </div>
                         <div class="campo">
-                            <input type="text" id="Fecha" name="Fecha" required>
-                            <label for="Fecha">Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                            <label for="Fecha">Fecha DD-MM-AAAA</label>
                         </div>
                         <div class="campo">
-                            <input type="text" id="Horario" name="Horario" required>
+                            <input type="time" id="horario" name="horario" required>
                             <label for="Horario">Horario</label>
                         </div>
                         <div class="button-container">

@@ -21,7 +21,7 @@ class ActivityController
 
                         // Constructor para guardar datos
                         $beanActivity->constructSaveWithIns(
-                            $_POST['idInstructor'],
+                            $_POST['idinstructor'],
                             $_POST['idTipo'],
                             $_POST['nombre'],
                             $_POST['duracion'],
@@ -66,7 +66,7 @@ class ActivityController
                             $_POST['nombre'],
                             $_POST['dirigido'],
                             $_POST['objetivo'],
-                            $_POST['Instructor'],
+                            $_POST['instructor'],
                             $_POST['idTipo'],
                             $_POST['fecha'],
                             $_POST['duracion'],

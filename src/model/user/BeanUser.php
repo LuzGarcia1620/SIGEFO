@@ -27,14 +27,13 @@ class BeanUser
         $this->idRol = $idRol;
     }
 
-    public function constructUpdate($usuario, $nombre, $paterno, $materno, $correo, $password)
+    public function constructUpdate($usuario, $nombre, $paterno, $materno, $correo)
     {
         $this->usuario = $usuario;
         $this->nombre = $nombre;
         $this->paterno = $paterno;
         $this->materno = $materno;
         $this->correo = $correo;
-        $this->password = $password;
     }
 
     public function setIdUsuario($idUsuario)

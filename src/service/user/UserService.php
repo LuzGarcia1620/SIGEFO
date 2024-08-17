@@ -71,15 +71,14 @@ class UserService
             $conn = $this->postgres->connect();
 
             $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, 
-            nombre = ?, paterno = ?, materno = ?, correo = ?,
-             password = ? WHERE idUsuario = ?;");
+            nombre = ?, paterno = ?, materno = ?, correo = ?
+             WHERE idUsuario = ?;");
             $stmt->bindValue(1, $beanUser->getUsuario());
             $stmt->bindValue(2, $beanUser->getNombre());
             $stmt->bindValue(3, $beanUser->getPaterno());
             $stmt->bindValue(4, $beanUser->getMaterno());
             $stmt->bindValue(5, $beanUser->getCorreo());
-            $stmt->bindValue(6, $beanUser->getPassword());
-            $stmt->bindParam(7, $idUsuario);
+            $stmt->bindParam(6, $idUsuario);
 
             return $stmt->execute();
         } catch (Exception $e) {
