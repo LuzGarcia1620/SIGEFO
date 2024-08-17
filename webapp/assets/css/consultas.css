@@ -59,7 +59,6 @@ body {
     opacity: 1;
 }
 
-
 .radio-input input {
     display: none;
 }
@@ -208,7 +207,7 @@ footer.footer {
     box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #014a9c,
       inset 0px -4px 5px #001660;
   }
-
+  
   .searchBtn:hover {
     color: #000000;
     background-color: #014a9c;
@@ -231,12 +230,12 @@ footer.footer {
     line-height: 1.15;
     box-shadow: 0px 10px 20px -18px;
   }
-
+  
   buscar:focus {
     border-bottom: 2px solid #001660;
     border-radius: 4px 4px 2px 2px;
   }
-
+  
   buscar:hover {
     outline: 1px solid #013375;
   }

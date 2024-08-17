@@ -55,4 +55,46 @@ class DocenteService
             error_log("Error in Save Docente" . $e->getMessage());
         }
     }
+
+    public function getAll(){
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT * FROM docente;");
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log($e);
+        }
+    }
+
+    public function queryActivitiesForDocente($iddocente)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("SELECT
+                    CONCAT(us.nombre, ' ', us.paterno, ' ', us.materno) AS instructor,
+                    a.nombre AS actividad_nombre,
+                    a.fechaImp AS fecha_actividad
+                FROM
+                    DOCENTE d
+                JOIN
+                    INSCRIPCION ins ON d.idDocente = ins.idDocente
+                JOIN
+                    ACTIVIDAD a ON ins.idActividad = a.idActividad
+                JOIN
+                    INSTRUCTOR i ON a.idInstructor = i.idInstructor
+                JOIN USUARIO us ON i.idUsuario = us.idUsuario
+                WHERE
+                    d.idDocente = ?;");
+            $stmt->bindValue(1, $iddocente);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            error_log($e);
+        }
+    }
 }

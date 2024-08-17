@@ -127,8 +127,8 @@ class UserService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT us.nombre, us.paterno, us.materno,
-             ins.idInstructor FROM usuario AS us JOIN instructor AS ins 
+            $stmt = $conn->prepare("SELECT us.nombre, us.paterno, us.materno, ins.idInstructor
+              FROM usuario AS us LEFT JOIN instructor AS ins 
              ON us.idUsuario = ins.idUsuario WHERE us.idRol = '3';");
             $stmt->execute();
 

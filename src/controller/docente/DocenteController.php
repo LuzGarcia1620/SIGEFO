@@ -56,37 +56,6 @@ class DocenteController
                     }
                     break;
 
-                /*case 'update':
-                    try {
-                        $beanActivity = new BeanActivity();
-
-                        $beanActivity->constructUpdate(
-                            $_POST['modalidad'],
-                            $_POST['nombre'],
-                            $_POST['dirigido'],
-                            $_POST['objetivo'],
-                            $_POST['Instructor'],
-                            $_POST['idTipo'],
-                            $_POST['fecha'],
-                            $_POST['duracion'],
-                            $_POST['horario']
-                        );
-
-                        $idActividad = $_POST['idActividad'];
-
-                        $result = $this->activityService->update($beanActivity, $idActividad);
-
-                        if ($result) {
-                            header('HTTP/1.0 200 OK');
-                        } else {
-                            header('HTTP/1.0 400 Bad Request');
-                        }
-                    } catch (Exception $e) {
-                        error_log($e);
-                        header('HTTP/1.0 500 Internal Server Error');
-                    }
-                    break;*/
-
                 case 'delete':
                     break;
 
@@ -117,6 +86,10 @@ class DocenteController
                 } catch (Exception $e) {
                     error_log($e);
                 }
+            } else {
+                $docentes = $this->docenteService->getAll();
+
+                return $docentes ? $docentes : array();
             }
         }
     }

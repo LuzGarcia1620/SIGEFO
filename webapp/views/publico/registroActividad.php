@@ -57,7 +57,7 @@ $profiles = $profileController->handleRequest();
 
 <div class="form-section">
     <div class="form-container">
-    <div class="titulo">Registro</div>
+        <div class="titulo">Registro</div>
                 <div class="divider-line"></div>
 
         <form class="form" method="POST" id="formDocenteSave" action="/src/controller/docente/DocenteController.php">
@@ -95,7 +95,7 @@ $profiles = $profileController->handleRequest();
             </div>
             <div class="input-field">
                 <select id="unidad" name="unidad" required>
-                    <option value="" disabled selected><?php echo isset($docente) ? $docente['unidad'] : null?></option>
+                    <option value="" disabled selected>Seleccione su Unidad Académica<?php echo isset($docente) ? $docente['unidad'] : null?></option>
                     <?php foreach ($unidades as $unidad): ?>
                         <option value="<?php echo $unidad['id'] ?>">
                             <?php echo $unidad['nombre'] ?>
@@ -105,7 +105,7 @@ $profiles = $profileController->handleRequest();
             </div>
             <div class="input-field">
                 <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected><?php echo isset($docente) ? $docente['perfil'] : null?></option>
+                    <option value="" disabled selected>S<?php echo isset($docente) ? $docente['perfil'] : null?></option>
                     <?php foreach ($profiles as $profile): ?>
                         <option value="<?php echo $profile['id'] ?>">
                             <?php echo $profile['nombre'] ?>
@@ -114,12 +114,13 @@ $profiles = $profileController->handleRequest();
                 </select>
             </div>
             <div class="input-field">
+                <p for="tresanios">En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</p>
                 <select id="tresanios" name="tresanios" required>
                     <option value="" disabled selected><?php echo isset($docente) ? $docente['tresanios'] : null?></option>
                     <option value="true">Si, he tomado actividades anteriormente</option>
                     <option value="true">No, nada</option>
                 </select>
-                <label for="tresanios">En los últimos 3 años, ¿Ha tomado alguna actividad formativa organizada por el Departamento de Formación Docente?</label>
+                
             </div>
             <input type="hidden" name="flag" id="flag" value="<?php echo isset($docente) ?>" />
             <input type="hidden" name="action" id="action" value="<?php echo isset($docente) ? 'update' : 'save'?>"/>

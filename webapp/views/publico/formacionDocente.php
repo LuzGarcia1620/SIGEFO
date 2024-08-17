@@ -59,7 +59,7 @@
                    
                 </div>
                 <?php else: ?>
-                <?php foreach ($activities as $activity): ?>
+                <?php foreach ($activities['actividades'] as $activity): ?>
                 <?php if ($activity['status']): ?>
                 <div class="col-md-6 d-flex justify-content-center">
                     <div class="card card-custom">

@@ -75,7 +75,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($actividades as $actividad): ?>
+                            <?php foreach ($actividades['actividades'] as $actividad): ?>
                             <tr>
                                 <td><?php echo $actividad['nombreactividad']; ?></td>
                                 <td><?php echo $actividad['status']; ?></td>
