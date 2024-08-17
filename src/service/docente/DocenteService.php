@@ -97,4 +97,22 @@ class DocenteService
             error_log($e);
         }
     }
+
+    public function editIns(BeanInscripcion $beanIns, $iddocente)
+    {
+        try {
+            $conn = $this->postgres->connect();
+
+            $stmt = $conn->prepare("UPDATE inscripcion SET evaluacion = ?, comentarios = ?, cuentamoodle = ?, passmoodle = ? WHERE idDocente = ?;");
+            $stmt->bindValue(1, $beanIns->getEvaluacion());
+            $stmt->bindValue(2, $beanIns->getComentarios());
+            $stmt->bindValue(3, $beanIns->getCuentaMoodle());
+            $stmt->bindValue(4, $beanIns->getPassMoodle());
+            $stmt->bindParam(5, $iddocente);
+
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Edit ins failed: " . $e->getMessage());
+        }
+    }
 }

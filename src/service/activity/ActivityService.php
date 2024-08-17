@@ -220,7 +220,7 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT ins.idDocente, ins.idActividad, CONCAT(doc.nombre, ' ', doc.paterno, ' ', doc.materno) AS nombreDocente
+            $stmt = $conn->prepare("SELECT ins.idDocente, ins.idActividad, CONCAT(doc.nombre, ' ', doc.paterno, ' ', doc.materno) AS nombreDocente, ins.evaluacion, ins.comentarios
                 FROM inscripcion AS ins
                 LEFT JOIN docente AS doc
                 ON ins.idDocente = doc.idDocente

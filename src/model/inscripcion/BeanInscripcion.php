@@ -7,19 +7,23 @@ class BeanInscripcion
     private $idDocente;
     private $idActividad;
     private $fecha;
-    private $idPerfil;
-    private $tresanios;
-    private $status;
+    private $hora;
+    private $evaluacion;
+    private $comentarios;
+    private $cuentaMoodle;
+    private $passMoodle;
 
-    public function __construct($idInscripcion, $idDocente, $idActividad, $fecha, $idPerfil, $tresanios, $status)
+    public function __construct()
     {
-        $this->idInscripcion = $idInscripcion;
-        $this->idDocente = $idDocente;
-        $this->idActividad = $idActividad;
-        $this->fecha = $fecha;
-        $this->idPerfil = $idPerfil;
-        $this->tresanios = $tresanios;
-        $this->status = $status;
+
+    }
+
+    public function constructEditIns($evaluacion, $comentarios, $cuentaMoodle, $passMoodle)
+    {
+        $this->evaluacion = $evaluacion;
+        $this->comentarios = $comentarios;
+        $this->cuentaMoodle = $cuentaMoodle;
+        $this->passMoodle = $passMoodle;
     }
 
     public function getIdInscripcion()
@@ -51,46 +55,52 @@ class BeanInscripcion
     {
         $this->idActividad = $idActividad;
     }
-
-    public function getFecha($Fecha)
+    public function getFecha()
     {
         return $this->fecha;
     }
-
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
     }
-    
-    public function getIdPerfil()
+    public function getHora()
     {
-        return $this->idPerfil;
+        return $this->hora;
     }
-
-    public function setIdPerfil($idPerfil)
+    public function setHora($hora)
     {
-        $this->idPerfil = $idPerfil;
+        $this->hora = $hora;
     }
-    public function getTresanios($tresanios)
+    public function getEvaluacion()
     {
-        return $this->tresanios;
+        return $this->evaluacion;
     }
-
-    public function setTresanios($resanios)
+    public function setEvaluacion($evaluacion)
     {
-        $this->tresanios = $sexoTresanios;
+        $this->evaluacion = $evaluacion;
     }
-
-    public function getStatus($status)
+    public function getComentarios()
     {
-        return $this->status;
+        return $this->comentarios;
     }
-
-    public function setStatus($status)
+    public function setComentarios($comentarios)
     {
-        $this->status = $status;
+        $this->comentarios = $comentarios;
     }
-
-
+    public function getCuentaMoodle()
+    {
+        return $this->cuentaMoodle;
+    }
+    public function setCuentaMoodle($cuentaMoodle)
+    {
+        $this->cuentaMoodle = $cuentaMoodle;
+    }
+    public function getPassMoodle()
+    {
+        return $this->passMoodle;
+    }
+    public function setPassMoodle($passMoodle)
+    {
+        $this->passMoodle = $passMoodle;
+    }
 }
-?>

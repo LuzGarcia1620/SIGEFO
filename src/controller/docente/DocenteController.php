@@ -1,16 +1,19 @@
 <?php
 require_once __DIR__ . "/../../service/docente/DocenteService.php";
 require_once __DIR__ . "/../../model/docente/BeanDocente.php";
+require_once __DIR__ . "/../../model/inscripcion/BeanInscripcion.php";
 
 class DocenteController
 {
     private $docenteService;
     private $beanDocente;
+    private $beanInscripcion;
 
     public function __construct()
     {
         $this->docenteService = new DocenteService();
         $this->beanDocente = new BeanDocente();
+        $this->beanInscripcion = new BeanInscripcion();
     }
 
     public function handleRequest()
@@ -56,10 +59,32 @@ class DocenteController
                     }
                     break;
 
-                case 'delete':
-                    break;
+                case 'evaluacion':
+                    try {
+                        $beanIns = new BeanInscripcion();
 
-                case 'change':
+                        // Constructor para guardar datos
+                        $beanIns->constructEditIns(
+                            $_POST['usermoodle'],
+                            $_POST['passmoodle'],
+                            $_POST['evaluacion'],
+                            $_POST['coment']
+                        );
+
+                        $idDocente = $_POST['iddocente'];
+
+                        $result = $this->docenteService->editIns($beanIns, $idDocente);
+
+                        if ($result) {
+                            header('HTTP/1.0 200 OK');
+                        } else {
+                            header('HTTP/1.0 400 Bad Request');
+                        }
+                    } catch (Exception $e) {
+                        error_log($e);
+                        header('HTTP/1.0 500 Internal Server Error');
+                        echo 'Internal server error';
+                    }
                     break;
 
                 default:

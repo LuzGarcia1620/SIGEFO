@@ -30,7 +30,7 @@
   margin: 20px 0;
 }
 
-/*Modal*/
+/Modal/
 .modal {
   display: none;
   z-index: 1;
@@ -79,10 +79,9 @@
 }
 
 .tarjeta {
-  width: 100%; /* Ajustar el ancho al 100% del contenedor */
+  width: 100%;
 }
 
-/*inputs del form*/
 .campo {
   position: relative;
   margin-top: 8px;
@@ -158,7 +157,7 @@
   font-weight: bolder;
   transition: all 0.2s ease;
   box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #014a9c,
-    inset 0px -4px 5px #001660;
+  inset 0px -4px 5px #001660;
 }
 
 .form .btn:active {
@@ -199,57 +198,57 @@ table {
 }
 
 .table-bordered th.name {
-  background-color: #002E60; 
+  background-color: #002E60;
   color: white;
   text-align: center;
-  width: 30%; 
+  width: 30%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
 .table-bordered th.moodleuser {
-  background-color: #009475; 
+  background-color: #009475;
   color: white;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 15%; 
+  width: 15%;
 }
 
 .table-bordered th.moodlepass {
-  background-color: #002E60; 
+  background-color: #002E60;
   color: white;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 15%; 
+  width: 15%;
 }
 
 .table-bordered th.evaluacion {
-  background-color: #009475; 
+  background-color: #009475;
   color: white;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 20%; 
+  width: 20%;
 }
 
 .table-bordered th.coment {
-  background-color: #002E60; 
+  background-color: #002E60;
   color: white;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 30%; 
+  width: 30%;
 }
 
 .table-bordered th.edit {
-  background-color: #009475; 
+  background-color: #009475;
   color: white;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 30%; 
+  width: 30%;
 }
 
 .table-bordered td {
@@ -283,14 +282,10 @@ table {
   text-align: left;
 
 }
-<<<<<<< HEAD
-=======
 
-/*botondel modal*/
 .button-container {
   display: flex;                /* Usa flexbox para alinear los elementos */
   justify-content: flex-end;   /* Alinea los botones a la derecha */
   align-items: center;         /* Alinea verticalmente a la misma altura */
   gap: 10px;                   /* Espacio entre los botones, ajusta según sea necesario */
 }
->>>>>>> 1c5fba98aebad14142d778891cd9326090137f48

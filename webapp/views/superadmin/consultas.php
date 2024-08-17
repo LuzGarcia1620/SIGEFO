@@ -115,7 +115,7 @@ $activitiesForDocente = $docenteController->handleRequest();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchInsBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acForIns = $activitiesForIns->queryGetActivityForInstructor($insForAc);?>">Buscar Por Instructor</button>
+                                <button id="searchInsBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
@@ -149,7 +149,7 @@ $activitiesForDocente = $docenteController->handleRequest();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchDocBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acDoc = $activitiesForDoc->queryActivitiesForDocente($selectedDocente);?>">Buscar Por Instructor</button>
+                                <button id="searchDocBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Instructor</button>
                             </div>
                         </form>
                     </div>
@@ -166,7 +166,7 @@ $activitiesForDocente = $docenteController->handleRequest();
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchGenderBtn" class="btn btn-primary searchBtn form-margin" onclick="<?php $acGender = $activitiesFound->queryForGender($selectedActividad);?>">Buscar Por Genero</button>
+                                <button id="searchGenderBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Genero</button>
                             </div>
                         </form>
                     </div>

@@ -54,7 +54,7 @@ $roles = $rolController->handleRequest();
             <div>
                 <div class="divider-line"></div>
                 <div class="card-container d-flex justify-content-around flex-wrap">
-                    <?php foreach ($users as $user): ?>
+                    <?php foreach ($users['usuarios'] as $user): ?>
                         <div class="card my-2" style="width: 18rem;" data-id="<?php echo $user['idusuario']; ?>" data-status="<?php echo $user['status']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title">
