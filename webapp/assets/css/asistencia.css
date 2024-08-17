@@ -283,8 +283,6 @@ table {
   text-align: left;
 
 }
-<<<<<<< HEAD
-=======
 
 /*botondel modal*/
 .button-container {
@@ -293,4 +291,4 @@ table {
   align-items: center;         /* Alinea verticalmente a la misma altura */
   gap: 10px;                   /* Espacio entre los botones, ajusta según sea necesario */
 }
->>>>>>> 1c5fba98aebad14142d778891cd9326090137f48
+

@@ -54,7 +54,7 @@ $roles = $rolController->handleRequest();
             <div>
                 <div class="divider-line"></div>
                 <div class="card-container d-flex justify-content-around flex-wrap">
-                    <?php foreach ($users as $user): ?>
+                    <?php foreach ($users['usuarios'] as $user): ?>
                         <div class="card my-2" style="width: 18rem;" data-id="<?php echo $user['idusuario']; ?>" data-status="<?php echo $user['status']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -211,13 +211,13 @@ $roles = $rolController->handleRequest();
         <?php include __DIR__ . '/../../templates/footer.html'; ?>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/SIGEFO/webapp/assets/js/usuarios.js"></script>
-
-</div>
-</body>
-
 </html>

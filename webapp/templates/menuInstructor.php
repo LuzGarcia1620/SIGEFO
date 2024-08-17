@@ -22,7 +22,6 @@
     .menu {
         height: 50px;
         justify-content: center;
-        background-color: #dee0e5;
     }
 
     .menu a:hover {

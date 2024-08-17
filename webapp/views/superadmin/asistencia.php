@@ -53,8 +53,8 @@
                 </form>
                 <!-- Botón para agregar trabajos -->
                 <button id="agregar-trabajo-btn" type="button" class="btn btn-success mb-3">Agregar Trabajo</button>
-                <button class="btn btn-warning" onclick="openModal()">Editar</button>   
-                
+                <button class="btn btn-warning" onclick="openModal()">Editar</button>
+
                 <div class="divider-line"></div>
                 <br>
                 <formmethod="get" action="/SIGEFO/controlasistencia">
@@ -62,32 +62,33 @@
                         <select id="actividad" name="control" required>
                             <option value="" disabled selected>Seleccione una Actividad</option>
                             <?php foreach ($actividades['actividades'] as $actividad):?>
-                                <?php $idAc = $actividad['idactividad'] ?>
-                                <option value="<?php echo $idAc ?>">
-                                    <?php echo $actividad['nombreactividad'] ?>
-                                </option>
+                            <?php $idAc = $actividad['idactividad'] ?>
+                            <option value="<?php echo $idAc ?>">
+                                <?php echo $actividad['nombreactividad'] ?>
+                            </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <button id="" type="button" class="btn btn-primary mb-2" onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
+                    <button id="" type="button" class="btn btn-primary mb-2"
+                        onclick="<?php $list = $activityService->getListForActivity($idAc) ?>">Ver Asistencias</button>
                     <?php var_dump($list);?>
-                </form>
+                    </form>
 
-                <!-- Tabla de Asistencias y Trabajos -->
-                <div class="tabla">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="name">Nombre Participante</th>
-                                <th class="moodleuser">Usuario Moodle</th>
-                                <th class="moodlepass">Contraseña Moodle</th>
-                                <th class="evaluacion">Evaluación</th>
-                                <th class="coment">Comentarios</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaAsistenciaBody">
-                        <?php if (isset($list)):?>
-                            <?php foreach ($list as $docente):?>
+                    <!-- Tabla de Asistencias y Trabajos -->
+                    <div class="tabla">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="name">Nombre Participante</th>
+                                    <th class="moodleuser">Usuario Moodle</th>
+                                    <th class="moodlepass">Contraseña Moodle</th>
+                                    <th class="evaluacion">Evaluación</th>
+                                    <th class="coment">Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaAsistenciaBody">
+                                <?php if (isset($list)):?>
+                                <?php foreach ($list as $docente):?>
                                 <tr>
                                     <td><?php echo $docente['nombredocente']?></td>
                                     <td></td>
@@ -96,67 +97,67 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
-                        </tbody>
-                    </table>
-                </div>
+                                <?php endforeach;?>
+                                <?php endif;?>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>
 
-   <!-- Modal EDITAR  -->
-<div id="modaleditar" class="modal">
-    <div class="modal-content contenido">
-        <span class="close" onclick="closeModal()">&times;</span> <!-- Botón de cerrar -->
-        <div class="tarjeta">
-            <div class="modal-footer-title">Editar</div>
-            <div class="divider-line"></div>
-            <form class="form">
-                <input type="hidden" id="action" name="action" value="update">
-                <div class="campo">
-                    <input type="text" id="nombre" name="nombre" value="<?php echo $actividad['nombreactividad'] ?>" required>
-                    <label for="nombre">Nombre del participante</label>
-                </div>
-                <br>
-                <p>Cuenta Moodle</p>
-                <div class="campo">
-                    
-                    <input type="text" id="usermoodle" name="usermoodle" value="<?php echo $actividad['dirigidoa'] ?>" required>
-                    <label for="usermoodle">Usuario</label>
-                </div>
-                <div class="campo">
-                    <input type="text" id="passmoodle" name="passmoodle" value="<?php echo $actividad['dirigidoa'] ?>" required>
-                    <label for="passmoodle">Contraseña</label>
-                </div>
-                <br>
-                <div class="campo">
-                <select id="evaluacion" name="evaluacion" class="form-control" required>
-                                    <option value="">Seleccione la evaluación</option>
-                                    <option value="">Aprobado</option>
-                                    <option value="">No aprobado</option>
-                            </select>
-                            <label for="rol">Rol</label>
-                            <input type="text" id="evaluacion" name="evaluacion" value="<?php echo $actividad['dirigidoa'] ?>" required>
-                    <label for="evaluacion">Evaluación</label>
-                </div>
-                <div class="campo">
-                    <input type="text" id="coment" name="coment" value="<?php echo $actividad['fechaimp'] ?>" required>
-                    <label for="coment">Comentarios</label>
-                </div>
-                <br>
-                <div class="button-container">
-                    <div>
-                        <button class="blue-button" onclick="closeModal()">Cancelar</button>
+    <!-- Modal EDITAR  -->
+    <div id="modaleditar" class="modal">
+        <div class="modal-content contenido">
+            <span class="close" onclick="closeModal()">&times;</span> <!-- Botón de cerrar -->
+            <div class="tarjeta">
+                <div class="modal-footer-title">Editar</div>
+                <div class="divider-line"></div>
+                <form class="form">
+                    <input type="hidden" id="action" name="action" value="update">
+                    <div class="campo">
+                        <input type="text" id="nombre" name="nombre" value="<?php echo $actividad['nombreactividad'] ?>"
+                            required>
+                        <label for="nombre">Nombre del participante</label>
                     </div>
-                    <div>
-                        <button class="green-button btnUpdateAc" id="btnUpdateAc" type="button">Aceptar</button>
+                    <br>
+                    <p>Cuenta Moodle</p>
+                    <div class="campo">
+
+                        <input type="text" id="usermoodle" name="usermoodle"
+                            value="<?php echo $actividad['dirigidoa'] ?>" required>
+                        <label for="usermoodle">Usuario</label>
                     </div>
-                </div>
-            </form>
+                    <div class="campo">
+                        <input type="text" id="passmoodle" name="passmoodle"
+                            value="<?php echo $actividad['dirigidoa'] ?>" required>
+                        <label for="passmoodle">Contraseña</label>
+                    </div>
+                    <br>
+                    <div class="campo">
+                        <select id="evaluacion" name="evaluacion" class="form-control" required>
+                            <option value="">Seleccione la evaluación</option>
+                            <option value="">Aprobado</option>
+                            <option value="">No aprobado</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="coment" name="coment" value="<?php echo $actividad['fechaimp'] ?>"required>
+                        <label for="coment">Comentarios</label>
+                    </div>
+                    <br>
+                    <div class="button-container">
+                        <div>
+                            <button class="blue-button" onclick="closeModal()">Cancelar</button>
+                        </div>
+                        <div>
+                            <button class=" btnUpdateAc" id="btnUpdateAc" type="button">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
     <!--Footer-->

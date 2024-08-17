@@ -18,11 +18,6 @@
         margin-top: 30px;
       }
 
-      .menu {
-        height: 50px;
-        justify-content: center;
-        background-color: #3A5A96;
-      }
     </style>
   </head>
   

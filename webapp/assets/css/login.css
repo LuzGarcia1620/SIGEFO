@@ -28,8 +28,8 @@
   transition: all .25s ease;
 }
 .dropdownmenu li:hover a {
-  background: #3A5A96;
-  color: #ffffff;
+    background: #ffffff;
+    color: #000000;
 }
 #submenu {
   left: 0;
@@ -50,12 +50,11 @@ li:hover ul#submenu {
   width: 100%;
 }
 #submenu a:hover {
-  background: #ececec;
-  color: #000000;
-  border: 2px solid rgb(0, 0, 0);
+    background: #001660;
+    color: #ffffff;
 }
 #submenu a {
-  background-color: #3A5A96;
+    background-color: #ffffff;
 }
 
 #container {

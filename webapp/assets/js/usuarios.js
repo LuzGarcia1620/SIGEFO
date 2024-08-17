@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Metodo que muestra una alerta de confirmación cuando se registra un Usuario
     $('#btnUpdate').on('click', (e) => {
-        e.preventDefault();
 
         Swal.fire({
             title: 'Confirmación Actualización',
