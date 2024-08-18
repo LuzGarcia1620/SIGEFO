@@ -60,7 +60,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                 <input type="email" class="form-control" id="correo"
                                     value="<?php echo $user['correo']; ?>" readonly />
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="contraseña">Contraseña:</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="contraseña"
@@ -73,7 +73,7 @@ $user = $userService->getOne($_SESSION['idUsuario'])
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="bg-container">
                                 <div class="form-group">

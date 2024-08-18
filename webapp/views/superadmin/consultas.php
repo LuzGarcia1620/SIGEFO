@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Perfil de Usuario</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/consultas.css" />
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/SIGEFO/webapp/assets/css/consultas.css"/>
+
     <style>
         .hidden-select {
             display: none;
@@ -63,23 +63,28 @@ $activitiesForDocente = $docenteController->handleRequest();
 
                 <div class="radio-input">
                     <label>
-                        <input id="inputYear" type="radio" name="value-radio" value="year" onclick="showSelect('selectYear', 'resultTableYear');" />
+                        <input id="inputYear" type="radio" name="value-radio" value="year"
+                               onclick="showSelect('selectYear', 'resultTableYear');"/>
                         <span class="name">Año</span>
                     </label>
                     <label class="radio">
-                        <input id="inputIns" type="radio" name="value-radio" value="instructor" onclick="showSelect('selectInstructor', 'resultTableInstructor');"/>
+                        <input id="inputIns" type="radio" name="value-radio" value="instructor"
+                               onclick="showSelect('selectInstructor', 'resultTableInstructor');"/>
                         <span class="name">Instructor</span>
                     </label>
                     <label class="radio">
-                        <input id="inputUnit" type="radio" name="value-radio" value="unit" onclick="showSelect('selectUnit', 'resultTableUnit');"/>
+                        <input id="inputUnit" type="radio" name="value-radio" value="unit"
+                               onclick="showSelect('selectUnit', 'resultTableUnit');"/>
                         <span class="name">Unidad Académica</span>
                     </label>
                     <label class="radio">
-                        <input id="inputDoc" type="radio" name="value-radio" value="teacher" onclick="showSelect('selectTeacher', 'resultTableDocente');"/>
+                        <input id="inputDoc" type="radio" name="value-radio" value="teacher"
+                               onclick="showSelect('selectTeacher', 'resultTableDocente');"/>
                         <span class="name">Docente</span>
                     </label>
                     <label class="radio">
-                        <input id="inputGen" type="radio" name="value-radio" value="gender" onclick="showSelect('selectGender', 'resultTableGender');"/>
+                        <input id="inputGen" type="radio" name="value-radio" value="gender"
+                               onclick="showSelect('selectGender', 'resultTableGender');"/>
                         <span class="name">Género</span>
                     </label>
                 </div>
@@ -90,32 +95,37 @@ $activitiesForDocente = $docenteController->handleRequest();
                         <form method="get" action="/SIGEFO/consultas" id="formYear" class="d-flex align-items-center">
                             <select style="width: 300px;" name="anio" id="anio" class="form-control">
                                 <option value="" disabled selected>Seleccione el año</option>
-                                <?php foreach ($activities['anios'] as $anio):?>
-                                    <option value="<?php echo $anio['anio']?>">
-                                        <?php echo $anio['anio']?>
+                                <?php foreach ($activities['anios'] as $anio): ?>
+                                    <option value="<?php echo $anio['anio'] ?>">
+                                        <?php echo $anio['anio'] ?>
                                     </option>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button type="submit" id="searchYearBtn" class="btn btn-primary searchBtn form-margin">Buscar Por Año</button>
+                                <button type="submit" id="searchYearBtn" class="btn btn-primary searchBtn form-margin">
+                                    Buscar Por Año
+                                </button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectInstructor" class="hidden-select">
-                        <form method="get" action="/SIGEFO/consultas" id="formInstructor" class="d-flex align-items-center">
+                        <form method="get" action="/SIGEFO/consultas" id="formInstructor"
+                              class="d-flex align-items-center">
                             <select class="form-control" name="instructor" id="instructor" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Instructor</option>
-                                <?php foreach ($instructores['instructores'] as $instructor):?>
-                                    <option value="<?php echo $instructor['idinstructor']?>">
-                                        <?php echo $instructor['nombre'] . ' ' . $instructor['paterno'] . ' ' . $instructor['materno']?>
+                                <?php foreach ($instructores['instructores'] as $instructor): ?>
+                                    <option value="<?php echo $instructor['idinstructor'] ?>">
+                                        <?php echo $instructor['nombre'] . ' ' . $instructor['paterno'] . ' ' . $instructor['materno'] ?>
                                     </option>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchInsBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Instructor</button>
+                                <button id="searchInsBtn" class="btn btn-primary searchBtn form-margin">Buscar Por
+                                    Instructor
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -124,32 +134,37 @@ $activitiesForDocente = $docenteController->handleRequest();
                         <form method="get" action="/SIGEFO/consultas" id="formUnidad" class="d-flex align-items-center">
                             <select class="form-control" name="unidad" id="unidad" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Unidad Academica</option>
-                                <?php foreach ($unidades as $unidad):?>
-                                    <option value="<?php echo $unidad['id']?>">
-                                        <?php echo $unidad['nombre']?>
+                                <?php foreach ($unidades as $unidad): ?>
+                                    <option value="<?php echo $unidad['id'] ?>">
+                                        <?php echo $unidad['nombre'] ?>
                                     </option>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button type="submit" id="searchUnitBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Unidad Academica</button>
+                                <button type="submit" id="searchUnitBtn" class="btn btn-primary searchBtn form-margin">
+                                    Buscar Por Unidad Academica
+                                </button>
                             </div>
                         </form>
                     </div>
 
                     <div id="selectTeacher" class="hidden-select">
-                        <form method="get" action="/SIGEFO/consultas" id="formDocente" class="d-flex align-items-center">
+                        <form method="get" action="/SIGEFO/consultas" id="formDocente"
+                              class="d-flex align-items-center">
                             <select class="form-control" name="docente" id="docente" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione el Docente</option>
-                                <?php foreach ($docentes as $docente):?>
-                                    <option value="<?php echo $docente['iddocente']?>">
-                                        <?php echo $docente['nombre'] . ' ' . $docente['paterno'] . ' ' . $docente['materno']?>
+                                <?php foreach ($docentes as $docente): ?>
+                                    <option value="<?php echo $docente['iddocente'] ?>">
+                                        <?php echo $docente['nombre'] . ' ' . $docente['paterno'] . ' ' . $docente['materno'] ?>
                                     </option>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchDocBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Instructor</button>
+                                <button id="searchDocBtn" class="btn btn-primary searchBtn form-margin">Buscar Por
+                                    Docente
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -158,15 +173,17 @@ $activitiesForDocente = $docenteController->handleRequest();
                         <form method="get" action="/SIGEFO/consultas" id="formGender" class="d-flex align-items-center">
                             <select class="form-control" name="act" id="act" style="width: 300px;">
                                 <option value="" disabled selected>Seleccione la Actividad</option>
-                                <?php foreach ($activities['actividades'] as $actividad):?>
+                                <?php foreach ($activities['actividades'] as $actividad): ?>
                                     <option value="<?php echo $actividad['idactividad'] ?>">
-                                        <?php echo $actividad['nombreactividad']?>
+                                        <?php echo $actividad['nombreactividad'] ?>
                                     </option>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </select>
                             <!-- Botón de búsqueda -->
                             <div id="searchBtnContainer" class="ml-3">
-                                <button id="searchGenderBtn" class="btn btn-primary searchBtn form-margin" >Buscar Por Genero</button>
+                                <button id="searchGenderBtn" class="btn btn-primary searchBtn form-margin">Buscar Por
+                                    Genero
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -191,19 +208,30 @@ $activitiesForDocente = $docenteController->handleRequest();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($activitiesForYear)):?>
-                            <?php foreach ($activitiesForYear as $ac):?>
+
+                        <?php if ($activitiesForYear == null): ?>
+                            <?php if (isset($activitiesForYear)): ?>
+                                <tr>
+                                    <td>No hay actividades para el año indicado</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($activitiesForYear as $ac): ?>
+                                    <tr>
+                                        <td><?php echo isset($ac['nombre_actividad']) ? $ac['nombre_actividad'] : null ?></td>
+                                        <td><?php echo isset($ac['nombre_instructor']) ? $ac['nombre_instructor'] : null ?></td>
+                                        <td><?php echo isset($ac['fecha']) ? $ac['fecha'] : null ?></td>
+                                        <td><?php echo isset($ac['duracion']) ? $ac['duracion'] : null ?></td>
+                                        <td><?php echo isset($ac['categoria']) ? $ac['categoria'] : null ?></td>
+                                        <td><?php echo isset($ac['tipo']) ? $ac['tipo'] : null ?></td>
+                                        <td><?php echo isset($ac['num_participantes']) ? $ac['num_participantes'] : null ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
                             <tr>
-                                <td><?php echo $ac['nombre_actividad']?></td>
-                                <td><?php echo $ac['nombre_instructor']?></td>
-                                <td><?php echo $ac['fecha']?></td>
-                                <td><?php echo $ac['duracion']?></td>
-                                <td><?php echo $ac['categoria']?></td>
-                                <td><?php echo $ac['tipo']?></td>
-                                <td><?php echo $ac['num_participantes']?></td>
+                                <td>Seleccione un Año</td>
                             </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -222,19 +250,30 @@ $activitiesForDocente = $docenteController->handleRequest();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($activitiesForUnity)):?>
-                            <?php foreach ($activitiesForUnity as $ac):?>
+
+                        <?php if ($activitiesForUnity == null): ?>
+                            <?php if (isset($activitiesForUnity)): ?>
                                 <tr>
-                                    <td><?php echo $ac['nombre_actividad']?></td>
-                                    <td><?php echo $ac['nombre_instructor']?></td>
-                                    <td><?php echo $ac['fecha']?></td>
-                                    <td><?php echo $ac['duracion']?></td>
-                                    <td><?php echo $ac['categoria']?></td>
-                                    <td><?php echo $ac['tipo']?></td>
-                                    <td><?php echo $ac['num_participantes']?></td>
+                                    <td>No hay actividades para la Unidad indicada</td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php else: ?>
+                                <?php foreach ($activitiesForUnity as $ac): ?>
+                                    <tr>
+                                        <td><?php echo $ac['nombre_actividad'] ?></td>
+                                        <td><?php echo $ac['nombre_instructor'] ?></td>
+                                        <td><?php echo $ac['fecha'] ?></td>
+                                        <td><?php echo $ac['duracion'] ?></td>
+                                        <td><?php echo $ac['categoria'] ?></td>
+                                        <td><?php echo $ac['tipo'] ?></td>
+                                        <td><?php echo $ac['num_participantes'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td>Seleccione una Unidad</td>
+                            </tr>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -250,15 +289,25 @@ $activitiesForDocente = $docenteController->handleRequest();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($activitiesForIns)):?>
-                            <?php foreach ($activitiesForIns as $acI):?>
+                        <?php if (isset($activitiesForIns)): ?>
+                            <?php if ($activitiesForIns == null): ?>
                                 <tr>
-                                    <td><?php echo $acI['nombre']?></td>
-                                    <td><?php echo $acI['fechaimp']?></td>
-                                    <td><?php echo $acI['duracion']?></td>
+                                    <td>No hay actividades para el Instructor indicado</td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php else: ?>
+                                <?php foreach ($activitiesForIns as $acI): ?>
+                                    <tr>
+                                        <td><?php echo isset($acI['nombre']) ? $acI['nombre'] : null ?></td>
+                                        <td><?php echo isset($acI['fechaimp']) ? $acI['fechaimp'] : null ?></td>
+                                        <td><?php echo isset($acI['duracion']) ? $acI['duracion'] : null ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td>Seleccione un Instructor</td>
+                            </tr>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -273,15 +322,26 @@ $activitiesForDocente = $docenteController->handleRequest();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($activitiesForDocente)):?>
-                            <?php foreach ($activitiesForDocente as $acD):?>
+                        <?php if ($activitiesForDocente == null): ?>
+                            <?php if (isset($activitiesForDocente)): ?>
+
                                 <tr>
-                                    <td><?php echo $acD['instructor']?></td>
-                                    <td><?php echo $acD['actividad_nombre']?></td>
-                                    <td><?php echo $acD['fecha_actividad']?></td>
+                                    <td>No hay actividades para el Docente indicado</td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php else: ?>
+                                <?php foreach ($activitiesForDocente as $acD): ?>
+                                    <tr>
+                                        <td><?php echo isset($acD['instructor']) ? $acD['instructor'] : null ?></td>
+                                        <td><?php echo isset($acD['actividad_nombre']) ? $acD['actividad_nombre'] : null ?></td>
+                                        <td><?php echo isset($acD['fecha_actividad']) ? $acD['fecha_actividad'] : null ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td>Seleccione un Docente</td>
+                            </tr>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -297,15 +357,25 @@ $activitiesForDocente = $docenteController->handleRequest();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($activitiesForGender)):?>
-                            <?php foreach ($activitiesForGender as $acG):?>
+                        <?php if ($activitiesForGender == null): ?>
+                            <?php if (isset($activitiesForGender)): ?>
                                 <tr>
-                                    <td><?php echo $acG['total_hombres']?></td>
-                                    <td><?php echo $acG['total_mujeres']?></td>
-                                    <td><?php echo $acG['total_participantes']?></td>
+                                    <td>No hay Datos para la Actividad Indicada</td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php else: ?>
+                                <?php foreach ($activitiesForGender as $acG): ?>
+                                    <tr>
+                                        <td><?php echo isset($acG['total_hombres']) ? $acG['total_hombres'] : null ?></td>
+                                        <td><?php echo isset($acG['total_mujeres']) ? $acG['total_mujeres'] : null ?></td>
+                                        <td><?php echo isset($acG['total_participantes']) ? $acG['total_participantes'] : null ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td>Seleccione una Actividad</td>
+                            </tr>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

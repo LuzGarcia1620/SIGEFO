@@ -26,16 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
             processData: false,
             success: function (response, status, xhr) {
                 if (xhr.status === 200) {
-                    Swal.fire('Éxito', 'Inicio de Sesion Exitoso', 'success');
+                    Swal.fire({
+                        title: 'Éxito',
+                        text: 'Inicio de Sesion Exitoso',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                     setTimeout(() => {
                         window.location.href = "/SIGEFO/perfil"
-                    }, 2000)
+                    }, 2000);
                 } else {
-                    Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error en la solicitud.',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                 }
             },
             error: function (xhr, status, error) {
-                Swal.fire('Error', 'Error en la solicitud.', 'error');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Error en la solicitud.',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             }
         })
     })

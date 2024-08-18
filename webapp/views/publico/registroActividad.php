@@ -74,8 +74,11 @@ $profiles = $profileController->handleRequest();
                 <label for="apellidoMaterno">Apellido Materno</label>
             </div>
             <div class="input-field">
-                <input required autocomplete="off" type="text" name="sexo" id="sexo" value="<?php echo isset($docente) ? $docente['sexo'] : null?>" />
-                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="" disabled selected>Seleccione su Sexo</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femina</option>
+                </select>
             </div>
             <div class="input-field">
                 <input required autocomplete="off" type="number" name="edad" id="edad" value="<?php echo isset($docente) ? $docente['edad'] : null?>" />

@@ -53,7 +53,7 @@ $actividad = $activityController->handleRequest();
 <!-- Fin de la NavBar -->
 <a href="/SIGEFO/informacion" class="regresar">Regresar</a>
 
-<div class="container d-flex justify-content-center align-items-center form-section">
+<div class="container d-flex justify-content-center align-items-center form-section mb-5">
     <div class="form-container">
             <p class="form-title">Registrese en <?php echo isset($actividad) ? $actividad['nombreactividad'] : null ?></p>
             <p class="form-sub-title">Ingrese su correo electrónico</p>

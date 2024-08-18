@@ -75,10 +75,15 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                             </tr>
                         </thead>
                         <tbody>
+                        <?php if ($actividades['actividades'] == null): ?>
+                            <tr>
+                                <td>No hay actividades a mostrar</td>
+                            </tr>
+                        <?php else: ?>
                             <?php foreach ($actividades['actividades'] as $actividad): ?>
                             <tr>
                                 <td><?php echo $actividad['nombreactividad']; ?></td>
-                                <td><?php echo $actividad['status']; ?></td>
+                                <td><?php echo $actividad['status'] ? "Enviado" : "Pendiente"; ?></td>
                                 <td>
                                     <div class="img-container">
                                         <img src="/SIGEFO/webapp/assets/img/lupa.png" alt="ver"
@@ -232,6 +237,7 @@ $clasifications = isset($clasifications) ? $clasifications : array();
                                 </div>
                             </div>
                             <?php endforeach; ?>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

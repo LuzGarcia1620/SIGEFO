@@ -144,7 +144,7 @@ class ActivityService
         try {
             $conn = $this->postgres->connect();
 
-            $stmt = $conn->prepare("SELECT EXTRACT(YEAR FROM fechaImp) AS anio FROM actividad;");
+            $stmt = $conn->prepare("SELECT DISTINCT EXTRACT(YEAR FROM fechaImp) AS anio FROM actividad; ");
             $stmt->execute();
 
             return $stmt->fetchAll();

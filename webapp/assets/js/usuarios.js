@@ -38,7 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (xhr.status === 200) {
                     Swal.fire('Éxito', 'Usuario agregado exitosamente.', 'success');
                     $('#agregarUsuariosModal').modal('hide');
-                    location.reload();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000)
+
                 } else {
                     Swal.fire('Error', 'Ocurrió un error en la solicitud.', 'error');
                 }
@@ -232,3 +235,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+function cerrarModalAgregarUsuario() {
+    $('#agregarUsuariosModal').modal('hide');
+}
+
+// Función para cerrar el modal de editar usuario
+function cerrarModalEditarUsuario() {
+    $('#editarUsuario').modal('hide');
+}

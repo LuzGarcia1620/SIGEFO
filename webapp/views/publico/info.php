@@ -52,7 +52,7 @@ $activity = $activityController->handleRequest();
     <br>
 
     <!-- Contenido principal -->
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center mt-5 mb-3" style="height: 100vh;">
         <div class="card p-3 shadow-md">
             <div class="row g-0">
                 <div class="col-md-5">

@@ -103,7 +103,7 @@ $roles = $rolController->handleRequest();
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#agregarUsuariosModal').modal('hide');">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -145,7 +145,7 @@ $roles = $rolController->handleRequest();
                         </div>
                         <input type="hidden" name="action" value="save">
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#agregarUsuariosModal').modal('hide');">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
@@ -161,7 +161,7 @@ $roles = $rolController->handleRequest();
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#editarUsuario').modal('hide');">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -193,7 +193,7 @@ $roles = $rolController->handleRequest();
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" id="idUsuarioU" name="idUsuario">
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#editarUsuario').modal('hide');">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="btnUpdate">Guardar</button>
                         </div>
                     </form>
