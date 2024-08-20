@@ -9,7 +9,7 @@ class InstructorService
     {
         $this->postgres = new PostgreSQL();
     }
-
+    
     public function validateHaveInstructor ($id)
     {
         try {

@@ -305,7 +305,7 @@ if (isset($_SESSION['idInstructor'])) {
 
 <!-- Footer -->
 <div>
-    <?php @include __DIR__ . '/../../templates/footer.html'; ?>
+    <?php include __DIR__ . '/../../templates/footer.html'; ?>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

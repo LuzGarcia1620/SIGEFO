@@ -18,6 +18,8 @@ $user = $userService->getOne($_SESSION['idUsuario'])
 </head>
 
 <body>
+    <?php echo 'This is the IdUsuario ' . $_SESSION['idUsuario']?>
+    <?php echo 'This is the IdInstructor ' . $_SESSION['idInstructor']?>
     <div>
         <?php include __DIR__ . '/templates/header.html'; ?>
     </div>

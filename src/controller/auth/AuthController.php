@@ -32,15 +32,11 @@ class AuthController
                             if ($result['rol'] == 'Instructor') {
                                 $have = $this->instructorService->validateHaveInstructor($result['idusuario']);
 
+                                session_start();
+                                $_SESSION['idUsuario'] = $result["idusuario"];
+                                $_SESSION['rol'] = $result["rol"];
                                 if ($have) {
-                                    session_start();
-                                    $_SESSION['idUsuario'] = $result["idusuario"];
-                                    $_SESSION['rol'] = $result["rol"];
                                     $_SESSION['idInstructor'] = $have["idinstructor"];
-                                } else {
-                                    session_start();
-                                    $_SESSION['idUsuario'] = $result["idusuario"];
-                                    $_SESSION['rol'] = $result["rol"];
                                 }
                             } else {
                                 session_start();
